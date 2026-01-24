@@ -1,0 +1,4 @@
+CREATE TABLE mc_sport (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);
