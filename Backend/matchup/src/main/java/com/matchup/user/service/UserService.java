@@ -1,10 +1,8 @@
 package com.matchup.user.service;
 
 
-import com.matchup.common.service.CrudService;
 import com.matchup.common.service.CrudServiceImpl;
 import com.matchup.user.entity.User;
-import com.matchup.user.repository.UserRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
