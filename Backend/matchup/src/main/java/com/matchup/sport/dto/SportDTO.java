@@ -9,6 +9,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 public class SportDTO extends BaseDto {
 
-    private Long id;
     private String name;
+
 }
