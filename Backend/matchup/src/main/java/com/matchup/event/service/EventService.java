@@ -14,11 +14,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EventService extends CrudServiceImpl<Event> {
-
-    public EventService(JpaRepository<Event, Long> repository,
-                        SportRepository sportRepository,
-                        LocationRepository locationRepository,
-                        UserRepository userRepository) {
+    public EventService(JpaRepository<Event, Long> repository) {
         super(repository);
     }
 }

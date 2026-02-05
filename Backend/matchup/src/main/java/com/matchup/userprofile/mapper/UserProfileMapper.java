@@ -2,19 +2,29 @@ package com.matchup.userprofile.mapper;
 
 
 import com.matchup.common.mapper.BaseMapper;
-import com.matchup.user.mapper.UserMapper;
+import com.matchup.user.entity.User;
+import com.matchup.user.repository.UserRepository;
 import com.matchup.userprofile.dto.UserProfileDTO;
 import com.matchup.userprofile.entity.UserProfile;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.Named;
+import org.springframework.beans.factory.annotation.Autowired;
 
-@Mapper(componentModel = "spring", uses = {UserMapper.class})
-public interface UserProfileMapper extends BaseMapper<UserProfile, UserProfileDTO> {
+@Mapper(componentModel = "spring")
+public abstract class UserProfileMapper implements BaseMapper<UserProfile, UserProfileDTO> {
 
-    @Mapping(source = "user", target = "user")
-    UserProfileDTO toDto(UserProfile entity);
+    @Autowired
+    UserRepository userRepository;
 
-    @Mapping(source = "user", target = "user")
-    UserProfile toEntity(UserProfileDTO dto);
+    @Mapping(source = "userId", target = "user", qualifiedByName = "mapUser")
+    public abstract UserProfile toEntity(UserProfileDTO dto);
 
+    public abstract UserProfileDTO toDto(UserProfile entity);
+
+
+    @Named("mapUser")
+    protected User mapUser(Long id) {
+        return id == null ? null : userRepository.getReferenceById(id);
+    }
 }
