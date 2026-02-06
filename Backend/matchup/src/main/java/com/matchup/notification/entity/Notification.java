@@ -18,11 +18,11 @@ import java.time.LocalDateTime;
 public class Notification extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "mc_user_id", nullable = false)
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "event_id", nullable = false)
+    @JoinColumn(name = "mc_event_id", nullable = false)
     private Event event;
 
     @Enumerated(EnumType.STRING)
