@@ -1,6 +1,7 @@
 package com.matchup.user.entity;
 
 import com.matchup.common.entity.BaseEntity;
+import com.matchup.user.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,7 +21,9 @@ public class User extends BaseEntity {
     @Column(name = "password", nullable = false)
     private String password;
 
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
-    private String role;
+    private UserRole role;
 
 }

@@ -2,6 +2,7 @@ package com.matchup.participation.entity;
 
 import com.matchup.common.entity.BaseEntity;
 import com.matchup.event.entity.Event;
+import com.matchup.participation.enums.ParticipationStatus;
 import com.matchup.user.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -24,7 +25,9 @@ public class Participation extends BaseEntity {
     @JoinColumn(name = "mc_event_id", nullable = false)
     private Event event;
 
+
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 50)
-    private String status;
+    private ParticipationStatus status;
 
 }
