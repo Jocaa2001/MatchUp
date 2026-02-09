@@ -12,7 +12,6 @@ import java.time.LocalDate;
 @EqualsAndHashCode(callSuper = false)
 public class UserProfileDTO extends BaseDto {
 
-    private Long userId;
     private String firstName;
     private String lastName;
     private String city;

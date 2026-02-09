@@ -2,6 +2,7 @@ package com.matchup.user.entity;
 
 import com.matchup.common.entity.BaseEntity;
 import com.matchup.user.enums.UserRole;
+import com.matchup.userprofile.entity.UserProfile;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,6 +15,10 @@ import lombok.*;
 @AllArgsConstructor
 public class User extends BaseEntity {
 
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "mc_user_profile_id")
+    private UserProfile profile;
 
     @Column(name = "email", nullable = false)
     private String email;

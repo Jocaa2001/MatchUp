@@ -17,11 +17,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class UserProfile extends BaseEntity {
 
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mc_user_id", nullable = false)
-    private User user;
-
     @Column(name = "first_name", length = 50)
     private String firstName;
 

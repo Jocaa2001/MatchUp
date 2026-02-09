@@ -10,6 +10,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 public class UserDTO extends BaseDto {
 
+    private Long userProfileId;
     private String email;
     private String password;
     private String role;
