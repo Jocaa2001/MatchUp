@@ -10,7 +10,7 @@ public interface CrudService <E extends BaseEntity>{
 
     List<E> getAll();
 
-    E getById(Long id) throws RuntimeException;
+    E getById(Long id) throws EntityNotFoundException;
 
     boolean existsById(Long id);
 

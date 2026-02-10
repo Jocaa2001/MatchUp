@@ -1,22 +1,20 @@
 package com.matchup.exception;
 
 
+import com.matchup.common.entity.BaseEntity;
+
 public class EntityNotFoundException extends RuntimeException {
 
-    private final Object id;
-    private final Object entity;
+    private final Long id;
 
-    public EntityNotFoundException(Object id, Object entity) {
-        super(entity.getClass().getSimpleName() + " not found with id: " + id);
+    public EntityNotFoundException(Long id) {
+        super("Entity with id = " + id + " not found");
         this.id = id;
-        this.entity = entity;
     }
 
     public Object getId() {
         return id;
     }
 
-    public Object getEntity() {
-        return entity;
-    }
+
 }
