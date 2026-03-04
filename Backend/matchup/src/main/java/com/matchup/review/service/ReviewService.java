@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ReviewService extends CrudServiceImpl<Review> {
-    protected ReviewService(JpaRepository<Review, Long> repository) {
+    public ReviewService(JpaRepository<Review, Long> repository) {
         super(repository);
     }
 }

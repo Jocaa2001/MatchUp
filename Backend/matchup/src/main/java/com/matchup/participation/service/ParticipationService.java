@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ParticipationService extends CrudServiceImpl<Participation> {
-    protected ParticipationService(JpaRepository<Participation, Long> repository) {
+    public ParticipationService(JpaRepository<Participation, Long> repository) {
         super(repository);
     }
 }
