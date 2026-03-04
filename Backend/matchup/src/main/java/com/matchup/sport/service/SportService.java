@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SportService extends CrudServiceImpl<Sport> {
 
-    protected SportService(JpaRepository<Sport, Long> repository) {
+    public SportService(JpaRepository<Sport, Long> repository) {
         super(repository);
     }
 }

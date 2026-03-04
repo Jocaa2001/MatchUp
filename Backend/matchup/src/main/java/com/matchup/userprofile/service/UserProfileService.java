@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserProfileService extends CrudServiceImpl<UserProfile> {
-    protected UserProfileService(JpaRepository<UserProfile, Long> repository) {
+    public UserProfileService(JpaRepository<UserProfile, Long> repository) {
         super(repository);
     }
 }
