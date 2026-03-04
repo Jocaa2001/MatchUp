@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class LocationService extends CrudServiceImpl<Location> {
-    protected LocationService(JpaRepository<Location, Long> repository) {
+    public LocationService(JpaRepository<Location, Long> repository) {
         super(repository);
     }
 }

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class NotificationService extends CrudServiceImpl<Notification> {
-    protected NotificationService(JpaRepository<Notification, Long> repository) {
+    public NotificationService(JpaRepository<Notification, Long> repository) {
         super(repository);
     }
 }
