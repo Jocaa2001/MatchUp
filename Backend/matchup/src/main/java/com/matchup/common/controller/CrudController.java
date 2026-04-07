@@ -4,6 +4,7 @@ import com.matchup.common.dto.BaseDto;
 import com.matchup.common.entity.BaseEntity;
 import com.matchup.common.mapper.BaseMapper;
 import com.matchup.common.service.CrudService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,14 +34,14 @@ public abstract class CrudController<E extends BaseEntity,
     }
 
     @PostMapping("")
-    public Dto create(@RequestBody Dto dto){
+    public Dto create(@Valid @RequestBody Dto dto){
         E entity = mapper.toEntity(dto);
         entity = service.create(entity);
         return mapper.toDto(entity);
     }
 
     @PutMapping("/{id}")
-    public Dto update(@PathVariable Long id, @RequestBody Dto dto){
+    public Dto update(@PathVariable Long id,@Valid @RequestBody Dto dto){
         E entity = mapper.toEntity(dto);
         entity = service.update(id, entity);
         return mapper.toDto(entity);
