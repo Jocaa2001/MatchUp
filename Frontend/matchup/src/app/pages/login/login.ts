@@ -4,6 +4,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink, Router } from "@angular/router";
 import { LoginResponse } from '../../models/responses/loginResponse';
 import { LoginRequest } from '../../models/requests/loginRequest';
+import { Auth } from '../../services/auth';
 
 
 
@@ -18,7 +19,7 @@ export class Login {
   isEmailAdressValid = signal(true);
   isPasswordEntered = signal(true);
   isPasswordVisible = signal(false);
-  private request = inject(HttpClient);
+  private authService = inject(Auth);
   private router = inject(Router);
 
   togglePasswordVisible(){
@@ -39,13 +40,18 @@ export class Login {
 
     const enteredEmail = this.loginForm.value.email;
     const enteredPassword = this.loginForm.value.password;
+    
+    if(enteredPassword === ''){
+      this.isPasswordEntered.set(false);
+      return;
+    }
 
     const requestBody: LoginRequest = {
       email: enteredEmail ?? '',
-  password: enteredPassword ?? ''
+      password: enteredPassword ?? ''
     }
 
-    this.request.post<LoginResponse>('http://localhost:8080/api/auth/login', requestBody).subscribe({
+    this.authService.login(requestBody).subscribe({
       next: (res) => {
         console.log('success', res)
         this.isLoginSuccesful.set(true);
@@ -60,10 +66,7 @@ export class Login {
 
 
 
-    // if(enteredPassword === ''){
-    //   this.isPasswordEntered.set(false);
-    //   return;
-    // }
+    
 
   }
 
