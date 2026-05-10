@@ -1,0 +1,213 @@
+<div class="auth-wrapper">
+
+  <!-- LEFT SIDE -->
+  <div class="auth-left">
+
+    <div class="auth-bg">
+      <div class="auth-grid"></div>
+      <div class="auth-blob"></div>
+    </div>
+
+    <div class="auth-left-content">
+
+      <div class="auth-logo">
+
+        <span class="logo-icon">
+          LOGO
+        </span>
+
+        <span class="logo-text">
+          Match<span class="logo-accent">Up</span>
+        </span>
+
+      </div>
+
+      <div class="auth-left-body">
+
+        <h1>
+          Welcome<br>
+          back, champ.
+        </h1>
+
+        <p>
+          Your next game is waiting.
+          Sign in and get back in action.
+        </p>
+
+        <div class="auth-testimonial">
+
+          <div class="testimonial-text">
+            "Finally found a basketball game for Saturday —
+            MatchUp is a game changer."
+          </div>
+
+          <div class="testimonial-author">
+
+            <div class="t-avatar">
+              M
+            </div>
+
+            <div>
+              <strong>Marko P.</strong>
+
+              <span>
+                Basketball enthusiast
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- RIGHT SIDE -->
+  <div class="auth-right">
+
+    <div class="auth-form-wrapper">
+
+      <!-- HEADER -->
+      <div class="auth-form-header">
+
+        <h2>
+          Sign In
+        </h2>
+
+        <p>
+          Don't have an account?
+
+          <a routerLink="/register" class="auth-link">
+            Create one free
+          </a>
+        </p>
+
+      </div>
+
+      <!-- ERROR ALERT -->
+       @if (!isLoginSuccesful()) {
+        <div class="alert alert-error">
+        Invalid email or password.
+      </div>
+       }
+      
+
+      <!-- FORM -->
+      <form class="auth-form" novalidate [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+        <!-- EMAIL -->
+        <div class="form-group">
+
+          <label for="email">
+            Email Address
+          </label>
+
+          <div class="input-wrapper">
+
+            <span class="input-icon material-icons">
+            mail
+            </span>
+
+            <input
+              id="email"
+              type="email"
+              class="form-control"
+              placeholder="you@example.com"
+              autocomplete="email"
+              [formControl] = "loginForm.controls.email"
+            />
+
+          </div>
+          
+          @if (!isEmailAdressValid()) {
+          <span class="form-error">
+            Please enter a valid email address.
+          </span>
+        }
+          
+
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="form-group">
+
+          <label for="password">
+
+            Password
+
+            <a href="#" class="forgot-link">
+              Forgot password?
+            </a>
+
+          </label>
+
+          <div class="input-wrapper">
+
+            <span class="input-icon material-icons">
+              lock
+            </span>
+
+            <input
+              id="password"
+              [type]="isPasswordVisible() ? 'text' : 'password'"
+              class="form-control"
+              placeholder="••••••••"
+              autocomplete="current-password"
+              formControlName = "password"
+            />
+
+            <button
+              type="button"
+              class="eye-btn material-icons"
+              (click) = "togglePasswordVisible()">
+
+              {{ isPasswordVisible() ? 'visibility' : 'visibility_off' }}
+              
+            </button>
+
+          </div>
+          @if (!isPasswordEntered()) {
+            <span class="form-error">
+            Password is required.
+          </span>
+
+          }
+          
+
+        </div>
+
+        <!-- SUBMIT -->
+        <button
+          type="submit"
+          class="btn btn-primary"
+          style="width:100%; justify-content:center;">
+
+          Sign In
+
+        </button>
+
+      </form>
+
+      <!-- DIVIDER -->
+      <div class="auth-divider">
+        <span>or continue as</span>
+      </div>
+
+      <!-- GUEST BUTTON -->
+      <button
+      routerLink=""
+        class="btn btn-secondary"
+        style="width:100%; justify-content:center;">
+
+        Guest — Browse Events
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
