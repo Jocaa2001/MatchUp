@@ -1,7 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from "@angular/router";
+import { RouterLink, Router } from "@angular/router";
+import { LoginResponse } from '../../models/responses/loginResponse';
+import { LoginRequest } from '../../models/requests/loginRequest';
+
+
 
 @Component({
   selector: 'app-login',
@@ -15,6 +19,7 @@ export class Login {
   isPasswordEntered = signal(true);
   isPasswordVisible = signal(false);
   private request = inject(HttpClient);
+  private router = inject(Router);
 
   togglePasswordVisible(){
     this.isPasswordVisible.set(!this.isPasswordVisible())
@@ -34,14 +39,18 @@ export class Login {
 
     const enteredEmail = this.loginForm.value.email;
     const enteredPassword = this.loginForm.value.password;
-    
-    this.request.post('http://localhost:8080/api/auth/login', {
-      email: enteredEmail,
-      password: enteredPassword
-    }).subscribe({
+
+    const requestBody: LoginRequest = {
+      email: enteredEmail ?? '',
+  password: enteredPassword ?? ''
+    }
+
+    this.request.post<LoginResponse>('http://localhost:8080/api/auth/login', requestBody).subscribe({
       next: (res) => {
         console.log('success', res)
         this.isLoginSuccesful.set(true);
+        this.router.navigate(['']);
+        localStorage.setItem('token', res.token)
       },
        error: (err) => {
         console.log('ERROR', err);
