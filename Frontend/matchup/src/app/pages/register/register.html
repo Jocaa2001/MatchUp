@@ -116,7 +116,7 @@
         <p>
           Already have an account?
 
-          <a href="#" class="auth-link">
+          <a routerLink="/login" class="auth-link">
             Sign in
           </a>
         </p>
@@ -124,55 +124,15 @@
       </div>
 
       <!-- ERROR -->
-      <div class="alert alert-error">
-        Something went wrong.
-      </div>
+       @if (isSomethingWrongErrorMessage()) {
+        <div class="alert alert-error">
+          Something went wrong.
+        </div>
+       }
+     
 
       <!-- FORM -->
-      <form class="auth-form" novalidate>
-
-        <!-- NAME ROW -->
-        <div class="form-row">
-
-          <div class="form-group">
-
-            <label for="firstName">
-              First Name
-            </label>
-
-            <input
-              id="firstName"
-              type="text"
-              class="form-control"
-              placeholder="Marko"
-            />
-
-            <span class="form-error">
-              First name is required.
-            </span>
-
-          </div>
-
-          <div class="form-group">
-
-            <label for="lastName">
-              Last Name
-            </label>
-
-            <input
-              id="lastName"
-              type="text"
-              class="form-control"
-              placeholder="Petrović"
-            />
-
-            <span class="form-error">
-              Last name is required.
-            </span>
-
-          </div>
-
-        </div>
+      <form class="auth-form" novalidate [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
         <!-- EMAIL -->
         <div class="form-group">
@@ -183,22 +143,27 @@
 
           <div class="input-wrapper">
 
-            <span class="input-icon">
-              @
+            <span class="input-icon material-icons">
+            mail
             </span>
+
 
             <input
               id="email"
               type="email"
               class="form-control"
               placeholder="you@example.com"
+              formControlName = "email"
             />
 
           </div>
-
-          <span class="form-error">
+          
+          @if (!isEmailAdressValid()) {
+            <span class="form-error">
             Please enter a valid email address.
           </span>
+          }
+          
 
         </div>
 
@@ -211,30 +176,37 @@
 
           <div class="input-wrapper">
 
-            <span class="input-icon">
-              🔒
+           <span class="input-icon material-icons">
+              lock
             </span>
 
             <input
               id="password"
-              type="password"
+              [type]="isPasswordVisible() ? 'text' : 'password'"
               class="form-control"
-              placeholder="Min. 8 characters"
+              placeholder="••••••••"
+              autocomplete="current-password"
+              formControlName = "password"
             />
 
             <button
               type="button"
-              class="eye-btn">
+              class="eye-btn material-icons"
+              (click) = "togglePasswordVisible()">
 
-              👁
-
+              {{ isPasswordVisible() ? 'visibility' : 'visibility_off' }}
+              
             </button>
 
           </div>
 
-          <span class="form-error">
+
+          @if (isPasswordValid()) {
+            <span class="form-error">
             Password must be at least 8 characters.
           </span>
+          }
+          
 
         </div>
 

@@ -26,8 +26,6 @@ export class Login {
     this.isPasswordVisible.set(!this.isPasswordVisible())
   }
 
-  
-
   loginForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl('')

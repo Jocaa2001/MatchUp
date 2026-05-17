@@ -5,7 +5,9 @@
     import com.matchup.auth.dto.RegisterUserDto;
     import com.matchup.auth.service.AuthenticationService;
     import com.matchup.auth.service.JwtService;
+    import com.matchup.user.dto.CreateUserDTO;
     import com.matchup.user.entity.User;
+    import com.matchup.user.mapper.UserMapper;
     import org.springframework.http.ResponseEntity;
     import org.springframework.web.bind.annotation.PostMapping;
     import org.springframework.web.bind.annotation.RequestBody;
@@ -19,14 +21,16 @@
 
         private final AuthenticationService authenticationService;
 
-        public AuthenticationController(JwtService jwtService, AuthenticationService authenticationService) {
+        private final UserMapper userMapper;
+        public AuthenticationController(JwtService jwtService, AuthenticationService authenticationService, UserMapper userMapper) {
             this.jwtService = jwtService;
             this.authenticationService = authenticationService;
+            this.userMapper = userMapper;
         }
 
         @PostMapping("/register")
-        public ResponseEntity<User> register(@RequestBody RegisterUserDto registerUserDto) {
-            User registeredUser = authenticationService.signup(registerUserDto);
+        public ResponseEntity<CreateUserDTO> register(@RequestBody RegisterUserDto registerUserDto) {
+            CreateUserDTO registeredUser = userMapper.toDtoRegister(authenticationService.signup(registerUserDto));
 
             return ResponseEntity.ok(registeredUser);
         }

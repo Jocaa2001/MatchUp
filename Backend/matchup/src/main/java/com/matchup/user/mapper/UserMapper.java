@@ -1,6 +1,7 @@
 package com.matchup.user.mapper;
 
 import com.matchup.common.mapper.BaseMapper;
+import com.matchup.user.dto.CreateUserDTO;
 import com.matchup.user.dto.UserDTO;
 import com.matchup.user.entity.User;
 import com.matchup.userprofile.entity.UserProfile;
@@ -21,6 +22,8 @@ public abstract class UserMapper implements BaseMapper<User, UserDTO> {
 
     @Mapping(source = "profile.id", target = "userProfileId")
     public abstract UserDTO toDto(User entity);
+
+    public abstract CreateUserDTO toDtoRegister(User entity);
 
     @Named("mapProfile")
     protected UserProfile mapProfile(Long id) {
