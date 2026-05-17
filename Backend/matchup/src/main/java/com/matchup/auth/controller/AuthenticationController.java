@@ -29,10 +29,15 @@
         }
 
         @PostMapping("/register")
-        public ResponseEntity<CreateUserDTO> register(@RequestBody RegisterUserDto registerUserDto) {
+        public ResponseEntity<LoginResponse> register(@RequestBody RegisterUserDto registerUserDto) {
             CreateUserDTO registeredUser = userMapper.toDtoRegister(authenticationService.signup(registerUserDto));
 
-            return ResponseEntity.ok(registeredUser);
+            //after successful register auto-login user and return login response with jwt token
+            //todo refactor this method and registerUserDto loginUserDto loginResponse, as they are as of now all very similar
+            User authenticatedUser = authenticationService.authenticate(new LoginUserDto(registeredUser.getEmail(), registerUserDto.getPassword()));
+            String jwtToken = jwtService.generateToken(authenticatedUser);
+            LoginResponse loginResponse =  LoginResponse.builder().token(jwtToken).expiresIn(jwtService.getExpirationTime()).build();
+            return ResponseEntity.ok(loginResponse);
         }
 
         @PostMapping("/login")

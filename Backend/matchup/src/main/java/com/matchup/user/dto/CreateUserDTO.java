@@ -7,8 +7,6 @@ import lombok.Data;
 
 @Data
 public class CreateUserDTO extends BaseDto {
-
     private String email;
     private String password;
-
 }

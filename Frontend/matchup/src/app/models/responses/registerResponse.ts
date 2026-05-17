@@ -1,5 +1,4 @@
 export interface RegisterResponse {
-    email: string,
-    password: string,
-    role: string
+    token: string;
+    expiresIn: number;
 }

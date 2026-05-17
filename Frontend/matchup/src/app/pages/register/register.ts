@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { RegisterRequest } from '../../models/requests/registerRequest';
 import { Auth } from '../../services/auth';
 
@@ -16,6 +16,7 @@ export class Register {
   isPasswordValid = signal(false);
   isPasswordVisible = signal(false);
   private authService = inject(Auth);
+  private router = inject(Router);
 
 
 togglePasswordVisible(){
@@ -38,7 +39,9 @@ togglePasswordVisible(){
 
     this.authService.register(requestBody).subscribe({
       next: (res) => {
-        console.log('success', res)
+        console.log('SUCCESS', res)
+        localStorage.setItem('token', res.token)
+        this.router.navigate(['/profile-setup']);
       },
        error: (err) => {
         console.log('ERROR', err);
