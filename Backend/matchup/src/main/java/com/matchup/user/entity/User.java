@@ -22,7 +22,7 @@ import java.util.List;
 public class User extends BaseEntity implements UserDetails {
 
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "mc_user_profile_id")
     private UserProfile profile;
 
