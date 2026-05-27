@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from "@angular/router";
 import { RegisterRequest } from '../../models/requests/registerRequest';
 import { Auth } from '../../services/auth';
@@ -23,10 +23,38 @@ togglePasswordVisible(){
     this.isPasswordVisible.set(!this.isPasswordVisible())
   }
 
-  registerForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl('')
-  });
+  get password(): string {
+  return this.registerForm.get('password')?.value || '';
+}
+
+hasMinLength = () => this.password.length >= 8;
+
+hasUppercase = () => /[A-Z]/.test(this.password);
+
+hasLowercase = () => /[a-z]/.test(this.password);
+
+hasNumber = () => /\d/.test(this.password);
+
+hasSpecialChar = () => /[^\w\s]/.test(this.password);
+
+registerForm = new FormGroup({
+  email: new FormControl('', {
+    validators: [
+      Validators.required,
+      Validators.email
+    ]
+  }),
+
+  password: new FormControl('', {
+    validators: [
+      Validators.required,
+      Validators.minLength(8),
+      Validators.pattern(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{8,}$/
+      )
+    ]
+  })
+});
 
   onSubmit(){
     const enteredEmail = this.registerForm.value.email;

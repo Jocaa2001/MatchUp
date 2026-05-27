@@ -158,7 +158,7 @@
 
           </div>
           
-          @if (!isEmailAdressValid()) {
+          @if (registerForm.get('email')?.touched && registerForm.get('email')?.invalid) {
             <span class="form-error">
             Please enter a valid email address.
           </span>
@@ -168,7 +168,7 @@
         </div>
 
         <!-- PASSWORD -->
-        <div class="form-group">
+        <div class="form-group password-rules">
 
           <label for="password">
             Password
@@ -200,10 +200,28 @@
 
           </div>
 
-          @if (isPasswordValid()) {
-            <span class="form-error">
-            Password must be at least 8 characters.
-          </span>
+            @if (registerForm.get('password')?.touched) {
+            <ul>
+              <li [class.valid]="hasUppercase()">
+              <span class="icon">{{ hasUppercase() ? '✔' : '•' }}</span>
+              At least one uppercase letter (A-Z)
+            </li>
+
+            <li [class.valid]="hasLowercase()">
+              <span class="icon">{{ hasLowercase() ? '✔' : '•' }}</span>
+              At least one lowercase letter (a-z)
+            </li>
+
+            <li [class.valid]="hasNumber()">
+              <span class="icon">{{ hasNumber() ? '✔' : '•' }}</span>
+              At least one number (0-9)
+            </li>
+
+            <li [class.valid]="hasSpecialChar()">
+              <span class="icon">{{ hasSpecialChar() ? '✔' : '•' }}</span>
+              At least one special character (!@#$%^&*)
+            </li>
+          </ul>
           }
           
 
@@ -227,7 +245,8 @@
         <button
           type="submit"
           class="btn btn-primary"
-          style="width:100%; justify-content:center;">
+          style="width:100%; justify-content:center;"
+          [disabled]="registerForm.invalid">
 
           Create Free Account
 

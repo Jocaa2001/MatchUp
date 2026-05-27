@@ -260,3 +260,48 @@
 @media (max-width: 480px) {
   .form-row { grid-template-columns: 1fr; }
 }
+
+.password-rules {
+  list-style: none;
+  padding: 0;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.password-rules li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  font-size: 13px;
+  color: #9ca3af; // gray-400
+  transition: all 0.2s ease;
+}
+
+.password-rules li .icon {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 12px;
+  border-radius: 50%;
+  background: #2a2a2a;
+  color: #9ca3af;
+  transition: all 0.2s ease;
+}
+
+.password-rules li {
+  color: #ef4444; /* default RED */
+}
+
+.password-rules li.valid {
+  color: #22c55e;
+}
+
+.password-rules li.invalid {
+  color: #ef4444;
+}

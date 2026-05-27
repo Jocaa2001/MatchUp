@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, signal } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink, Router } from "@angular/router";
 import { LoginResponse } from '../../models/responses/loginResponse';
 import { LoginRequest } from '../../models/requests/loginRequest';
@@ -27,8 +27,12 @@ export class Login {
   }
 
   loginForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl('')
+    email: new FormControl('', {
+      validators: [Validators.required]
+    }),
+    password: new FormControl('',{
+      validators: [Validators.required]
+    })
   });
 
   onSubmit(){

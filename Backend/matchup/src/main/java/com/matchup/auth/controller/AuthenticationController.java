@@ -8,6 +8,7 @@
     import com.matchup.user.dto.CreateUserDTO;
     import com.matchup.user.entity.User;
     import com.matchup.user.mapper.UserMapper;
+    import jakarta.validation.Valid;
     import org.springframework.http.ResponseEntity;
     import org.springframework.web.bind.annotation.PostMapping;
     import org.springframework.web.bind.annotation.RequestBody;
@@ -29,7 +30,7 @@
         }
 
         @PostMapping("/register")
-        public ResponseEntity<LoginResponse> register(@RequestBody RegisterUserDto registerUserDto) {
+        public ResponseEntity<LoginResponse> register(@Valid @RequestBody RegisterUserDto registerUserDto) {
             CreateUserDTO registeredUser = userMapper.toDtoRegister(authenticationService.signup(registerUserDto));
 
             //after successful register auto-login user and return login response with jwt token
