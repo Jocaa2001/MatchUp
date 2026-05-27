@@ -14,13 +14,7 @@ export class ProfileSetupService{
     
 
     setupProfile(data:UserProfileRequest){
-
-        const token = localStorage.getItem('token');
-
-        const headers = new HttpHeaders({
-          Authorization: `Bearer ${token}`
-        });
-        return this.http.put<void>('http://localhost:8080/api/users/create-profile', data, {headers});
+        return this.http.put<void>('http://localhost:8080/api/users/create-profile', data);
     }
 
 
