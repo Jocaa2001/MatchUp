@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, ɵInternalFormsSharedModule } from '@angular/forms';
 import { ProfileSetupService } from '../../services/profileSetup.service';
 import { UserProfileRequest } from '../../models/requests/userProfileRequest';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile-setup',
@@ -12,6 +13,8 @@ import { UserProfileRequest } from '../../models/requests/userProfileRequest';
 export class ProfileSetup {
 
   private profileSetupService = inject(ProfileSetupService);
+  private router = inject(Router);
+
 
   //for now without avatar
   profileSetupForm = new FormGroup({
@@ -41,7 +44,7 @@ export class ProfileSetup {
     this.profileSetupService.setupProfile(request).subscribe({
       next: (res) => {
         console.log('success', res)
-       
+       this.router.navigate(['/']);
       },
       error: (err) => {
         console.log('ERROR', err);
