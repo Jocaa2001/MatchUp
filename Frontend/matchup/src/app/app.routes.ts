@@ -3,6 +3,7 @@ import { Login } from './pages/login/login';
 import { LandingPage } from './pages/landing-page/landing-page';
 import { Register } from './pages/register/register';
 import { ProfileSetup } from './pages/profile-setup/profile-setup';
+import { Events } from './pages/events/events';
 
 export const routes: Routes = [
     {
@@ -20,5 +21,9 @@ export const routes: Routes = [
     {
         path: 'profile-setup',
         component: ProfileSetup
+    },
+    {
+        path: 'events',
+        component: Events
     }
 ];
