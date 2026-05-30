@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { EventCard } from "../../components/event-card/event-card";
 import { EventFilter } from "../../components/event-filter/event-filter";
+import { EventsService } from '../../services/events.service';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-events',
@@ -9,4 +11,18 @@ import { EventFilter } from "../../components/event-filter/event-filter";
   templateUrl: './events.html',
   styleUrl: './events.scss',
 })
-export class Events {}
+export class Events implements OnInit {
+  eventsService = inject(EventsService);
+  events = toSignal(this.eventsService.getEvents(), {
+  initialValue: []
+});
+
+  ngOnInit(): void {
+    
+    setTimeout(() => {
+        console.log(this.events());
+      }, 10000);
+
+  }
+  
+}

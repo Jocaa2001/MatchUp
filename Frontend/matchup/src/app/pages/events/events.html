@@ -20,12 +20,9 @@
  
     <!-- Events Grid -->
     <div class="events-grid">
-      <app-event-card></app-event-card>
-      <app-event-card></app-event-card>
-      <app-event-card></app-event-card>
-      <app-event-card></app-event-card>
-      <app-event-card></app-event-card>
-      <app-event-card></app-event-card>
+       @for (event of events(); track event.id) {
+    <app-event-card [event]="event"></app-event-card>
+  }
     </div>
  
   </div>
