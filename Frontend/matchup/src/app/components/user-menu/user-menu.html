@@ -1,0 +1,28 @@
+<div class="user-menu">
+ 
+  <!-- Avatar Trigger -->
+  <div class="user-trigger" (click)="toggleDropdown()">
+ 
+    <!-- Sa slikom -->
+    <div class="user-avatar has-image">
+      <img src="https://i.pravatar.cc/40" alt="Marko P." />
+    </div>
+ 
+    <!-- Bez slike — inicijali -->
+    <!-- <div class="user-avatar initials">MP</div> -->
+ 
+    <span class="user-name">Marko</span>
+ 
+    <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none">
+      <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+ 
+  </div>
+ 
+  <!-- Dropdown — prikazuje se kada je isOpen true -->
+   @if(isOpen){
+    <app-user-menu-dropdown></app-user-menu-dropdown>
+   }
+  
+ 
+</div>

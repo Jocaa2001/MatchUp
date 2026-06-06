@@ -1,0 +1,181 @@
+.user-menu {
+  position: relative;
+}
+
+/* ── Trigger ── */
+.user-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px 5px 5px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all var(--transition);
+  user-select: none;
+
+  &:hover {
+    border-color: var(--border-accent);
+    background: var(--accent-subtle);
+  }
+}
+
+/* ── Avatar ── */
+.user-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.has-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &.initials {
+    background: var(--accent);
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: #07090f;
+    letter-spacing: 0.03em;
+  }
+}
+
+.user-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.chevron {
+  color: var(--text-muted);
+  transition: transform var(--transition);
+
+  .user-menu.open & {
+    transform: rotate(180deg);
+    color: var(--accent);
+  }
+}
+
+/* ── Dropdown ── */
+.user-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 230px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 8px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+  animation: fadeInUp 0.2s ease both;
+
+  /* Sakrij po defaultu — prikazujes kroz Angular kada je open */
+  display: none;
+
+  .user-menu.open & {
+    display: block;
+  }
+}
+
+/* ── Dropdown Header ── */
+.dropdown-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px 14px;
+}
+
+.dropdown-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.has-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &.initials {
+    background: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #07090f;
+  }
+}
+
+.dropdown-user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.dropdown-name {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dropdown-email {
+  font-size: 0.775rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Dropdown Items ── */
+.dropdown-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 6px 0;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-body);
+  transition: all var(--transition);
+
+  svg { flex-shrink: 0; }
+
+  &:hover {
+    color: var(--text-primary);
+    background: var(--bg-card);
+  }
+
+  &.danger {
+    color: #ff8080;
+
+    &:hover {
+      background: rgba(255, 95, 95, 0.08);
+      color: #ff8080;
+    }
+  }
+}

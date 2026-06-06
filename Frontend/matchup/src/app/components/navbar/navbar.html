@@ -19,8 +19,10 @@
         </a>
       </li>
     </ul>
-
-    <div class="navbar-actions">
+      @if(isLoggedIn()){
+         <app-user-menu />
+      }@else {
+        <div class="navbar-actions">
       <a routerLink="/login">
       <button class="btn btn-secondary btn-sm">
         Sign In
@@ -33,6 +35,8 @@
       </button>
       </a>
     </div>
+      }
+    
     
 
   </div>

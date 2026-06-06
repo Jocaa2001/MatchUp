@@ -4,6 +4,8 @@ import { LandingPage } from './pages/landing-page/landing-page';
 import { Register } from './pages/register/register';
 import { ProfileSetup } from './pages/profile-setup/profile-setup';
 import { Events } from './pages/events/events';
+import { UserMenu } from './components/user-menu/user-menu';
+import { UserProfile } from './pages/user-profile/user-profile';
 
 export const routes: Routes = [
     {
@@ -25,5 +27,9 @@ export const routes: Routes = [
     {
         path: 'events',
         component: Events
+    },
+    {
+        path: 'user-profile',
+        component: UserProfile
     }
 ];

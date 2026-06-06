@@ -22,4 +22,12 @@ export class Auth {
     return this.http.post<RegisterResponse>('http://localhost:8080/api/auth/register', data);
   }
 
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
+  isLoggedIn(): boolean {
+    return !!this.getToken();
+  }
+
 }
