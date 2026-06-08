@@ -15,6 +15,7 @@ import java.time.LocalDate;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class UserProfile extends BaseEntity {
 
     @Column(name = "first_name", length = 50)

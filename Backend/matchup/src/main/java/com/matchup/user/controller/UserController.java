@@ -30,4 +30,9 @@ public class UserController extends CrudController<User, UserDTO, UserService, U
         return ResponseEntity.ok(mapper.toDto(savedUser));
     }
 
+    @GetMapping("/me")
+    public ResponseEntity<UserDTO> getAuthenticatedUser(@AuthenticationPrincipal User user){
+
+        return ResponseEntity.ok(mapper.toDto(user));
+    }
 }
