@@ -19,9 +19,7 @@ export class Events implements OnInit {
 
   ngOnInit(): void {
     
-    setTimeout(() => {
-        console.log(this.events());
-      }, 10000);
+    
 
   }
   
