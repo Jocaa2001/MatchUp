@@ -40,8 +40,8 @@
           <path d="M6.5 3.5v3l2 1.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
         </svg>
 
-        {{event.startTime}}
-
+      {{ event.startTime | date:'EEE, MMM d · HH:mm' }}
+      
       </div>
 
       <div class="meta-item">

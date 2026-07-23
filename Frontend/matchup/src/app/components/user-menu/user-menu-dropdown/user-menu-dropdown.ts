@@ -1,5 +1,6 @@
-import { Component, HostListener  } from '@angular/core';
+import { Component, HostListener, inject  } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Auth } from '../../../services/auth';
 
 @Component({
   selector: 'app-user-menu-dropdown',
@@ -8,6 +9,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './user-menu-dropdown.scss',
 })
 export class UserMenuDropdown {
+  private authService = inject(Auth);
   isOpen = false;
 
   toggleDropdown() {
@@ -19,4 +21,9 @@ export class UserMenuDropdown {
   close() {
     this.isOpen = false;
   }
+
+  logout() {
+    this.authService.logout();
+  }
+
 }

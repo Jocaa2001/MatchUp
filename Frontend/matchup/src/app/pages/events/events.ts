@@ -19,9 +19,6 @@ export class Events implements OnInit {
 
   ngOnInit(): void {
 
-    console.log(this.events())
-
-
   }
 
 }
