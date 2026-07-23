@@ -1,11 +1,19 @@
-import { EventType } from "@angular/router";
+import { SportResponse } from "./sportResponse";
+import { LocationResponse } from "./locationRespons";
+import { UserResponse } from "./userResponse";
+
+export type EventStatus =
+  | "CREATED"
+  | "ACTIVE"
+  | "CANCELLED"
+  | "FINISHED";
 
 export interface EventResponse {
   id: number;
-  sportId: number;
-  locationId: number;
-  userId: number;
+  sport: SportResponse;
+  location: LocationResponse;
+  user: UserResponse;
   startTime: string;
   maxPlayers: number;
-  status: EventType;
+  status: EventStatus;
 }

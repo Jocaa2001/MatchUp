@@ -13,7 +13,7 @@
     <div class="event-header-badges">
 
       <span class="badge badge-sport">
-        {{event.sportId}}
+        {{event.sport.name}}
       </span>
 
       <span class="badge badge-status-open">
@@ -28,7 +28,7 @@
   <div class="event-card-body">
 
     <h3 class="event-title">
-      {{event.sportId}}
+      {{event.location.name}}
     </h3>
 
     <div class="event-meta">
@@ -51,7 +51,7 @@
           <circle cx="6.5" cy="4.5" r="1.2" stroke="currentColor" stroke-width="1.2"/>
         </svg>
 
-        {{event.locationId}}
+        {{event.location.address}}
 
       </div>
 

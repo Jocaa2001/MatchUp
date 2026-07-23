@@ -1,5 +1,0 @@
-export type EventStatus =
-  | 'CREATED'
-  | 'ACTIVE'
-  | 'CANCELLED'
-  | 'FINISHED';
