@@ -3,7 +3,6 @@ import { Observable } from "rxjs";
 
 export class JwtHttpInterceptor implements HttpInterceptor{
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        console.log('interceptor')
         //intercepts http request and attaches bearer token to header
         const token = localStorage.getItem('token');
 

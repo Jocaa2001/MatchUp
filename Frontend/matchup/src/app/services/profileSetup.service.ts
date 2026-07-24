@@ -10,6 +10,8 @@ import { UserProfileRequest } from "../models/requests/userProfileRequest";
 export class ProfileSetupService{
     private http = inject(HttpClient)
 
+
+    //rename this and in backend to be more generic at one point
     setupProfile(data:UserProfileRequest){
         return this.http.put<void>('http://localhost:8080/api/users/create-profile', data);
     }

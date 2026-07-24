@@ -6,6 +6,7 @@ import { ProfileSetup } from './pages/profile-setup/profile-setup';
 import { Events } from './pages/events/events';
 import { UserMenu } from './components/user-menu/user-menu';
 import { UserProfile } from './pages/user-profile/user-profile';
+import { CreateEvent } from './pages/create-event/create-event';
 
 export const routes: Routes = [
     {
@@ -26,7 +27,17 @@ export const routes: Routes = [
     },
     {
         path: 'events',
-        component: Events
+         children: [
+            {
+            path: '',
+            component: Events
+            },
+            {
+            path: 'create',
+            component: CreateEvent
+            }
+        ]
+
     },
     {
         path: 'user-profile',
