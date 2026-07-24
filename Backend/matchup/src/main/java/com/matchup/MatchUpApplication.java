@@ -8,9 +8,7 @@ public class MatchUpApplication {
 
 	static void main(String[] args) {
 		SpringApplication.run(MatchUpApplication.class, args);
-
 		System.out.println("Application started");
-
 	}
 
 }

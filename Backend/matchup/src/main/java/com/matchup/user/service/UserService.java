@@ -20,9 +20,7 @@ public class UserService extends CrudServiceImpl<User> {
         //check if user already has profile assigned
         UserProfile existingProfile = user.getProfile();
         if (existingProfile == null) {
-
             user.setProfile(userProfile);
-
         } else {
 
             existingProfile.setFirstName(userProfile.getFirstName());
@@ -32,8 +30,6 @@ public class UserService extends CrudServiceImpl<User> {
             existingProfile.setBirthDate(userProfile.getBirthDate());
             existingProfile.setAvatarUrl(userProfile.getAvatarUrl());
         }
-
         return repository.save(user);
-
     }
 }

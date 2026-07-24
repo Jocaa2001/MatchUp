@@ -15,4 +15,5 @@ export class ProfileDetailsService{
     getLoggedUser() {
   return this.http.get<UserResponse>('http://localhost:8080/api/users/me');
 }
+
 }
