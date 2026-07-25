@@ -1,6 +1,7 @@
 package com.matchup.event.entity;
 
 import com.matchup.common.entity.BaseEntity;
+import com.matchup.event.enums.EventStatus;
 import com.matchup.location.entity.Location;
 import com.matchup.sport.entity.Sport;
 import com.matchup.user.entity.User;
@@ -39,6 +40,10 @@ public class Event extends BaseEntity {
     @Column(name = "max_players")
     private Integer maxPlayers;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 50)
-    private String status;
+    private EventStatus status;
+
+    @Column(name = "end_time")
+    private LocalDateTime endTime;
 }

@@ -1,10 +1,6 @@
 package com.matchup.event.dto;
 
-import com.matchup.common.dto.BaseDto;
-import com.matchup.event.enums.EventStatus;
 import com.matchup.location.dto.LocationDTO;
-import com.matchup.sport.dto.SportDTO;
-import com.matchup.user.dto.UserDTO;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.Min;
@@ -16,18 +12,14 @@ import java.time.LocalDateTime;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class EventDTO extends BaseDto {
+public class CreateEventDTO {
 
-    @NotNull(message = "Sport is required")
+    @NotNull(message = "Sport id is required")
+    private Long sportId;
+
     @Valid
-    private SportDTO sport;
-
     @NotNull(message = "Location is required")
-    @Valid
     private LocationDTO location;
-
-    @NotNull(message = "User is required")
-    private UserDTO user;
 
     @NotNull(message = "Start time is required")
     @Future(message = "Start time must be in the future")
@@ -37,10 +29,8 @@ public class EventDTO extends BaseDto {
     @Future(message = "End time must be in the future")
     private LocalDateTime endTime;
 
-    @NotNull(message = "Maximum number of players is required")
-    @Min(value = 2, message = "There must be at least 2 players")
+    @NotNull(message = "Maximum players is required")
+    @Min(value = 2, message = "Minimum players is 2")
     private Integer maxPlayers;
 
-    @NotNull(message = "Status is required")
-    private EventStatus status;
 }

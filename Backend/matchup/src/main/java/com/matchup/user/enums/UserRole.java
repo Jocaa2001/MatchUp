@@ -5,5 +5,4 @@ import java.util.Arrays;
 public enum UserRole {
     USER,
     ADMIN
-
 }

@@ -47,8 +47,6 @@
 .create-layout {
   display: grid;
   grid-template-columns: 1fr 380px;
-  gap: 32px;
-  align-items: start;
 }
 
 /* ── Form ── */
@@ -284,8 +282,11 @@
   font-size: 2rem;
   letter-spacing: 0.04em;
   color: var(--text-primary);
-  min-width: 60px;
+  width: 80px;
   text-align: center;
+  background: transparent;
+  border: none;
+  outline: none;
 }
 
 /* ── Actions ── */
@@ -468,6 +469,39 @@
   line-height: 1.4;
 
   svg { flex-shrink: 0; margin-top: 1px; }
+}
+
+.counter-input {
+  width: 80px;
+  height: 48px;
+
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+
+  outline: none;
+
+  &:focus {
+    border-color: var(--accent);
+  }
+
+  /* Chrome, Safari, Edge, Opera */
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 /* ── Responsive ── */

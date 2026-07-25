@@ -18,39 +18,42 @@
         <div class="create-layout">
 
             <!-- ── Form ── -->
-            <form class="create-form" novalidate>
+            <form class="create-form"
+            [formGroup]="createEventForm"
+            (ngSubmit)="createEvent()"
+            novalidate>
 
                 <div class="form-section">
-  <div class="form-section-header">
-    <span class="form-section-num">01</span>
-    <div>
-      <h3>Sport</h3>
-      <p>Select the sport for your event.</p>
-    </div>
-  </div>
+                    <div class="form-section-header">
+                        <span class="form-section-num">01</span>
+                        <div>
+                            <h3>Sport</h3>
+                            <p>Select the sport for your event.</p>
+                        </div>
+                    </div>
 
-  <div class="form-section-body">
-    <div class="form-group">
-      <label for="sport">
-        Sport <span class="required">*</span>
-      </label>
+                    <div class="form-section-body">
+                        <div class="form-group">
+                            <label for="sport">
+                                Sport <span class="required">*</span>
+                            </label>
 
-      <select id="sport" class="form-control">
-        <option value="" disabled selected>
-          Select a sport...
-        </option>
+                            <select id="sport" class="form-control" formControlName="sportId">
+                                <option value="" disabled selected>
+                                    Select a sport...
+                                </option>
 
-        @for (sport of sports(); track sport.id) {
-          <option [value]="sport.id">
-            {{ sport.name }}
-          </option>
-        }
-      </select>
+                                @for (sport of sports(); track sport.id) {
+                                <option [value]="sport.id">
+                                    {{ sport.name }}
+                                </option>
+                                }
+                            </select>
 
-      <span class="form-error"></span>
-    </div>
-  </div>
-</div>
+                            <span class="form-error"></span>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Section: When -->
                 <div class="form-section">
@@ -66,23 +69,23 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="startDate">Start Date <span class="required">*</span></label>
-                                <input id="startDate" type="date" class="form-control" />
+                                <input id="startDate" type="date" class="form-control" formControlName="startDate"/>
                                 <span class="form-error"></span>
                             </div>
                             <div class="form-group">
                                 <label for="startTime">Start Time <span class="required">*</span></label>
-                                <input id="startTime" type="time" class="form-control" />
+                                <input id="startTime" type="time" class="form-control" formControlName="startTime" />
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="endDate">End Date</label>
-                                <input id="endDate" type="date" class="form-control" />
+                                <input id="endDate" type="date" class="form-control" formControlName="endDate"/>
                             </div>
                             <div class="form-group">
                                 <label for="endTime">End Time</label>
-                                <input id="endTime" type="time" class="form-control" />
+                                <input id="endTime" type="time" class="form-control" formControlName="endTime"/>
                             </div>
                         </div>
                     </div>
@@ -105,7 +108,7 @@
                                 Location Name <span class="required">*</span>
                             </label>
                             <input id="locationName" type="text" class="form-control"
-                                placeholder="e.g. Sports Hall Arena" />
+                                placeholder="e.g. Sports Hall Arena"  formControlName="locationName"/>
                         </div>
 
                         <div class="form-row">
@@ -114,7 +117,7 @@
                                 <label for="city">
                                     City <span class="required">*</span>
                                 </label>
-                                <input id="city" type="text" class="form-control" placeholder="e.g. Belgrade" />
+                                <input id="city" type="text" class="form-control" placeholder="e.g. Belgrade" formControlName="city"/>
                             </div>
 
                             <div class="form-group">
@@ -122,7 +125,7 @@
                                     Address <span class="required">*</span>
                                 </label>
                                 <input id="address" type="text" class="form-control"
-                                    placeholder="e.g. Main Street 12" />
+                                    placeholder="e.g. Main Street 12"   formControlName="address"/>
                             </div>
 
                         </div>
@@ -144,7 +147,7 @@
 
                             <label class="indoor-checkbox">
 
-                                <input type="checkbox" />
+                                <input type="checkbox" formControlName="indoor"/>
                                 yes
                                 <div class="checkbox-content">
 
@@ -154,6 +157,42 @@
                         </div>
                     </div>
                 </div>
+
+<div class="form-group">
+    <label>
+        Max Players <span class="required">*</span>
+    </label>
+
+    <div class="counter-control">
+
+        <button 
+            type="button"
+            class="counter-btn"
+            (click)="decreasePlayers()">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2 7h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+        </button>
+
+
+        <input 
+            type="number"
+            class="counter-input"
+            formControlName="maxPlayers"
+        />
+
+
+        <button 
+            type="button"
+            class="counter-btn"
+            (click)="increasePlayers()">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+        </button>
+
+    </div>
+</div>
 
                 <!-- Error Alert -->
                 <div class="alert alert-error" style="display:none;">
