@@ -27,6 +27,7 @@ public class UserProfileDTO extends BaseDto {
     @NotBlank(message = "City is required")
     @Size(min = 2, max = 100, message = "City must be between 2 and 100 characters")
     private String city;
+
     private String phone;
 
     @NotNull(message = "Birth date is required")

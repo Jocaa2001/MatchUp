@@ -9,6 +9,7 @@ import com.matchup.user.mapper.UserMapper;
 import com.matchup.user.service.UserService;
 import com.matchup.userprofile.dto.UserProfileDTO;
 import com.matchup.userprofile.mapper.UserProfileMapper;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ public class UserController extends CrudController<User, UserDTO, UserService, U
     }
 
     @PutMapping("/create-profile")
-    public ResponseEntity<UserDTO> createUserProfileForAuthenticatedUser(@AuthenticationPrincipal User user, @RequestBody UserProfileDTO userProfileDTO){
+    public ResponseEntity<UserDTO> createUserProfileForAuthenticatedUser(@AuthenticationPrincipal User user, @RequestBody @Valid UserProfileDTO userProfileDTO){
         User savedUser = service.createUserProfileForAuthenticatedUser(user,userProfileMapper.toEntity(userProfileDTO));
         return ResponseEntity.ok(mapper.toDto(savedUser));
     }

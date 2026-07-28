@@ -5,6 +5,7 @@ import { RouterLink, Router } from "@angular/router";
 import { LoginResponse } from '../../models/responses/loginResponse';
 import { LoginRequest } from '../../models/requests/loginRequest';
 import { Auth } from '../../services/auth';
+import { tap, switchMap } from 'rxjs';
 
 
 
@@ -53,18 +54,16 @@ export class Login {
       password: enteredPassword ?? ''
     }
 
-    this.authService.login(requestBody).subscribe({
-      next: (res) => {
-        console.log('success', res)
-        this.isLoginSuccesful.set(true);
-        this.router.navigate(['']);
-        localStorage.setItem('token', res.token)
-      },
-       error: (err) => {
-        console.log('ERROR', err);
-        this.isLoginSuccesful.set(false);
-      }
-    })
+this.authService.login(requestBody).subscribe({
+  next: () => {
+    this.isLoginSuccesful.set(true);
+    this.router.navigate(['']);
+  },
+  error: (err) => {
+    this.isLoginSuccesful.set(false);
+    console.error(err);
+  }
+});
 
 
 

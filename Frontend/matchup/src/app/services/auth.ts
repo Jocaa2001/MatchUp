@@ -1,10 +1,12 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { LoginRequest } from '../models/requests/loginRequest';
 import { LoginResponse } from '../models/responses/loginResponse';
 import { HttpClient } from '@angular/common/http';
 import { RegisterRequest } from '../models/requests/registerRequest';
 import { RegisterResponse } from '../models/responses/registerResponse';
 import { Router } from '@angular/router';
+import { UserResponse } from '../models/responses/userResponse';
+import { tap, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,11 +14,38 @@ import { Router } from '@angular/router';
 export class Auth {
   private http = inject(HttpClient);
   private router = inject(Router);
+  currentUser = signal<UserResponse | null>(null);
+  readonly user = this.currentUser.asReadonly();
+
+  setCurrentUser(user: UserResponse) {
+  this.currentUser.set(user);
+}
+
+
+  getLoggedUser() {
+      return this.http.get<UserResponse>('http://localhost:8080/api/users/me');
+  }
+
+  loadCurrentUser() {
+  if (!this.isLoggedIn()) {
+    return;
+  }
+
+  this.getLoggedUser().subscribe({
+    next: (user) => {
+      this.currentUser.set(user);      
+    },
+    error: () => {
+      this.logout();
+    }
+  });
+}
   
-  login(data: LoginRequest) {
-  return this.http.post<LoginResponse>(
-    'http://localhost:8080/api/auth/login',
-    data
+login(request: LoginRequest) {
+  return this.http.post<LoginResponse>('http://localhost:8080/api/auth/login', request).pipe(
+    tap(res => localStorage.setItem('token', res.token)),
+    switchMap(() => this.getLoggedUser()),
+    tap(user => this.currentUser.set(user))
   );
 }
 

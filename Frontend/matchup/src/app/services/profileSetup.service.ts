@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { UserProfileRequest } from "../models/requests/userProfileRequest";
+import { UserResponse } from "../models/responses/userResponse";
 
 
 
@@ -13,7 +14,7 @@ export class ProfileSetupService{
 
     //rename this and in backend to be more generic at one point
     setupProfile(data:UserProfileRequest){
-        return this.http.put<void>('http://localhost:8080/api/users/create-profile', data);
+        return this.http.put<UserResponse>('http://localhost:8080/api/users/create-profile', data);
     }
 
 }
