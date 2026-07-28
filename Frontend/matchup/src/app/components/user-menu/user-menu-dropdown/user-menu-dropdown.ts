@@ -1,6 +1,7 @@
-import { Component, HostListener, inject  } from '@angular/core';
+import { Component, HostListener, inject, Input, OnInit  } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Auth } from '../../../services/auth';
+import { UserResponse } from '../../../models/responses/userResponse';
 
 @Component({
   selector: 'app-user-menu-dropdown',
@@ -10,11 +11,11 @@ import { Auth } from '../../../services/auth';
 })
 export class UserMenuDropdown {
   private authService = inject(Auth);
+  @Input() user: UserResponse | null = null;
   isOpen = false;
-
+  
   toggleDropdown() {
     this.isOpen = !this.isOpen;
-
   }
 
   @HostListener('document:click')

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { UserMenuDropdown } from "./user-menu-dropdown/user-menu-dropdown";
+import { Auth } from '../../services/auth';
 
 @Component({
   selector: 'app-user-menu',
@@ -8,6 +9,8 @@ import { UserMenuDropdown } from "./user-menu-dropdown/user-menu-dropdown";
   styleUrl: './user-menu.scss',
 })
 export class UserMenu {
+  private authService = inject(Auth);
+  user = this.authService.user;
   isOpen = false;
 
 toggleDropdown() {

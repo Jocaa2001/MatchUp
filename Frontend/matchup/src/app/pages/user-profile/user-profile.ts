@@ -1,6 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from "@angular/router";
-import { ProfileDetailsService } from '../../services/profileDetals.service';
 import { DatePipe } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { UserProfileRequest } from '../../models/requests/userProfileRequest';
@@ -15,7 +14,6 @@ import { UserResponse } from '../../models/responses/userResponse';
   styleUrl: './user-profile.scss',
 })
 export class UserProfile implements OnInit {
-  private profileDetailsService = inject(ProfileDetailsService);
   private profileSetupService = inject(ProfileSetupService);
   private authService = inject(Auth);
   profileForm = new FormGroup({
