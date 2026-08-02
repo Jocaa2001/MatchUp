@@ -15,34 +15,16 @@ import org.mapstruct.Named;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Mapper(componentModel = "spring")
-public abstract class ParticipationMapper implements BaseMapper<Participation, ParticipationDTO> {
-
-    @Autowired
-    protected UserRepository userRepository;
-
-    @Autowired
-    protected EventRepository eventRepository;
+public interface ParticipationMapper extends BaseMapper<Participation, ParticipationDTO> {
 
     @Override
-    @Mapping(source = "userId", target = "user", qualifiedByName = "mapUser")
-    @Mapping(source = "eventId", target = "event", qualifiedByName = "mapEvent")
-    public abstract Participation toEntity(ParticipationDTO dto);
-
+    @Mapping(source = "user", target = "user")
+    @Mapping(source = "event", target = "event")
+    ParticipationDTO toDto(Participation participation);
 
     @Override
-    @Mapping(source = "user.id", target = "userId")
-    @Mapping(source = "event.id", target = "eventId")
-    public abstract ParticipationDTO toDto(Participation entity);
-
-
-    @Named("mapUser")
-    protected User mapUser(Long id) {
-        return id == null ? null : userRepository.getReferenceById(id);
-    }
-
-    @Named("mapEvent")
-    protected Event mapEvent(Long id) {
-        return id == null ? null : eventRepository.getReferenceById(id);
-    }
+    @Mapping(source = "user", target = "user")
+    @Mapping(source = "event", target = "event")
+    Participation toEntity(ParticipationDTO dto);
 
 }

@@ -14,6 +14,7 @@ export interface EventResponse {
   location: LocationResponse;
   user: UserResponse;
   startTime: string;
+  endTime: string;
   maxPlayers: number;
   status: EventStatus;
 }

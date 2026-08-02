@@ -1,0 +1,250 @@
+<div class="page-wrapper event-detail-page">
+  <div class="container">
+
+    <!-- Back Button -->
+    <button class="back-btn" routerLink="/events">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Back to events
+    </button>
+
+    <div class="detail-layout">
+
+      <!-- ── Main Content ── -->
+      <div class="detail-main">
+
+        <!-- Hero Banner -->
+        <div class="detail-hero" style="background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);">
+          <div class="detail-hero-overlay"></div>
+          <div class="detail-hero-content">
+            <div class="detail-badges">
+              <span class="badge badge-sport">⚽ Football</span>
+              <span class="badge badge-status-open">{{ (event()?.maxPlayers ?? 0) - (participants()?.length ?? 0) }} spots left</span>
+              <span class="badge badge-admin" style="display: none;">Admin</span>
+            </div>
+            <h1 class="detail-title">{{event()?.location?.address}}</h1>
+          </div>
+          <div class="hero-sport-bg">⚽</div>
+        </div>
+
+        <!-- Info Cards Row -->
+        <div class="info-cards-row">
+          <div class="info-card">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M9 1.5a6 6 0 100 12 6 6 0 000-12z" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M9 5v4l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <div>
+               <span class="info-value">
+      {{ event()?.startTime | date:'EEEE, MMMM d, y' }}
+    </span>
+
+    <span class="info-sub">
+        {{ event()?.startTime | date:'HH:mm' }}
+        –
+        {{ event()?.endTime| date:'HH:m m' }}
+    </span>
+            </div>
+          </div>
+          <div class="info-card">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M9 1.5C6.1 1.5 3.75 3.85 3.75 6.75c0 4.5 5.25 9.75 5.25 9.75s5.25-5.25 5.25-9.75C14.25 3.85 11.9 1.5 9 1.5z" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="9" cy="6.75" r="1.75" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            <div>
+              <span class="info-label">Location</span>
+              <span class="info-value">{{event()?.location?.city}} — {{event()?.location?.address}}</span>
+              <span class="info-sub">{{event()?.location?.address}}</span>
+            </div>
+          </div>
+          <div class="info-card">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <circle cx="9" cy="6" r="3.5" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M2 16.5c0-3.86 3.134-6.5 7-6.5s7 2.64 7 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <div>
+              <span class="info-label">Players</span>
+              <span class="info-value">{{participants()?.length}} / {{event()?.maxPlayers}}</span>
+              <span class="info-sub">{{participants()?.length}} spots available</span>
+            </div>
+          </div>
+          <div class="info-card">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M2 13h3v3H2zM7.5 9h3v7h-3zM13 5h3v11h-3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+            <div>
+              <span class="info-label">Skill Level</span>
+              <span class="info-value">All Levels</span>
+              <span class="info-sub">Everyone welcome</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Location Description -->
+        <div class="detail-section">
+          <h2 class="section-title">About This Location</h2>
+          <p class="location-description">
+            {{event()?.location?.description}}
+          </p>
+        </div>
+
+        <!-- Event Status -->
+        <div class="detail-section">
+          <h2 class="section-title">Event Status</h2>
+          <div class="status-info">
+            <div class="status-item">
+              <span class="status-label">Current Status</span>
+              <span class="status-badge status-open">
+                <span class="status-dot"></span>
+                {{event()?.status}}
+              </span>
+            </div>
+            <div class="status-item">
+              <span class="status-label">Players Joined</span>
+              <span class="status-value">{{participants()?.length}} / {{event()?.maxPlayers}}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Participants -->
+        <div class="detail-section">
+          <h2 class="section-title">
+            Participants
+            <span class="count-badge">10</span>
+          </h2>
+
+          <div class="participants-list">
+
+  @for (participation of participants(); track participation.id) {
+
+    <div 
+      class="participant-item"
+      [class.organizer-item]="participation.user.id === event()?.user?.id"
+    >
+
+      <div class="participant-avatar">
+        {{ participation.user.profile.firstName.charAt(0) }}
+        {{ participation.user.profile.lastName.charAt(0) }}
+      </div>
+
+      <div class="participant-info">
+
+        <span class="participant-name">
+          {{ participation.user.profile.firstName }}
+          {{ participation.user.profile.lastName }}
+        </span>
+
+        @if (participation.user.id === event()?.user?.id) {
+          <span class="participant-role organizer-role">
+            Organizer
+          </span>
+        }
+
+      </div>
+
+      <span class="participant-since">
+        {{ participation.status }}
+      </span>
+
+    </div>
+
+  }
+
+  <!-- Empty slots -->
+  @for (slot of emptySlots(); track $index) {
+
+    <div class="participant-item empty-slot">
+
+      <div class="participant-avatar empty">
+        ?
+      </div>
+
+      <div class="participant-info">
+        <span class="participant-name empty-text">
+          Open spot
+        </span>
+      </div>
+
+    </div>
+
+  }
+
+</div>
+        </div>
+
+      </div>
+
+      <!-- ── Sidebar ── -->
+      <aside class="detail-sidebar">
+
+        <!-- Action Card -->
+        <div class="action-card">
+          <div class="capacity-visual">
+            <div class="capacity-ring">
+              <svg viewBox="0 0 80 80">
+                <circle cx="40" cy="40" r="34" class="ring-track"/>
+                <circle cx="40" cy="40" r="34" class="ring-fill"
+                  style="stroke-dasharray: 213.6; stroke-dashoffset: 170.88;"
+                />
+              </svg>
+              <div class="ring-label">
+                <span class="ring-num">{{ (event()?.maxPlayers ?? 0) - (participants()?.length ?? 0) }}</span>
+                <span class="ring-sub">left</span>
+              </div>
+            </div>
+            <div class="capacity-text">
+              <strong>{{participants()?.length}}/{{event()?.maxPlayers}}</strong> players joined
+            </div>
+          </div>
+
+          <!-- Not logged in -->
+          <a routerLink="/login" class="btn btn-primary" style="width:100%;justify-content:center; display: none;">
+            Sign In to Join
+          </a>
+
+          <!-- Logged in - Not participating -->
+          <button class="btn btn-primary" style="width:100%;justify-content:center;">
+            Join Event
+          </button>
+
+          <!-- Already participating -->
+          <div class="participating-badge" style="display: none;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8l4 4 6-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            You're in!
+          </div>
+
+          <button class="btn btn-danger" style="width:100%;justify-content:center; margin-top:10px; display: none;">
+            Cancel Participation
+          </button>
+
+          <!-- Organizer info -->
+          <div class="alert alert-info" style="display: none;">
+            You're the organizer of this event.
+          </div>
+
+          <p class="action-hint">Free to join — no payment required</p>
+        </div>
+
+        <!-- Organizer Card -->
+        <div class="organizer-card">
+          <h4>Organized by</h4>
+          <div class="organizer-info">
+            <div class="participant-avatar lg" style="background: #4f46e5;">MP</div>
+            <div>
+              <strong>{{event()?.user?.profile?.firstName}} {{event()?.user?.profile?.lastName}}</strong>
+              <span class="org-badge">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M6 1l1.5 3 3.5.5-2.5 2.5.5 3.5L6 9l-3 1.5.5-3.5L1 4.5l3.5-.5L6 1z" fill="currentColor"/>
+                </svg>
+                12 events hosted
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </aside>
+    </div>
+  </div>

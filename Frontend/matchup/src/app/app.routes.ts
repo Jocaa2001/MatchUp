@@ -7,6 +7,7 @@ import { Events } from './pages/events/events';
 import { UserMenu } from './components/user-menu/user-menu';
 import { UserProfile } from './pages/user-profile/user-profile';
 import { CreateEvent } from './pages/create-event/create-event';
+import { EventDetail } from './components/event-detail/event-detail';
 
 export const routes: Routes = [
     {
@@ -35,6 +36,10 @@ export const routes: Routes = [
             {
             path: 'create',
             component: CreateEvent
+            },
+            {
+                path: ':id',
+                component: EventDetail
             }
         ]
 

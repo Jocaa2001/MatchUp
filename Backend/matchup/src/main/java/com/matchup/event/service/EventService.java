@@ -9,6 +9,7 @@ import com.matchup.exception.EntityNotFoundException;
 import com.matchup.location.entity.Location;
 import com.matchup.location.mapper.LocationMapper;
 import com.matchup.location.repository.LocationRepository;
+import com.matchup.participation.dto.ParticipationDTO;
 import com.matchup.participation.entity.Participation;
 import com.matchup.participation.enums.ParticipationStatus;
 import com.matchup.participation.repository.ParticipationRepository;
@@ -18,6 +19,8 @@ import com.matchup.sport.repository.SportRepository;
 import com.matchup.user.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class EventService extends CrudServiceImpl<Event> {
@@ -66,5 +69,11 @@ public class EventService extends CrudServiceImpl<Event> {
         participationRepository.save(participation);
 
         return event;
+    }
+
+    public List<Participation> getParticipantsByEventId(Long id) {
+        return participationRepository.findByEventId(id)
+                .stream()
+                .toList();
     }
 }
