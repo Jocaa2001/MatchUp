@@ -30,5 +30,9 @@ export class EventsService{
     `http://localhost:8080/api/events/${id}/participants`
   );
 }
+  joinEvent(id: Number){
+     return this.http.post<ParticipationResponse>(
+    `http://localhost:8080/api/participations/events/${id}`, null)
+  }
   
 }

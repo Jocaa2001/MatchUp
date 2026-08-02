@@ -204,10 +204,23 @@
           </a>
 
           <!-- Logged in - Not participating -->
-          <button class="btn btn-primary" style="width:100%;justify-content:center;">
-            Join Event
-          </button>
+<button 
+  class="btn btn-primary"
+  style="width:100%;justify-content:center;"
+  (click)="joinEvent()"
+  [disabled]="isUserJoined() || isEventFull()"
+  [class.joined]="isUserJoined()"
+  [class.full]="isEventFull()">
 
+  {{
+    isUserJoined() 
+      ? 'Already Joined' 
+      : isEventFull() 
+        ? 'Event Full' 
+        : 'Join Event'
+  }}
+
+</button>
           <!-- Already participating -->
           <div class="participating-badge" style="display: none;">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">

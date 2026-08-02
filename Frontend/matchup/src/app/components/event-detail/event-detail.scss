@@ -456,6 +456,13 @@
   font-weight: 600;
 }
 
+button.joined {
+  background-color: gray;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+
 /* ── Responsive ── */
 @media (max-width: 900px) {
   .detail-layout { grid-template-columns: 1fr; }
@@ -466,3 +473,4 @@
 @media (max-width: 480px) {
   .info-cards-row { grid-template-columns: 1fr; }
 }
+
