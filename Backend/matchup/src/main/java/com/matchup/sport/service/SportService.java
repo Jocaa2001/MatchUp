@@ -3,15 +3,16 @@ package com.matchup.sport.service;
 import com.matchup.common.service.CrudService;
 import com.matchup.common.service.CrudServiceImpl;
 import com.matchup.sport.entity.Sport;
+import com.matchup.sport.repository.SportRepository;
 import com.matchup.user.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 
 @Service
-public class SportService extends CrudServiceImpl<Sport> {
+public class SportService extends CrudServiceImpl<Sport, SportRepository> {
 
-    public SportService(JpaRepository<Sport, Long> repository) {
+    public SportService(SportRepository repository) {
         super(repository);
     }
 }

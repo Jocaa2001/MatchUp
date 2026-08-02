@@ -6,17 +6,18 @@ import com.matchup.event.repository.EventRepository;
 import com.matchup.exception.EntityNotFoundException;
 import com.matchup.participation.entity.Participation;
 import com.matchup.participation.enums.ParticipationStatus;
+import com.matchup.participation.repository.ParticipationRepository;
 import com.matchup.user.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 
 @Service
-public class ParticipationService extends CrudServiceImpl<Participation> {
+public class ParticipationService extends CrudServiceImpl<Participation, ParticipationRepository> {
 
     private final EventRepository eventRepository;
 
-    public ParticipationService(JpaRepository<Participation, Long> repository, EventRepository eventRepository) {
+    public ParticipationService(ParticipationRepository repository, EventRepository eventRepository) {
         super(repository);
         this.eventRepository = eventRepository;
     }
@@ -24,6 +25,12 @@ public class ParticipationService extends CrudServiceImpl<Participation> {
     public Participation joinEvent(User user, Long eventId) {
 
         Event e = eventRepository.findById(eventId).orElseThrow(() -> new EntityNotFoundException(eventId));
+
+        long participantsCount = repository.countParticipantsByEventId(eventId);
+
+        if (participantsCount >= e.getMaxPlayers()) {
+            throw new RuntimeException("Event is full");
+        }
 
         Participation p = Participation.builder()
                 .user(user)

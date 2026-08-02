@@ -8,11 +8,11 @@ import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import java.util.List;
 
 
-public abstract class CrudServiceImpl<E extends BaseEntity> implements CrudService<E> {
+public abstract class CrudServiceImpl<E extends BaseEntity, R extends JpaRepository<E, Long>> implements CrudService<E> {
 
-    protected final JpaRepository<E, Long> repository;
+    protected final R repository;
 
-    protected CrudServiceImpl(JpaRepository<E, Long> repository) {
+    protected CrudServiceImpl(R repository) {
         this.repository = repository;
     }
 

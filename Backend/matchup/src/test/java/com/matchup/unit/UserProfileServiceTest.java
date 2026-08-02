@@ -7,18 +7,18 @@ import com.matchup.userprofile.service.UserProfileService;
 import org.mockito.Mock;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public class UserProfileServiceTest extends GenericCrudServiceTest<UserProfile>{
+public class UserProfileServiceTest extends GenericCrudServiceTest<UserProfile, UserProfileRepository>{
 
     @Mock
     private UserProfileRepository repository;
 
     @Override
-    protected JpaRepository<UserProfile, Long> getRepository() {
+    protected UserProfileRepository getRepository() {
         return repository;
     }
 
     @Override
-    protected CrudServiceImpl<UserProfile> createService() {
+    protected CrudServiceImpl<UserProfile, UserProfileRepository> createService() {
         return new UserProfileService(repository);
     }
 

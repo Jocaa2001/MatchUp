@@ -23,14 +23,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class EventService extends CrudServiceImpl<Event> {
+public class EventService extends CrudServiceImpl<Event, EventRepository> {
 
     private final SportRepository sportRepository;
     private final LocationRepository locationRepository;
     private final LocationMapper locationMapper;
     private final ParticipationRepository participationRepository;
 
-    public EventService(JpaRepository<Event, Long> repository, SportRepository sportRepository, LocationRepository locationRepository, LocationMapper locationMapper, ParticipationRepository participationRepository) {
+    public EventService(EventRepository repository, SportRepository sportRepository, LocationRepository locationRepository, LocationMapper locationMapper, ParticipationRepository participationRepository) {
         super(repository);
         this.sportRepository = sportRepository;
         this.locationRepository = locationRepository;

@@ -10,18 +10,18 @@ import com.matchup.userprofile.service.UserProfileService;
 import org.mockito.Mock;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public class SportServiceTest extends GenericCrudServiceTest<Sport>{
+public class SportServiceTest extends GenericCrudServiceTest<Sport, SportRepository>{
 
     @Mock
     private SportRepository repository;
 
     @Override
-    protected JpaRepository<Sport, Long> getRepository() {
+    protected SportRepository getRepository() {
         return repository;
     }
 
     @Override
-    protected CrudServiceImpl<Sport> createService() {
+    protected CrudServiceImpl<Sport,SportRepository> createService() {
         return new SportService(repository);
     }
 

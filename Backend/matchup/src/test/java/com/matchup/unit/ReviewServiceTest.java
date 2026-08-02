@@ -7,18 +7,18 @@ import com.matchup.review.service.ReviewService;
 import org.mockito.Mock;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public class ReviewServiceTest extends GenericCrudServiceTest<Review>{
+public class ReviewServiceTest extends GenericCrudServiceTest<Review, ReviewRepository>{
 
     @Mock
     private ReviewRepository repository;
 
     @Override
-    protected JpaRepository<Review, Long> getRepository() {
+    protected ReviewRepository getRepository() {
         return repository;
     }
 
     @Override
-    protected CrudServiceImpl<Review> createService() {
+    protected CrudServiceImpl<Review,ReviewRepository> createService() {
         return new ReviewService(repository);
     }
 

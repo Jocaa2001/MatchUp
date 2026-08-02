@@ -10,18 +10,18 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 @ExtendWith(MockitoExtension.class)
-public class UserServiceTest extends GenericCrudServiceTest<User> {
+public class UserServiceTest extends GenericCrudServiceTest<User, UserRepository> {
 
     @Mock
     private UserRepository repository;
 
     @Override
-    protected JpaRepository<User, Long> getRepository() {
+    protected UserRepository getRepository() {
         return repository;
     }
 
     @Override
-    protected CrudServiceImpl<User> createService() {
+    protected CrudServiceImpl<User, UserRepository> createService() {
         return new UserService(repository);
     }
 

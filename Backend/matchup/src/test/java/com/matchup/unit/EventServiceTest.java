@@ -15,7 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 @ExtendWith(MockitoExtension.class)
-public class EventServiceTest extends GenericCrudServiceTest<Event>{
+public class EventServiceTest extends GenericCrudServiceTest<Event, EventRepository>{
 
     @Mock
     private EventRepository repository;
@@ -34,12 +34,12 @@ public class EventServiceTest extends GenericCrudServiceTest<Event>{
 
 
     @Override
-    protected JpaRepository<Event, Long> getRepository() {
+    protected EventRepository getRepository() {
         return repository;
     }
 
     @Override
-    protected CrudServiceImpl<Event> createService() {
+    protected CrudServiceImpl<Event, EventRepository> createService() {
         return new EventService(
                 repository,
                 sportRepository,

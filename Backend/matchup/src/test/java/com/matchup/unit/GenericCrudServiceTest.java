@@ -15,13 +15,15 @@ import static org.mockito.Mockito.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 @ExtendWith(MockitoExtension.class)
-public abstract class GenericCrudServiceTest<E extends BaseEntity> {
+public abstract class GenericCrudServiceTest<
+        E extends BaseEntity,
+        R extends JpaRepository<E, Long>> {
 
-    protected CrudServiceImpl<E> service;
+    protected CrudServiceImpl<E, R> service;
 
-    protected abstract JpaRepository<E, Long> getRepository();
+    protected abstract R getRepository();
 
-    protected abstract CrudServiceImpl<E> createService();
+    protected abstract CrudServiceImpl<E, R> createService();
 
     protected abstract E createEntity();
 

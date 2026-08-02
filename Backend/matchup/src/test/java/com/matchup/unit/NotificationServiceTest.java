@@ -7,18 +7,18 @@ import com.matchup.notification.service.NotificationService;
 import org.mockito.Mock;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public class NotificationServiceTest extends GenericCrudServiceTest<Notification>{
+public class NotificationServiceTest extends GenericCrudServiceTest<Notification, NotificationRepository>{
 
     @Mock
     private NotificationRepository repository;
 
     @Override
-    protected JpaRepository<Notification, Long> getRepository() {
+    protected NotificationRepository getRepository() {
         return repository;
     }
 
     @Override
-    protected CrudServiceImpl<Notification> createService() {
+    protected CrudServiceImpl<Notification, NotificationRepository> createService() {
         return new NotificationService(repository);
     }
 

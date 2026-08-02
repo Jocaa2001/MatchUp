@@ -3,6 +3,7 @@ package com.matchup.user.service;
 
 import com.matchup.common.service.CrudServiceImpl;
 import com.matchup.user.entity.User;
+import com.matchup.user.repository.UserRepository;
 import com.matchup.userprofile.dto.UserProfileDTO;
 import com.matchup.userprofile.entity.UserProfile;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,9 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService extends CrudServiceImpl<User> {
+public class UserService extends CrudServiceImpl<User, UserRepository> {
 
-    public UserService(JpaRepository<User, Long> repository) {
+    public UserService(UserRepository repository) {
         super(repository);
     }
 

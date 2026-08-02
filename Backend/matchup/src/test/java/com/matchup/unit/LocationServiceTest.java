@@ -7,18 +7,18 @@ import com.matchup.location.service.LocationService;
 import org.mockito.Mock;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public class LocationServiceTest extends GenericCrudServiceTest<Location>{
+public class LocationServiceTest extends GenericCrudServiceTest<Location, LocationRepository>{
 
     @Mock
     private LocationRepository repository;
 
     @Override
-    protected JpaRepository<Location, Long> getRepository() {
+    protected LocationRepository getRepository() {
         return repository;
     }
 
     @Override
-    protected CrudServiceImpl<Location> createService() {
+    protected CrudServiceImpl<Location,LocationRepository> createService() {
         return new LocationService(repository);
     }
 

@@ -9,4 +9,5 @@ public interface ParticipationRepository extends JpaRepository<Participation,Lon
 
     List<Participation> findByEventId(Long eventId);
 
+    long countParticipantsByEventId(Long eventId);
 }
