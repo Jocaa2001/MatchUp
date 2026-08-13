@@ -20,6 +20,7 @@ import com.matchup.user.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -75,5 +76,9 @@ public class EventService extends CrudServiceImpl<Event, EventRepository> {
         return participationRepository.findByEventId(id)
                 .stream()
                 .toList();
+    }
+
+    public List<Event> getEventsForUser(Long id) {
+        return repository.findByUserId(id);
     }
 }

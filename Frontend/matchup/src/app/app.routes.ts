@@ -8,6 +8,7 @@ import { UserMenu } from './components/user-menu/user-menu';
 import { UserProfile } from './pages/user-profile/user-profile';
 import { CreateEvent } from './pages/create-event/create-event';
 import { EventDetail } from './components/event-detail/event-detail';
+import { UserEvents } from './pages/user-events/user-events';
 
 export const routes: Routes = [
     {
@@ -47,5 +48,9 @@ export const routes: Routes = [
     {
         path: 'user-profile',
         component: UserProfile
+    },
+     {
+        path: 'my-events',
+        component: UserEvents
     }
 ];

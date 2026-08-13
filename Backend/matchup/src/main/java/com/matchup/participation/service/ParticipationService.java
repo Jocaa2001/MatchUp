@@ -11,6 +11,8 @@ import com.matchup.user.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class ParticipationService extends CrudServiceImpl<Participation, ParticipationRepository> {
@@ -39,4 +41,9 @@ public class ParticipationService extends CrudServiceImpl<Participation, Partici
 
         return repository.save(p);
     }
+
+    public List<Event> getEventsForUser(Long userId) {
+        return repository.findEventsByUserId(userId);
+    }
+
 }

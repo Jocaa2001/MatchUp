@@ -34,5 +34,9 @@ export class EventsService{
      return this.http.post<ParticipationResponse>(
     `http://localhost:8080/api/participations/events/${id}`, null)
   }
+
+  getEventsForUser() {
+  return this.http.get<EventResponse[]>('http://localhost:8080/api/events/for-user');
+}
   
 }

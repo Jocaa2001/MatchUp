@@ -28,6 +28,7 @@ public class EventController extends CrudController<Event, EventDTO, EventServic
         super(service, mapper);
         this.participationMapper = participationMapper;
     }
+
     @PostMapping("/create-event")
     public ResponseEntity<EventDTO> create(@AuthenticationPrincipal User user, @Valid @RequestBody CreateEventDTO request) {
 
@@ -37,8 +38,21 @@ public class EventController extends CrudController<Event, EventDTO, EventServic
     }
 
     @GetMapping("/{id}/participants")
-    public ResponseEntity<List<ParticipationDTO>> getParticipantsByEventId(@PathVariable Long id){
+    public ResponseEntity<List<ParticipationDTO>> getParticipantsByEventId(@PathVariable Long id) {
         return ResponseEntity.ok(service.getParticipantsByEventId(id).stream().map(participationMapper::toDto).toList());
     }
+
+    @GetMapping("/for-user")
+    public ResponseEntity<List<EventDTO>> getEventsForUser(
+            @AuthenticationPrincipal User user) {
+
+        return ResponseEntity.ok(
+                service.getEventsForUser(user.getId())
+                        .stream()
+                        .map(mapper::toDto)
+                        .toList()
+        );
+    }
+
 
 }
