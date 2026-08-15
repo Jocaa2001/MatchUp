@@ -35,7 +35,7 @@
       >
         <span>Created</span>
         <span class="tab-count">
-          {{ createdEvents.length }}
+          {{ createdEvents().length }}
         </span>
       </button>
 
@@ -46,7 +46,7 @@
       >
         <span>Joined</span>
         <span class="tab-count">
-          {{ joinedEvents.length }}
+          {{ joinedEvents().length }}
         </span>
       </button>
 
@@ -63,11 +63,11 @@
 
         <div class="events-section">
 
-          @if (createdEvents.length > 0) {
+          @if (createdEvents().length > 0) {
 
             <div class="events-grid">
 
-              @for (event of createdEvents; track event.id) {
+              @for (event of createdEvents(); track event.id) {
 
                 <div class="my-event-wrapper">
 
@@ -109,11 +109,11 @@
 
         <div class="events-section">
 
-          @if (joinedEvents.length > 0) {
+          @if (joinedEvents().length > 0) {
 
             <div class="events-grid">
 
-              @for (event of joinedEvents; track event.id) {
+              @for (event of joinedEvents(); track event.id) {
 
                 <div class="my-event-wrapper">
 
