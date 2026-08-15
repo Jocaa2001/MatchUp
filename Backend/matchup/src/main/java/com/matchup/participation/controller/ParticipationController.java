@@ -36,8 +36,7 @@ public class ParticipationController extends CrudController<Participation, Parti
     }
 
     @GetMapping("/for-user")
-    public ResponseEntity<List<EventDTO>> getEventsForUser(
-            @AuthenticationPrincipal User user) {
+    public ResponseEntity<List<EventDTO>> getEventsForUser(@AuthenticationPrincipal User user) {
 
         return ResponseEntity.ok(
                 service.getEventsForUser(user.getId())
@@ -45,5 +44,14 @@ public class ParticipationController extends CrudController<Participation, Parti
                         .map(eventMapper::toDto)
                         .toList()
         );
+    }
+
+    @DeleteMapping("/{eventId}/leave")
+    public ResponseEntity<Void> leaveEvent(
+            @AuthenticationPrincipal User user,
+            @PathVariable Long eventId) {
+
+        service.leaveEvent(user, eventId);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -178,68 +178,125 @@
       <!-- ── Sidebar ── -->
       <aside class="detail-sidebar">
 
-        <!-- Action Card -->
-        <div class="action-card">
-          <div class="capacity-visual">
-            <div class="capacity-ring">
-              <svg viewBox="0 0 80 80">
-                <circle cx="40" cy="40" r="34" class="ring-track"/>
-                <circle cx="40" cy="40" r="34" class="ring-fill"
-                  style="stroke-dasharray: 213.6; stroke-dashoffset: 170.88;"
-                />
-              </svg>
-              <div class="ring-label">
-                <span class="ring-num">{{ (event()?.maxPlayers ?? 0) - (participants()?.length ?? 0) }}</span>
-                <span class="ring-sub">left</span>
-              </div>
-            </div>
-            <div class="capacity-text">
-              <strong>{{participants()?.length}}/{{event()?.maxPlayers}}</strong> players joined
-            </div>
-          </div>
+        ```html
+<!-- Action Card -->
+<div class="action-card">
+  <div class="capacity-visual">
+    <div class="capacity-ring">
+      <svg viewBox="0 0 80 80">
+        <circle cx="40" cy="40" r="34" class="ring-track"/>
+        <circle
+          cx="40"
+          cy="40"
+          r="34"
+          class="ring-fill"
+          style="stroke-dasharray: 213.6; stroke-dashoffset: 170.88;"
+        />
+      </svg>
 
-          <!-- Not logged in -->
-          <a routerLink="/login" class="btn btn-primary" style="width:100%;justify-content:center; display: none;">
-            Sign In to Join
-          </a>
+      <div class="ring-label">
+        <span class="ring-num">
+          {{ (event()?.maxPlayers ?? 0) - (participants()?.length ?? 0) }}
+        </span>
+        <span class="ring-sub">left</span>
+      </div>
+    </div>
 
-          <!-- Logged in - Not participating -->
-<button 
-  class="btn btn-primary"
-  style="width:100%;justify-content:center;"
-  (click)="joinEvent()"
-  [disabled]="isUserJoined() || isEventFull()"
-  [class.joined]="isUserJoined()"
-  [class.full]="isEventFull()">
+    <div class="capacity-text">
+      <strong>
+        {{ participants()?.length }}/{{ event()?.maxPlayers }}
+      </strong>
+      players joined
+    </div>
+  </div>
 
-  {{
-    isUserJoined() 
-      ? 'Already Joined' 
-      : isEventFull() 
-        ? 'Event Full' 
-        : 'Join Event'
-  }}
 
-</button>
-          <!-- Already participating -->
-          <div class="participating-badge" style="display: none;">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3 8l4 4 6-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            You're in!
-          </div>
+  <!-- User nije logovan -->
+  @if (!authService.user()) {
+    <a
+      routerLink="/login"
+      class="btn btn-primary"
+      style="width:100%;justify-content:center;"
+    >
+      Sign In to Join
+    </a>
+  }
 
-          <button class="btn btn-danger" style="width:100%;justify-content:center; margin-top:10px; display: none;">
-            Cancel Participation
-          </button>
 
-          <!-- Organizer info -->
-          <div class="alert alert-info" style="display: none;">
-            You're the organizer of this event.
-          </div>
+  <!-- User nije prijavljen na event -->
+  @if (authService.user() && !isUserJoined() && !isEventCreator()) {
+    <button
+      class="btn btn-primary"
+      style="width:100%;justify-content:center;"
+      (click)="joinEvent()"
+      [disabled]="isEventFull()"
+    >
+      {{ isEventFull() ? 'Event Full' : 'Join Event' }}
+    </button>
+  }
 
-          <p class="action-hint">Free to join — no payment required</p>
-        </div>
+
+  <!-- User je prijavljen - LEAVE dugme -->
+  @if (isUserJoined() && !isEventCreator()) {
+    <button
+      class="btn btn-danger"
+      style="width:100%;justify-content:center;"
+      (click)="leaveEvent()"
+    >
+      Leave Event
+    </button>
+  }
+
+
+  <!-- Organizer - CANCEL dugme -->
+  @if (isEventCreator()) {
+    <div class="organizer-actions">
+
+      <div class="alert alert-info">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <circle
+            cx="8"
+            cy="8"
+            r="7"
+            stroke="currentColor"
+            stroke-width="1.2"
+          />
+          <path
+            d="M8 5v3M8 11v.5"
+            stroke="currentColor"
+            stroke-width="1.2"
+            stroke-linecap="round"
+          />
+        </svg>
+
+        You're the organizer
+      </div>
+
+      <button
+        class="btn btn-secondary btn-block"
+        routerLink="/edit-event/{{ event()?.id }}"
+        style="margin-top: 10px;"
+      >
+        Edit Event
+      </button>
+
+      <button
+        class="btn btn-danger btn-block"
+        (click)="cancelEvent()"
+        style="margin-top: 8px;"
+      >
+        Cancel Event
+      </button>
+
+    </div>
+  }
+
+
+  <p class="action-hint">
+    Free to join — no payment required
+  </p>
+</div>
+```
 
         <!-- Organizer Card -->
         <div class="organizer-card">

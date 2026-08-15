@@ -54,5 +54,4 @@ public class EventController extends CrudController<Event, EventDTO, EventServic
         );
     }
 
-
 }

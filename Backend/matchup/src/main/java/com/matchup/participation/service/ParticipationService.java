@@ -46,4 +46,12 @@ public class ParticipationService extends CrudServiceImpl<Participation, Partici
         return repository.findEventsByUserId(userId);
     }
 
+    public void leaveEvent(User user, Long eventId) {
+        Participation participation = repository
+                .findByUserIdAndEventId(user.getId(), eventId)
+                .orElseThrow(() -> new RuntimeException("User is not participating in this event"));
+
+        repository.delete(participation);
+    }
+
 }

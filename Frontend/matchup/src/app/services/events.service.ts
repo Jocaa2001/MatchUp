@@ -39,4 +39,5 @@ export class EventsService{
   return this.http.get<EventResponse[]>('http://localhost:8080/api/events/for-user');
 }
   
+
 }

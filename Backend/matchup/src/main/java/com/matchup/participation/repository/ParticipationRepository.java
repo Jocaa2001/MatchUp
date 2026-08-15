@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ParticipationRepository extends JpaRepository<Participation,Long> {
 
@@ -16,4 +17,6 @@ public interface ParticipationRepository extends JpaRepository<Participation,Lon
 
     @Query("SELECT p.event FROM Participation p WHERE p.user.id = :userId")
     List<Event> findEventsByUserId(@Param("userId") Long userId);
+
+    Optional<Participation> findByUserIdAndEventId(Long userId, Long eventId);
 }

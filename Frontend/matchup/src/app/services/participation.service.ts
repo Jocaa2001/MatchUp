@@ -20,4 +20,10 @@ export class ParticipationService {
     );
   }
 
+  leaveEvent(id: number): Observable<void> {
+  return this.http.delete<void>(
+    `http://localhost:8080/api/participations/${id}/leave`
+  );
+}
+
 }

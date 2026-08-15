@@ -5,6 +5,8 @@ import { EventsService } from '../../services/events.service';
 import { DatePipe } from '@angular/common';
 import { ParticipationResponse } from '../../models/responses/participationResponse';
 import { Auth } from '../../services/auth';
+import { ParticipationService } from '../../services/participation.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-event-detail',
@@ -15,7 +17,8 @@ import { Auth } from '../../services/auth';
 export class EventDetail implements OnInit {
   private route = inject(ActivatedRoute);
   private eventService = inject(EventsService);
-  private authService = inject(Auth);
+  authService = inject(Auth);
+  participationService = inject(ParticipationService);
   participants = signal<ParticipationResponse[] | null>(null);
   event = signal<EventResponse | null>(null);
 
@@ -91,5 +94,31 @@ isEventFull = computed(() => {
 
   return joinedPlayers >= maxPlayers;
 });
+
+isEventCreator = computed(() => {
+  const currentUserId = this.authService.user()?.id;
+  const eventUserId = this.event()?.user?.id;
+
+  if (!currentUserId || !eventUserId) {
+    return false;
+  }
+
+  return currentUserId === eventUserId;
+});
+
+leaveEvent() {
+  this.participationService.leaveEvent(this.event()!.id).subscribe({
+    next: () => {
+      window.location.reload();
+      console.log('Successfully left event');
+    },
+    error: (error: HttpErrorResponse) => {
+      console.error('Error leaving event:', error);
+    }
+  });
+}
+cancelEvent(){
+
+}
 
 }
