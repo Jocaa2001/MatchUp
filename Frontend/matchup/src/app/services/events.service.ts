@@ -38,6 +38,13 @@ export class EventsService{
   getEventsForUser() {
   return this.http.get<EventResponse[]>('http://localhost:8080/api/events/for-user');
 }
-  
+
+updateEvent(id: number, data: Partial<EventResponse>): Observable<EventResponse> {
+  return this.http.patch<EventResponse>(
+    `http://localhost:8080/api/events/${id}`,
+    data
+  );
+}
+
 
 }

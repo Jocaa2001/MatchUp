@@ -54,4 +54,12 @@ public class EventController extends CrudController<Event, EventDTO, EventServic
         );
     }
 
+    @PatchMapping("/{id}")
+    public EventDTO updatePartial(@PathVariable Long id, @RequestBody EventDTO dto) {
+
+        Event event = service.getById(id);
+        mapper.updateFromDto(dto, event);
+        event = service.update(id, event);
+        return mapper.toDto(event);
+    }
 }

@@ -3,8 +3,7 @@ package com.matchup.event.mapper;
 import com.matchup.common.mapper.BaseMapper;
 import com.matchup.event.dto.EventDTO;
 import com.matchup.event.entity.Event;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.mapstruct.*;
 
 @Mapper(componentModel = "spring")
 public interface EventMapper extends BaseMapper<Event, EventDTO> {
@@ -14,4 +13,7 @@ public interface EventMapper extends BaseMapper<Event, EventDTO> {
     @Mapping(source = "location", target = "location")
     @Mapping(source = "user", target = "user")
     EventDTO toDto(Event event);
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    void updateFromDto(EventDTO dto, @MappingTarget Event event);
 }

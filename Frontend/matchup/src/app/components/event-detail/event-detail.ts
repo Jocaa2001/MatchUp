@@ -1,12 +1,14 @@
 import { Component, computed, inject, Input, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { EventResponse } from '../../models/responses/eventResponse';
+import { EventStatus } from '../../models/responses/eventResponse';
 import { EventsService } from '../../services/events.service';
 import { DatePipe } from '@angular/common';
 import { ParticipationResponse } from '../../models/responses/participationResponse';
 import { Auth } from '../../services/auth';
 import { ParticipationService } from '../../services/participation.service';
 import { HttpErrorResponse } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-event-detail',
@@ -56,11 +58,16 @@ export class EventDetail implements OnInit {
   return Array(Math.max(maxPlayers - joined, 0));
 });
 
-  joinEvent(){
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-     this.eventService.joinEvent(id).subscribe({
+joinEvent() {
+  if (this.isEventCancelled()) {
+    return;
+  }
+
+  const id = Number(this.route.snapshot.paramMap.get('id'));
+
+  this.eventService.joinEvent(id).subscribe({
     next: (response) => {
-      console.log(response)
+      console.log(response);
       console.log('Successfully joined event', response);
 
       window.location.reload();
@@ -69,7 +76,7 @@ export class EventDetail implements OnInit {
       console.error('Error joining event', err);
     }
   });
-  }
+}
 
   isUserJoined = computed(() => {
   const userId = this.authService.user()?.id;
@@ -117,8 +124,41 @@ leaveEvent() {
     }
   });
 }
-cancelEvent(){
 
+cancelEvent() {
+  const id = this.event()!.id;
+
+  this.eventService.updateEvent(id, {
+    status: 'CANCELLED'
+  }).subscribe({
+    next: (response) => {
+      console.log('Successfully cancelled event', response);
+      this.event.set(response);
+    },
+    error: (error: HttpErrorResponse) => {
+      console.error('Error cancelling event:', error);
+    }
+  });
+}
+
+isEventCancelled = computed(() => {
+  return this.event()?.status === 'CANCELLED';
+})
+
+reactivateEvent() {
+  const id = this.event()!.id;
+
+  this.eventService.updateEvent(id, {
+    status: 'OPEN' as EventStatus
+  }).subscribe({
+    next: (response) => {
+      console.log('Successfully reactivated event', response);
+      this.event.set(response);
+    },
+    error: (error: HttpErrorResponse) => {
+      console.error('Error reactivating event:', error);
+    }
+  });
 }
 
 }
