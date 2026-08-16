@@ -32,7 +32,8 @@ public class SecurityConfig {
             "/participations",
             "/participations/**",
             "/reviews",
-            "/reviews/**"
+            "/reviews/**",
+            "/sports/all"
     };
 
     public SecurityConfig(

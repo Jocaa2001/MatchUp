@@ -2,6 +2,7 @@ package com.matchup.participation.service;
 
 import com.matchup.common.service.CrudServiceImpl;
 import com.matchup.event.entity.Event;
+import com.matchup.event.enums.EventStatus;
 import com.matchup.event.repository.EventRepository;
 import com.matchup.exception.EntityNotFoundException;
 import com.matchup.participation.entity.Participation;
@@ -32,6 +33,10 @@ public class ParticipationService extends CrudServiceImpl<Participation, Partici
 
         if (participantsCount >= e.getMaxPlayers()) {
             throw new RuntimeException("Event is full");
+        }
+
+        if(e.getStatus() != EventStatus.ACTIVE){
+            throw new RuntimeException("Event is cancelled");
         }
 
         Participation p = Participation.builder()
