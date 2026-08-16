@@ -1,9 +1,11 @@
 package com.matchup.unit;
 
 import com.matchup.common.service.CrudServiceImpl;
+import com.matchup.mail.service.MailService;
 import com.matchup.notification.entity.Notification;
 import com.matchup.notification.repository.NotificationRepository;
 import com.matchup.notification.service.NotificationService;
+import com.matchup.participation.repository.ParticipationRepository;
 import org.mockito.Mock;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -12,6 +14,12 @@ public class NotificationServiceTest extends GenericCrudServiceTest<Notification
     @Mock
     private NotificationRepository repository;
 
+    @Mock
+    private ParticipationRepository participationRepository;
+
+    @Mock
+    private MailService mailService;
+
     @Override
     protected NotificationRepository getRepository() {
         return repository;
@@ -19,7 +27,7 @@ public class NotificationServiceTest extends GenericCrudServiceTest<Notification
 
     @Override
     protected CrudServiceImpl<Notification, NotificationRepository> createService() {
-        return new NotificationService(repository);
+        return new NotificationService(repository, mailService,participationRepository);
     }
 
     @Override

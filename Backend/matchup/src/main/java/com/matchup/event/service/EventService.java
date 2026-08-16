@@ -9,6 +9,7 @@ import com.matchup.exception.EntityNotFoundException;
 import com.matchup.location.entity.Location;
 import com.matchup.location.mapper.LocationMapper;
 import com.matchup.location.repository.LocationRepository;
+import com.matchup.notification.service.NotificationService;
 import com.matchup.participation.dto.ParticipationDTO;
 import com.matchup.participation.entity.Participation;
 import com.matchup.participation.enums.ParticipationStatus;
@@ -30,13 +31,16 @@ public class EventService extends CrudServiceImpl<Event, EventRepository> {
     private final LocationRepository locationRepository;
     private final LocationMapper locationMapper;
     private final ParticipationRepository participationRepository;
+    private final NotificationService notificationService;
 
-    public EventService(EventRepository repository, SportRepository sportRepository, LocationRepository locationRepository, LocationMapper locationMapper, ParticipationRepository participationRepository) {
+
+    public EventService(EventRepository repository, SportRepository sportRepository, LocationRepository locationRepository, LocationMapper locationMapper, ParticipationRepository participationRepository, NotificationService notificationService) {
         super(repository);
         this.sportRepository = sportRepository;
         this.locationRepository = locationRepository;
         this.locationMapper = locationMapper;
         this.participationRepository = participationRepository;
+        this.notificationService = notificationService;
     }
 
     public Event create(User user, CreateEventDTO request) {
@@ -68,7 +72,7 @@ public class EventService extends CrudServiceImpl<Event, EventRepository> {
                 .status(ParticipationStatus.CONFIRMED).build();
 
         participationRepository.save(participation);
-
+        notificationService.notifyEventCreated(event, user);
         return event;
     }
 
@@ -80,5 +84,9 @@ public class EventService extends CrudServiceImpl<Event, EventRepository> {
 
     public List<Event> getEventsForUser(Long id) {
         return repository.findByUserId(id);
+    }
+
+    public void notifyCancelled(Event event, User user) {
+        notificationService.notifyEventCancelled(event, user);
     }
 }

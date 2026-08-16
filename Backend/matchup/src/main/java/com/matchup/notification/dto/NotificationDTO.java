@@ -2,6 +2,7 @@ package com.matchup.notification.dto;
 
 
 import com.matchup.common.dto.BaseDto;
+import com.matchup.notification.enums.NotificationStatus;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -33,4 +34,7 @@ public class NotificationDTO extends BaseDto {
     private String message;
 
     private LocalDateTime createdAt;
+
+    @NotNull(message = "notificationStatusRequired")
+    private NotificationStatus notificationStatus;
 }

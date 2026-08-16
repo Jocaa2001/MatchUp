@@ -5,6 +5,7 @@ import com.matchup.event.entity.Event;
 import com.matchup.event.enums.EventStatus;
 import com.matchup.event.repository.EventRepository;
 import com.matchup.exception.EntityNotFoundException;
+import com.matchup.notification.service.NotificationService;
 import com.matchup.participation.entity.Participation;
 import com.matchup.participation.enums.ParticipationStatus;
 import com.matchup.participation.repository.ParticipationRepository;
@@ -19,10 +20,12 @@ import java.util.List;
 public class ParticipationService extends CrudServiceImpl<Participation, ParticipationRepository> {
 
     private final EventRepository eventRepository;
+    private final NotificationService notificationService;
 
-    public ParticipationService(ParticipationRepository repository, EventRepository eventRepository) {
+    public ParticipationService(ParticipationRepository repository, EventRepository eventRepository, NotificationService notificationService) {
         super(repository);
         this.eventRepository = eventRepository;
+        this.notificationService = notificationService;
     }
 
     public Participation joinEvent(User user, Long eventId) {
@@ -35,14 +38,16 @@ public class ParticipationService extends CrudServiceImpl<Participation, Partici
             throw new RuntimeException("Event is full");
         }
 
-        if(e.getStatus() != EventStatus.ACTIVE){
-            throw new RuntimeException("Event is cancelled");
+        if(e.getStatus() != EventStatus.OPEN){
+            throw new RuntimeException("Can not join event that is not in status OPEN");
         }
 
         Participation p = Participation.builder()
                 .user(user)
                 .event(e)
                 .status(ParticipationStatus.CONFIRMED).build();
+
+        notificationService.notifyEventJoined(e,user);
 
         return repository.save(p);
     }

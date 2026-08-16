@@ -4,6 +4,7 @@ import com.matchup.common.controller.CrudController;
 import com.matchup.event.dto.CreateEventDTO;
 import com.matchup.event.dto.EventDTO;
 import com.matchup.event.entity.Event;
+import com.matchup.event.enums.EventStatus;
 import com.matchup.event.mapper.EventMapper;
 import com.matchup.event.service.EventService;
 import com.matchup.participation.dto.ParticipationDTO;
@@ -55,11 +56,12 @@ public class EventController extends CrudController<Event, EventDTO, EventServic
     }
 
     @PatchMapping("/{id}")
-    public EventDTO updatePartial(@PathVariable Long id, @RequestBody EventDTO dto) {
+    public EventDTO updatePartial(@AuthenticationPrincipal User user, @PathVariable Long id, @RequestBody EventDTO dto) {
 
         Event event = service.getById(id);
         mapper.updateFromDto(dto, event);
         event = service.update(id, event);
+        if(event.getStatus() == EventStatus.CANCELLED) service.notifyCancelled(event,user);
         return mapper.toDto(event);
     }
 }

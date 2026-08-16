@@ -2,6 +2,7 @@ package com.matchup.notification.entity;
 
 import com.matchup.common.entity.BaseEntity;
 import com.matchup.event.entity.Event;
+import com.matchup.notification.enums.NotificationStatus;
 import com.matchup.notification.enums.NotificationType;
 import com.matchup.user.entity.User;
 import jakarta.persistence.*;
@@ -34,4 +35,8 @@ public class Notification extends BaseEntity {
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private NotificationStatus status;
 }

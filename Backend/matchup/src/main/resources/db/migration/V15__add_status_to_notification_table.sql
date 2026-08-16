@@ -1,0 +1,2 @@
+ALTER TABLE mc_notification
+    ADD COLUMN status VARCHAR(30) NOT NULL DEFAULT 'PENDING';

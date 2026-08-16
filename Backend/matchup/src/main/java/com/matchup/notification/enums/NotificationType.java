@@ -4,5 +4,7 @@ public enum NotificationType {
     INFO,
     ALERT,
     REMINDER,
-    CANCELLED
+    EVENT_JOINED,
+    EVENT_CREATED,
+    EVENT_CANCELLED
 }
