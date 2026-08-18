@@ -1,0 +1,217 @@
+{
+  "NAVBAR": {
+    "BROWSE_EVENTS": "Pregled događaja",
+    "SIGN_IN": "Prijavi se",
+    "JOIN_FREE": "Pridruži se"
+  },
+
+  "EVENT_CARD": {
+    "MAX_PLAYERS": "Maksimalan broj igrača"
+  },
+
+  "EVENT_DETAILS": {
+    "BACK_TO_EVENTS": "Nazad na događaje",
+    "CANCELLED": "Otkazano",
+    "SPOTS_LEFT": "slobodnih mesta",
+    "ADMIN": "Administrator",
+
+    "LOCATION": "Lokacija",
+
+    "PLAYERS": "Igrači",
+    "SPOTS_AVAILABLE": "slobodnih mesta",
+
+    "SKILL_LEVEL": "Nivo veštine",
+    "ALL_LEVELS": "Svi nivoi",
+    "EVERYONE_WELCOME": "Svi su dobrodošli",
+
+    "ABOUT_LOCATION": "O ovoj lokaciji",
+
+    "EVENT_STATUS": "Status događaja",
+    "CURRENT_STATUS": "Trenutni status",
+    "PLAYERS_JOINED": "Prijavljeni igrači",
+
+    "PARTICIPANTS": "Učesnici",
+    "ORGANIZER": "Organizator",
+    "OPEN_SPOT": "Slobodno mesto",
+
+    "LEFT": "slobodnih",
+    "PLAYERS_JOINED_TEXT": "igrača prijavljeno",
+
+    "EVENT_CANCELLED_MESSAGE": "Ovaj događaj je otkazan.",
+
+    "SIGN_IN_TO_JOIN": "Prijavi se da bi se pridružio",
+    "EVENT_FULL": "Događaj je popunjen",
+    "JOIN_EVENT": "Pridruži se događaju",
+    "LEAVE_EVENT": "Napusti događaj",
+
+    "YOURE_THE_ORGANIZER": "Ti si organizator",
+
+    "EDIT_EVENT": "Izmeni događaj",
+    "CANCEL_EVENT": "Otkaži događaj",
+    "REACTIVATE_EVENT": "Ponovo aktiviraj događaj",
+
+    "FREE_TO_JOIN": "Pridruživanje je besplatno — nije potrebno plaćanje",
+
+    "ORGANIZED_BY": "Organizator",
+    "EVENTS_HOSTED": "organizovanih događaja"
+  },
+
+  "EVENT_FILTER": {
+    "SEARCH_EVENTS": "Pretraži događaje...",
+
+    "SPORT": "Sport",
+    "ALL_SPORTS": "Svi sportovi",
+
+    "FOOTBALL": "Fudbal",
+    "BASKETBALL": "Košarka",
+    "TENNIS": "Tenis",
+    "VOLLEYBALL": "Odbojka",
+    "BADMINTON": "Badminton",
+    "RUNNING": "Trčanje",
+    "CYCLING": "Biciklizam",
+
+    "LOCATION": "Lokacija",
+    "ALL_LOCATIONS": "Sve lokacije",
+
+    "DATE": "Datum",
+
+    "STATUS": "Status",
+    "ALL": "Sve",
+    "OPEN": "Otvoreno",
+    "FULL": "Popunjeno",
+
+    "CLEAR": "Obriši"
+  },
+
+  "USER_MENU": {
+    "USER_PROFILE": "Korisnički profil",
+    "MY_EVENTS": "Moji događaji",
+    "SIGN_OUT": "Odjavi se"
+  },
+
+  "LANDING": {
+    "HERO": {
+      "EYEBROW": "Sportski događaji uživo u vašoj blizini",
+
+      "TITLE_LINE_1": "Pronađi svoj",
+      "TITLE_ACCENT": "Tim.",
+      "TITLE_LINE_2": "Igraj danas.",
+
+      "SUBTITLE": "MatchUp povezuje ljubitelje sporta — objavi događaj, pronađi igrače i izađi na teren. Nemaš tim? Nema problema.",
+
+      "BROWSE_EVENTS": "Pregledaj događaje",
+      "CREATE_ACCOUNT": "Napravi nalog",
+
+      "ACTIVE_PLAYERS": "Aktivnih igrača",
+      "EVENTS_PER_MONTH": "Događaja mesečno",
+      "SPORTS_AVAILABLE": "Dostupnih sportova",
+
+      "OPEN": "Otvoreno",
+      "TODAY": "Danas",
+      "TOMORROW": "Sutra",
+
+      "SPOT_LEFT": "slobodno mesto",
+
+      "JOINED_TENNIS": "Pridružio se teniskom meču",
+      "NEW_EVENTS_NEARBY": "3 nova događaja u blizini"
+    },
+
+    "SPORTS": {
+      "EYEBROW": "Koji je tvoj sport?",
+      "TITLE": "Pregledaj po sportu",
+
+      "FOOTBALL": "Fudbal",
+      "BASKETBALL": "Košarka",
+      "TENNIS": "Tenis",
+      "VOLLEYBALL": "Odbojka",
+      "BADMINTON": "Badminton",
+      "RUNNING": "Trčanje",
+      "CYCLING": "Biciklizam",
+
+      "EVENTS": "događaja",
+      "SEE_ALL": "Prikaži sve",
+      "SPORTS": "sportove"
+    },
+
+    "HOW_IT_WORKS": {
+      "EYEBROW": "Jednostavan proces",
+      "TITLE": "Kako MatchUp funkcioniše",
+
+      "SUBTITLE": "Od registracije do igre — u tri jednostavna koraka.",
+
+      "STEP_1_TITLE": "Napravi nalog",
+      "STEP_1_DESCRIPTION": "Registruj se za nekoliko sekundi. Dodaj omiljene sportove i nivo veštine.",
+
+      "STEP_2_TITLE": "Pronađi ili napravi događaj",
+      "STEP_2_DESCRIPTION": "Pregledaj događaje u blizini po sportu, lokaciji ili datumu.",
+
+      "STEP_3_TITLE": "Igraj i oceni",
+      "STEP_3_DESCRIPTION": "Pridruži se igri, zabavi se i ostavi ocenu."
+    },
+
+    "CTA": {
+      "TITLE": "Spreman za igru?",
+      "DESCRIPTION": "Pridruži se hiljadama igrača koji već koriste MatchUp.",
+
+      "CREATE_ACCOUNT": "Napravi besplatan nalog",
+      "EXPLORE_EVENTS": "Istraži događaje"
+    },
+
+    "FOOTER": {
+      "DESCRIPTION": "Povezujemo ljubitelje sporta, jednu igru po jednu.",
+
+      "BROWSE_EVENTS": "Pregledaj događaje",
+      "SIGN_UP": "Registruj se",
+      "SIGN_IN": "Prijavi se",
+
+      "COPYRIGHT": "© 2025 MatchUp. Napravljeno iz ljubavi prema sportu."
+    }
+  },
+  "EVENT_DETAIL": {
+  "BACK_TO_EVENTS": "Nazad na događaje",
+
+  "CANCELLED": "Otkazano",
+  "SPOTS_LEFT": "slobodnih mesta",
+  "ADMIN": "Administrator",
+
+  "LOCATION": "Lokacija",
+
+  "PLAYERS": "Igrači",
+  "SPOTS_AVAILABLE": "slobodnih mesta",
+
+  "SKILL_LEVEL": "Nivo veštine",
+  "ALL_LEVELS": "Svi nivoi",
+  "EVERYONE_WELCOME": "Svi su dobrodošli",
+
+  "ABOUT_LOCATION": "O ovoj lokaciji",
+
+  "EVENT_STATUS": "Status događaja",
+  "CURRENT_STATUS": "Trenutni status",
+  "PLAYERS_JOINED": "Prijavljeni igrači",
+
+  "PARTICIPANTS": "Učesnici",
+  "ORGANIZER": "Organizator",
+  "OPEN_SPOT": "Slobodno mesto",
+
+  "LEFT": "slobodnih",
+  "PLAYERS_JOINED_TEXT": "igrača prijavljeno",
+
+  "EVENT_CANCELLED_MESSAGE": "Ovaj događaj je otkazan.",
+
+  "SIGN_IN_TO_JOIN": "Prijavi se da bi se pridružio",
+  "EVENT_FULL": "Događaj je popunjen",
+  "JOIN_EVENT": "Pridruži se događaju",
+  "LEAVE_EVENT": "Napusti događaj",
+
+  "YOURE_ORGANIZER": "Ti si organizator",
+
+  "EDIT_EVENT": "Izmeni događaj",
+  "CANCEL_EVENT": "Otkaži događaj",
+  "REACTIVATE_EVENT": "Ponovo aktiviraj događaj",
+
+  "FREE_TO_JOIN": "Pridruživanje je besplatno — nije potrebno plaćanje",
+
+  "ORGANIZED_BY": "Organizator",
+  "EVENTS_HOSTED": "organizovanih događaja"
+}
+}

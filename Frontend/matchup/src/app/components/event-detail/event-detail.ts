@@ -8,11 +8,12 @@ import { ParticipationResponse } from '../../models/responses/participationRespo
 import { Auth } from '../../services/auth';
 import { ParticipationService } from '../../services/participation.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { TranslatePipe } from '@ngx-translate/core';
 
 
 @Component({
   selector: 'app-event-detail',
-  imports: [RouterLink, DatePipe],
+  imports: [RouterLink, DatePipe, TranslatePipe],
   templateUrl: './event-detail.html',
   styleUrl: './event-detail.scss',
 })

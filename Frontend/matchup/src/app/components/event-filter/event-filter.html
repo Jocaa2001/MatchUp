@@ -2,89 +2,249 @@
 
   <!-- Search -->
   <div class="search-field">
-    <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"/>
-      <path d="M11 11l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+
+    <svg
+      class="search-icon"
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+    >
+      <circle
+        cx="7"
+        cy="7"
+        r="5"
+        stroke="currentColor"
+        stroke-width="1.5"
+      />
+
+      <path
+        d="M11 11l3 3"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
     </svg>
+
     <input
       type="text"
       class="form-control"
-      placeholder="Search events..."
+      [placeholder]="'EVENT_FILTER.SEARCH_EVENTS' | translate"
     />
+
   </div>
+
 
   <!-- Filters Row -->
   <div class="filters-row">
 
+    <!-- Sport -->
     <div class="filter-group">
-      <label>Sport</label>
+
+      <label>
+        {{ 'EVENT_FILTER.SPORT' | translate }}
+      </label>
+
       <select class="form-control">
-        <option value="">All Sports</option>
-        <option value="football">⚽ Football</option>
-        <option value="basketball">🏀 Basketball</option>
-        <option value="tennis">🎾 Tennis</option>
-        <option value="volleyball">🏐 Volleyball</option>
-        <option value="badminton">🏸 Badminton</option>
-        <option value="running">🏃 Running</option>
-        <option value="cycling">🚴 Cycling</option>
+
+        <option value="">
+          {{ 'EVENT_FILTER.ALL_SPORTS' | translate }}
+        </option>
+
+        <option value="football">
+          ⚽ {{ 'EVENT_FILTER.FOOTBALL' | translate }}
+        </option>
+
+        <option value="basketball">
+          🏀 {{ 'EVENT_FILTER.BASKETBALL' | translate }}
+        </option>
+
+        <option value="tennis">
+          🎾 {{ 'EVENT_FILTER.TENNIS' | translate }}
+        </option>
+
+        <option value="volleyball">
+          🏐 {{ 'EVENT_FILTER.VOLLEYBALL' | translate }}
+        </option>
+
+        <option value="badminton">
+          🏸 {{ 'EVENT_FILTER.BADMINTON' | translate }}
+        </option>
+
+        <option value="running">
+          🏃 {{ 'EVENT_FILTER.RUNNING' | translate }}
+        </option>
+
+        <option value="cycling">
+          🚴 {{ 'EVENT_FILTER.CYCLING' | translate }}
+        </option>
+
       </select>
+
     </div>
 
+
+    <!-- Location -->
     <div class="filter-group">
-      <label>Location</label>
+
+      <label>
+        {{ 'EVENT_FILTER.LOCATION' | translate }}
+      </label>
+
       <select class="form-control">
-        <option value="">All Locations</option>
-        <option value="1">Novi Sad — Spens</option>
-        <option value="2">Novi Sad — Štrand</option>
-        <option value="3">Beograd — Ušće</option>
+
+        <option value="">
+          {{ 'EVENT_FILTER.ALL_LOCATIONS' | translate }}
+        </option>
+
+        <option value="1">
+          Novi Sad — Spens
+        </option>
+
+        <option value="2">
+          Novi Sad — Štrand
+        </option>
+
+        <option value="3">
+          Beograd — Ušće
+        </option>
+
       </select>
+
     </div>
 
+
+    <!-- Date -->
     <div class="filter-group">
-      <label>Date</label>
+
+      <label>
+        {{ 'EVENT_FILTER.DATE' | translate }}
+      </label>
+
       <div class="date-input-wrapper">
-        <svg class="date-icon" width="14" height="14" viewBox="0 0 16 16" fill="none">
-          <rect x="1.5" y="2.5" width="13" height="12" rx="2" stroke="currentColor" stroke-width="1.4"/>
-          <path d="M1.5 6.5h13" stroke="currentColor" stroke-width="1.4"/>
-          <path d="M5 1v3M11 1v3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+
+        <svg
+          class="date-icon"
+          width="14"
+          height="14"
+          viewBox="0 0 16 16"
+          fill="none"
+        >
+
+          <rect
+            x="1.5"
+            y="2.5"
+            width="13"
+            height="12"
+            rx="2"
+            stroke="currentColor"
+            stroke-width="1.4"
+          />
+
+          <path
+            d="M1.5 6.5h13"
+            stroke="currentColor"
+            stroke-width="1.4"
+          />
+
+          <path
+            d="M5 1v3M11 1v3"
+            stroke="currentColor"
+            stroke-width="1.4"
+            stroke-linecap="round"
+          />
+
         </svg>
-        <input type="date" class="form-control date-input" />
+
+        <input
+          type="date"
+          class="form-control date-input"
+        />
+
       </div>
+
     </div>
 
+
+    <!-- Status -->
     <div class="filter-group">
-      <label>Status</label>
+
+      <label>
+        {{ 'EVENT_FILTER.STATUS' | translate }}
+      </label>
+
       <select class="form-control">
-        <option value="">All</option>
-        <option value="open">Open</option>
-        <option value="full">Full</option>
+
+        <option value="">
+          {{ 'EVENT_FILTER.ALL' | translate }}
+        </option>
+
+        <option value="open">
+          {{ 'EVENT_FILTER.OPEN' | translate }}
+        </option>
+
+        <option value="full">
+          {{ 'EVENT_FILTER.FULL' | translate }}
+        </option>
+
       </select>
+
     </div>
 
-    <!-- Clear button — prikazuje se samo kada ima aktivnih filtera -->
+
+    <!-- Clear -->
     <button class="btn btn-secondary btn-sm clear-btn">
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-        <path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+
+      <svg
+        width="12"
+        height="12"
+        viewBox="0 0 12 12"
+        fill="none"
+      >
+
+        <path
+          d="M1 1l10 10M11 1L1 11"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+        />
+
       </svg>
-      Clear
+
+      {{ 'EVENT_FILTER.CLEAR' | translate }}
+
     </button>
 
   </div>
 
-  <!-- Active Filter Chips — prikazuje se samo kada ima aktivnih filtera -->
+
+  <!-- Active Filter Chips -->
   <div class="active-filters">
+
     <span class="filter-chip">
-      ⚽ Football
+
+      ⚽ {{ 'EVENT_FILTER.FOOTBALL' | translate }}
+
       <button>×</button>
+
     </span>
+
     <span class="filter-chip">
+
       📍 Novi Sad — Spens
+
       <button>×</button>
+
     </span>
+
     <span class="filter-chip">
+
       📅 2025-06-15
+
       <button>×</button>
+
     </span>
+
   </div>
 
 </div>

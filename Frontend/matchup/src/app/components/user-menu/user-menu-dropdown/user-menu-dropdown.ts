@@ -2,10 +2,11 @@ import { Component, HostListener, inject, Input, OnInit  } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Auth } from '../../../services/auth';
 import { UserResponse } from '../../../models/responses/userResponse';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-menu-dropdown',
-  imports: [RouterLink],
+  imports: [RouterLink, TranslatePipe],
   templateUrl: './user-menu-dropdown.html',
   styleUrl: './user-menu-dropdown.scss',
 })

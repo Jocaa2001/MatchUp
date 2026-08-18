@@ -1,0 +1,217 @@
+{
+  "NAVBAR": {
+    "BROWSE_EVENTS": "Browse Events",
+    "SIGN_IN": "Sign In",
+    "JOIN_FREE": "Join Free"
+  },
+
+  "EVENT_CARD": {
+    "MAX_PLAYERS": "Max players"
+  },
+
+  "EVENT_DETAILS": {
+    "BACK_TO_EVENTS": "Back to events",
+    "CANCELLED": "Cancelled",
+    "SPOTS_LEFT": "spots left",
+    "ADMIN": "Admin",
+
+    "LOCATION": "Location",
+
+    "PLAYERS": "Players",
+    "SPOTS_AVAILABLE": "spots available",
+
+    "SKILL_LEVEL": "Skill Level",
+    "ALL_LEVELS": "All Levels",
+    "EVERYONE_WELCOME": "Everyone welcome",
+
+    "ABOUT_LOCATION": "About This Location",
+
+    "EVENT_STATUS": "Event Status",
+    "CURRENT_STATUS": "Current Status",
+    "PLAYERS_JOINED": "Players Joined",
+
+    "PARTICIPANTS": "Participants",
+    "ORGANIZER": "Organizer",
+    "OPEN_SPOT": "Open spot",
+
+    "LEFT": "left",
+    "PLAYERS_JOINED_TEXT": "players joined",
+
+    "EVENT_CANCELLED_MESSAGE": "This event has been cancelled.",
+
+    "SIGN_IN_TO_JOIN": "Sign In to Join",
+    "EVENT_FULL": "Event Full",
+    "JOIN_EVENT": "Join Event",
+    "LEAVE_EVENT": "Leave Event",
+
+    "YOURE_THE_ORGANIZER": "You're the organizer",
+
+    "EDIT_EVENT": "Edit Event",
+    "CANCEL_EVENT": "Cancel Event",
+    "REACTIVATE_EVENT": "Reactivate Event",
+
+    "FREE_TO_JOIN": "Free to join — no payment required",
+
+    "ORGANIZED_BY": "Organized by",
+    "EVENTS_HOSTED": "events hosted"
+  },
+
+  "EVENT_FILTER": {
+    "SEARCH_EVENTS": "Search events...",
+
+    "SPORT": "Sport",
+    "ALL_SPORTS": "All Sports",
+
+    "FOOTBALL": "Football",
+    "BASKETBALL": "Basketball",
+    "TENNIS": "Tennis",
+    "VOLLEYBALL": "Volleyball",
+    "BADMINTON": "Badminton",
+    "RUNNING": "Running",
+    "CYCLING": "Cycling",
+
+    "LOCATION": "Location",
+    "ALL_LOCATIONS": "All Locations",
+
+    "DATE": "Date",
+
+    "STATUS": "Status",
+    "ALL": "All",
+    "OPEN": "Open",
+    "FULL": "Full",
+
+    "CLEAR": "Clear"
+  },
+
+  "USER_MENU": {
+    "USER_PROFILE": "User Profile",
+    "MY_EVENTS": "My Events",
+    "SIGN_OUT": "Sign Out"
+  },
+
+  "LANDING": {
+    "HERO": {
+      "EYEBROW": "Live sports events near you",
+
+      "TITLE_LINE_1": "Find Your",
+      "TITLE_ACCENT": "Team.",
+      "TITLE_LINE_2": "Play Today.",
+
+      "SUBTITLE": "MatchUp connects sports enthusiasts — post an event, find players, and get on the field. No team? No problem.",
+
+      "BROWSE_EVENTS": "Browse Events",
+      "CREATE_ACCOUNT": "Create Account",
+
+      "ACTIVE_PLAYERS": "Active Players",
+      "EVENTS_PER_MONTH": "Events / Month",
+      "SPORTS_AVAILABLE": "Sports Available",
+
+      "OPEN": "Open",
+      "TODAY": "Today",
+      "TOMORROW": "Tomorrow",
+
+      "SPOT_LEFT": "spot left",
+
+      "JOINED_TENNIS": "Joined Tennis match",
+      "NEW_EVENTS_NEARBY": "3 new events nearby"
+    },
+
+    "SPORTS": {
+      "EYEBROW": "What's your game?",
+      "TITLE": "Browse by Sport",
+
+      "FOOTBALL": "Football",
+      "BASKETBALL": "Basketball",
+      "TENNIS": "Tennis",
+      "VOLLEYBALL": "Volleyball",
+      "BADMINTON": "Badminton",
+      "RUNNING": "Running",
+      "CYCLING": "Cycling",
+
+      "EVENTS": "events",
+      "SEE_ALL": "See All",
+      "SPORTS": "Sports"
+    },
+
+    "HOW_IT_WORKS": {
+      "EYEBROW": "Simple process",
+      "TITLE": "How MatchUp Works",
+
+      "SUBTITLE": "From registration to playing — in three easy steps.",
+
+      "STEP_1_TITLE": "Create Account",
+      "STEP_1_DESCRIPTION": "Sign up in seconds. Add your sports interests and skill level.",
+
+      "STEP_2_TITLE": "Find or Create Event",
+      "STEP_2_DESCRIPTION": "Browse nearby events by sport, location, or date.",
+
+      "STEP_3_TITLE": "Play & Review",
+      "STEP_3_DESCRIPTION": "Join the game, have fun, and leave a review."
+    },
+
+    "CTA": {
+      "TITLE": "Ready to Get in the Game?",
+      "DESCRIPTION": "Join thousands of players already using MatchUp.",
+
+      "CREATE_ACCOUNT": "Create Free Account",
+      "EXPLORE_EVENTS": "Explore Events"
+    },
+
+    "FOOTER": {
+      "DESCRIPTION": "Connecting sports enthusiasts, one game at a time.",
+
+      "BROWSE_EVENTS": "Browse Events",
+      "SIGN_UP": "Sign Up",
+      "SIGN_IN": "Sign In",
+
+      "COPYRIGHT": "© 2025 MatchUp. Built for the love of sport."
+    }
+  },
+  "EVENT_DETAIL": {
+  "BACK_TO_EVENTS": "Back to events",
+
+  "CANCELLED": "Cancelled",
+  "SPOTS_LEFT": "spots left",
+  "ADMIN": "Admin",
+
+  "LOCATION": "Location",
+
+  "PLAYERS": "Players",
+  "SPOTS_AVAILABLE": "spots available",
+
+  "SKILL_LEVEL": "Skill Level",
+  "ALL_LEVELS": "All Levels",
+  "EVERYONE_WELCOME": "Everyone welcome",
+
+  "ABOUT_LOCATION": "About This Location",
+
+  "EVENT_STATUS": "Event Status",
+  "CURRENT_STATUS": "Current Status",
+  "PLAYERS_JOINED": "Players Joined",
+
+  "PARTICIPANTS": "Participants",
+  "ORGANIZER": "Organizer",
+  "OPEN_SPOT": "Open spot",
+
+  "LEFT": "left",
+  "PLAYERS_JOINED_TEXT": "players joined",
+
+  "EVENT_CANCELLED_MESSAGE": "This event has been cancelled.",
+
+  "SIGN_IN_TO_JOIN": "Sign In to Join",
+  "EVENT_FULL": "Event Full",
+  "JOIN_EVENT": "Join Event",
+  "LEAVE_EVENT": "Leave Event",
+
+  "YOURE_ORGANIZER": "You're the organizer",
+
+  "EDIT_EVENT": "Edit Event",
+  "CANCEL_EVENT": "Cancel Event",
+  "REACTIVATE_EVENT": "Reactivate Event",
+
+  "FREE_TO_JOIN": "Free to join — no payment required",
+
+  "ORGANIZED_BY": "Organized by",
+  "EVENTS_HOSTED": "events hosted"
+}
+}

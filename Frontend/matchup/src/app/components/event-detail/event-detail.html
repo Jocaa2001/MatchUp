@@ -12,7 +12,8 @@
           stroke-linejoin="round"
         />
       </svg>
-      Back to events
+
+      {{ 'EVENT_DETAIL.BACK_TO_EVENTS' | translate }}
     </button>
 
     <div class="detail-layout">
@@ -35,18 +36,22 @@
               </span>
 
               @if (isEventCancelled()) {
+
                 <span class="badge badge-status-cancelled">
-                  Cancelled
+                  {{ 'EVENT_DETAIL.CANCELLED' | translate }}
                 </span>
+
               } @else {
+
                 <span class="badge badge-status-open">
                   {{ (event()?.maxPlayers ?? 0) - (participants()?.length ?? 0) }}
-                  spots left
+                  {{ 'EVENT_DETAIL.SPOTS_LEFT' | translate }}
                 </span>
+
               }
 
               <span class="badge badge-admin" style="display: none;">
-                Admin
+                {{ 'EVENT_DETAIL.ADMIN' | translate }}
               </span>
 
             </div>
@@ -66,6 +71,7 @@
 
           <!-- Date -->
           <div class="info-card">
+
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
               <path
                 d="M9 1.5a6 6 0 100 12 6 6 0 000-12z"
@@ -81,6 +87,7 @@
             </svg>
 
             <div>
+
               <span class="info-value">
                 {{ event()?.startTime | date:'EEEE, MMMM d, y' }}
               </span>
@@ -90,11 +97,14 @@
                 –
                 {{ event()?.endTime | date:'HH:mm' }}
               </span>
+
             </div>
+
           </div>
 
           <!-- Location -->
           <div class="info-card">
+
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
               <path
                 d="M9 1.5C6.1 1.5 3.75 3.85 3.75 6.75c0 4.5 5.25 9.75 5.25 9.75s5.25-5.25 5.25-9.75C14.25 3.85 11.9 1.5 9 1.5z"
@@ -111,22 +121,28 @@
             </svg>
 
             <div>
+
               <span class="info-label">
-                Location
+                {{ 'EVENT_DETAIL.LOCATION' | translate }}
               </span>
 
               <span class="info-value">
-                {{ event()?.location?.city }} — {{ event()?.location?.address }}
+                {{ event()?.location?.city }}
+                —
+                {{ event()?.location?.address }}
               </span>
 
               <span class="info-sub">
                 {{ event()?.location?.address }}
               </span>
+
             </div>
+
           </div>
 
           <!-- Players -->
           <div class="info-card">
+
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
               <circle
                 cx="9"
@@ -144,22 +160,29 @@
             </svg>
 
             <div>
+
               <span class="info-label">
-                Players
+                {{ 'EVENT_DETAIL.PLAYERS' | translate }}
               </span>
 
               <span class="info-value">
-                {{ participants()?.length }} / {{ event()?.maxPlayers }}
+                {{ participants()?.length }}
+                /
+                {{ event()?.maxPlayers }}
               </span>
 
               <span class="info-sub">
-                {{ participants()?.length }} spots available
+                {{ participants()?.length }}
+                {{ 'EVENT_DETAIL.SPOTS_AVAILABLE' | translate }}
               </span>
+
             </div>
+
           </div>
 
           <!-- Skill Level -->
           <div class="info-card">
+
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
               <path
                 d="M2 13h3v3H2zM7.5 9h3v7h-3zM13 5h3v11h-3z"
@@ -170,45 +193,51 @@
             </svg>
 
             <div>
+
               <span class="info-label">
-                Skill Level
+                {{ 'EVENT_DETAIL.SKILL_LEVEL' | translate }}
               </span>
 
               <span class="info-value">
-                All Levels
+                {{ 'EVENT_DETAIL.ALL_LEVELS' | translate }}
               </span>
 
               <span class="info-sub">
-                Everyone welcome
+                {{ 'EVENT_DETAIL.EVERYONE_WELCOME' | translate }}
               </span>
+
             </div>
+
           </div>
 
         </div>
 
         <!-- Location Description -->
         <div class="detail-section">
+
           <h2 class="section-title">
-            About This Location
+            {{ 'EVENT_DETAIL.ABOUT_LOCATION' | translate }}
           </h2>
 
           <p class="location-description">
             {{ event()?.location?.description }}
           </p>
+
         </div>
 
         <!-- Event Status -->
         <div class="detail-section">
 
           <h2 class="section-title">
-            Event Status
+            {{ 'EVENT_DETAIL.EVENT_STATUS' | translate }}
           </h2>
 
           <div class="status-info">
 
             <div class="status-item">
+
               <span class="status-label">
-                Current Status
+                {{ 'EVENT_DETAIL.CURRENT_STATUS' | translate }}
               </span>
 
               <span
@@ -216,32 +245,44 @@
                 [class.status-open]="!isEventCancelled()"
                 [class.status-cancelled]="isEventCancelled()"
               >
+
                 <span class="status-dot"></span>
+
                 {{ event()?.status }}
+
               </span>
+
             </div>
 
             <div class="status-item">
+
               <span class="status-label">
-                Players Joined
+                {{ 'EVENT_DETAIL.PLAYERS_JOINED' | translate }}
               </span>
 
               <span class="status-value">
-                {{ participants()?.length }} / {{ event()?.maxPlayers }}
+                {{ participants()?.length }}
+                /
+                {{ event()?.maxPlayers }}
               </span>
+
             </div>
 
           </div>
+
         </div>
 
         <!-- Participants -->
         <div class="detail-section">
 
           <h2 class="section-title">
-            Participants
+
+            {{ 'EVENT_DETAIL.PARTICIPANTS' | translate }}
+
             <span class="count-badge">
               {{ participants()?.length ?? 0 }}
             </span>
+
           </h2>
 
           <div class="participants-list">
@@ -254,21 +295,27 @@
               >
 
                 <div class="participant-avatar">
+
                   {{ participation.user.profile.firstName.charAt(0) }}
                   {{ participation.user.profile.lastName.charAt(0) }}
+
                 </div>
 
                 <div class="participant-info">
 
                   <span class="participant-name">
+
                     {{ participation.user.profile.firstName }}
                     {{ participation.user.profile.lastName }}
+
                   </span>
 
                   @if (participation.user.id === event()?.user?.id) {
+
                     <span class="participant-role organizer-role">
-                      Organizer
+                      {{ 'EVENT_DETAIL.ORGANIZER' | translate }}
                     </span>
+
                   }
 
                 </div>
@@ -293,9 +340,11 @@
                   </div>
 
                   <div class="participant-info">
+
                     <span class="participant-name empty-text">
-                      Open spot
+                      {{ 'EVENT_DETAIL.OPEN_SPOT' | translate }}
                     </span>
+
                   </div>
 
                 </div>
@@ -305,6 +354,7 @@
             }
 
           </div>
+
         </div>
 
       </div>
@@ -320,6 +370,7 @@
             <div class="capacity-ring">
 
               <svg viewBox="0 0 80 80">
+
                 <circle
                   cx="40"
                   cy="40"
@@ -334,16 +385,22 @@
                   class="ring-fill"
                   style="stroke-dasharray: 213.6; stroke-dashoffset: 170.88;"
                 />
+
               </svg>
 
               <div class="ring-label">
 
                 <span class="ring-num">
-                  {{ (event()?.maxPlayers ?? 0) - (participants()?.length ?? 0) }}
+
+                  {{
+                    (event()?.maxPlayers ?? 0) -
+                    (participants()?.length ?? 0)
+                  }}
+
                 </span>
 
                 <span class="ring-sub">
-                  left
+                  {{ 'EVENT_DETAIL.LEFT' | translate }}
                 </span>
 
               </div>
@@ -356,7 +413,7 @@
                 {{ participants()?.length }}/{{ event()?.maxPlayers }}
               </strong>
 
-              players joined
+              {{ 'EVENT_DETAIL.PLAYERS_JOINED' | translate }}
 
             </div>
 
@@ -366,12 +423,14 @@
           @if (isEventCancelled()) {
 
             <div class="alert alert-info">
+
               <svg
                 width="16"
                 height="16"
                 viewBox="0 0 16 16"
                 fill="none"
               >
+
                 <circle
                   cx="8"
                   cy="8"
@@ -386,9 +445,11 @@
                   stroke-width="1.2"
                   stroke-linecap="round"
                 />
+
               </svg>
 
-              This event has been cancelled.
+              {{ 'EVENT_DETAIL.EVENT_CANCELLED_MESSAGE' | translate }}
+
             </div>
 
           }
@@ -401,7 +462,7 @@
               class="btn btn-primary"
               style="width:100%;justify-content:center;"
             >
-              Sign In to Join
+              {{ 'EVENT_DETAIL.SIGN_IN_TO_JOIN' | translate }}
             </a>
 
           }
@@ -420,7 +481,13 @@
               (click)="joinEvent()"
               [disabled]="isEventFull()"
             >
-              {{ isEventFull() ? 'Event Full' : 'Join Event' }}
+
+              {{
+                isEventFull()
+                  ? ('EVENT_DETAIL.EVENT_FULL' | translate)
+                  : ('EVENT_DETAIL.JOIN_EVENT' | translate)
+              }}
+
             </button>
 
           }
@@ -437,7 +504,7 @@
               style="width:100%;justify-content:center;"
               (click)="leaveEvent()"
             >
-              Leave Event
+              {{ 'EVENT_DETAIL.LEAVE_EVENT' | translate }}
             </button>
 
           }
@@ -455,6 +522,7 @@
                   viewBox="0 0 16 16"
                   fill="none"
                 >
+
                   <circle
                     cx="8"
                     cy="8"
@@ -469,9 +537,10 @@
                     stroke-width="1.2"
                     stroke-linecap="round"
                   />
+
                 </svg>
 
-                You're the organizer
+                {{ 'EVENT_DETAIL.YOURE_ORGANIZER' | translate }}
 
               </div>
 
@@ -481,7 +550,7 @@
                 [routerLink]="['/edit-event', event()?.id]"
                 style="margin-top: 10px;"
               >
-                Edit Event
+                {{ 'EVENT_DETAIL.EDIT_EVENT' | translate }}
               </button>
 
               <!-- Cancel / Reactivate -->
@@ -492,7 +561,7 @@
                   (click)="reactivateEvent()"
                   style="margin-top: 8px;"
                 >
-                  Reactivate Event
+                  {{ 'EVENT_DETAIL.REACTIVATE_EVENT' | translate }}
                 </button>
 
               } @else {
@@ -502,7 +571,7 @@
                   (click)="cancelEvent()"
                   style="margin-top: 8px;"
                 >
-                  Cancel Event
+                  {{ 'EVENT_DETAIL.CANCEL_EVENT' | translate }}
                 </button>
 
               }
@@ -512,7 +581,7 @@
           }
 
           <p class="action-hint">
-            Free to join — no payment required
+            {{ 'EVENT_DETAIL.FREE_TO_JOIN' | translate }}
           </p>
 
         </div>
@@ -521,7 +590,7 @@
         <div class="organizer-card">
 
           <h4>
-            Organized by
+            {{ 'EVENT_DETAIL.ORGANIZED_BY' | translate }}
           </h4>
 
           <div class="organizer-info">
@@ -530,8 +599,10 @@
               class="participant-avatar lg"
               style="background: #4f46e5;"
             >
+
               {{ event()?.user?.profile?.firstName?.charAt(0) }}
               {{ event()?.user?.profile?.lastName?.charAt(0) }}
+
             </div>
 
             <div>
@@ -549,13 +620,15 @@
                   viewBox="0 0 12 12"
                   fill="none"
                 >
+
                   <path
-                    d="M6 1l1.5 3 3.5.5-2.5 2.5.5 3.5L6 9l-3 1.5.5-3.5L1 4.5l3.5-.5L6 1z"
+                    d="M6 1l1.5 3 3.5.5-2.5 3.5.5 3.5L6 9l-3 1.5.5-3.5L1 4.5l3.5-.5L6 1z"
                     fill="currentColor"
                   />
+
                 </svg>
 
-                12 events hosted
+                {{ 'EVENT_DETAIL.EVENTS_HOSTED' | translate }}
 
               </span>
 
