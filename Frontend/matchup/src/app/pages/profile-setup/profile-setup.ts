@@ -3,10 +3,11 @@ import { FormControl, FormGroup, ReactiveFormsModule, ɵInternalFormsSharedModul
 import { ProfileSetupService } from '../../services/profileSetup.service';
 import { UserProfileRequest } from '../../models/requests/userProfileRequest';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-profile-setup',
-  imports: [ɵInternalFormsSharedModule,ReactiveFormsModule],
+  imports: [ɵInternalFormsSharedModule,ReactiveFormsModule, TranslatePipe],
   templateUrl: './profile-setup.html',
   styleUrl: './profile-setup.scss',
 })

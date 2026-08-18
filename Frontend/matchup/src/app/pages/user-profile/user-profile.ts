@@ -6,10 +6,11 @@ import { UserProfileRequest } from '../../models/requests/userProfileRequest';
 import { ProfileSetupService } from '../../services/profileSetup.service';
 import { Auth } from '../../services/auth';
 import { UserResponse } from '../../models/responses/userResponse';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-profile',
-  imports: [RouterLink, DatePipe, ReactiveFormsModule],
+  imports: [RouterLink, DatePipe, ReactiveFormsModule, TranslatePipe],
   templateUrl: './user-profile.html',
   styleUrl: './user-profile.scss',
 })

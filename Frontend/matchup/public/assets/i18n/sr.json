@@ -213,5 +213,196 @@
 
   "ORGANIZED_BY": "Organizator",
   "EVENTS_HOSTED": "organizovanih događaja"
-}
+},
+"CREATE_EVENT": {
+  "BACK": "Nazad",
+  "TITLE": "Kreiraj događaj",
+  "SUBTITLE": "Podesi svoj događaj i pozovi igrače da se pridruže.",
+
+  "SPORT_SECTION": {
+    "TITLE": "Sport",
+    "DESCRIPTION": "Izaberi sport za svoj događaj.",
+    "SPORT": "Sport",
+    "SELECT_SPORT": "Izaberi sport..."
+  },
+
+  "WHEN_SECTION": {
+    "TITLE": "Kada",
+    "DESCRIPTION": "Zakaži svoj događaj.",
+    "START_DATE": "Datum početka",
+    "START_TIME": "Vreme početka",
+    "END_DATE": "Datum završetka",
+    "END_TIME": "Vreme završetka"
+  },
+
+  "WHERE_SECTION": {
+    "TITLE": "Gde",
+    "DESCRIPTION": "Podesi lokaciju svog događaja.",
+    "LOCATION_NAME": "Naziv lokacije",
+    "LOCATION_NAME_PLACEHOLDER": "npr. Sportska hala Arena",
+    "CITY": "Grad",
+    "CITY_PLACEHOLDER": "npr. Beograd",
+    "ADDRESS": "Adresa",
+    "ADDRESS_PLACEHOLDER": "npr. Glavna ulica 12",
+    "DESCRIPTION_LABEL": "Opis",
+    "DESCRIPTION_PLACEHOLDER": "Dodaj dodatne informacije o lokaciji...",
+    "INDOOR_LABEL": "Da li se događaj održava u zatvorenom?",
+    "YES": "Da"
+  },
+
+  "MAX_PLAYERS": "Maksimalan broj igrača",
+
+  "REQUIRED_FIELDS_ERROR": "Molimo popunite sva obavezna polja.",
+
+  "CANCEL": "Otkaži",
+  "CREATE_EVENT": "Kreiraj događaj"
+},
+"EVENTS": {
+  "TITLE": "Pregled događaja",
+  "SUBTITLE": "događaja dostupno u vašoj blizini",
+  "CREATE_EVENT": "Napravi događaj"
+},
+"LOGIN": {
+  "WELCOME_TITLE_LINE_1": "Dobrodošao",
+  "WELCOME_TITLE_LINE_2": "nazad",
+
+  "WELCOME_DESCRIPTION": "Tvoja sledeća utakmica te čeka. Prijavi se i vrati se u akciju.",
+
+  "TESTIMONIAL": "Konačno sam pronašao košarkašku utakmicu za subotu — MatchUp je promenio igru.",
+
+  "TESTIMONIAL_AUTHOR": "Marko P.",
+  "TESTIMONIAL_ROLE": "Ljubitelj košarke",
+
+  "TITLE": "Prijavi se",
+
+  "NO_ACCOUNT": "Nemaš nalog?",
+  "CREATE_ACCOUNT": "Napravi ga besplatno",
+
+  "INVALID_CREDENTIALS": "Neispravna email adresa ili lozinka.",
+
+  "EMAIL": "Email adresa",
+  "EMAIL_PLACEHOLDER": "you@example.com",
+  "INVALID_EMAIL": "Unesite ispravnu email adresu.",
+
+  "PASSWORD": "Lozinka",
+  "FORGOT_PASSWORD": "Zaboravili ste lozinku?",
+  "PASSWORD_REQUIRED": "Lozinka je obavezna.",
+
+  "SIGN_IN": "Prijavi se",
+
+  "OR_CONTINUE_AS": "ili nastavite kao",
+
+  "GUEST": "Gost — Pregledaj događaje"
+},
+"PROFILE_SETUP": {
+  "STEP_BADGE": "Još samo jedan korak",
+
+  "TITLE_LINE_1": "Skoro si",
+  "TITLE_LINE_2": "spreman",
+  "TITLE_LINE_3": "za igru.",
+
+  "DESCRIPTION": "Popuni svoj profil kako bi ostali igrači znali ko im se pridružuje u igri.",
+
+  "BENEFITS": {
+    "MATCH_BETTER_TITLE": "Bolje pronađi odgovarajuće igrače",
+    "MATCH_BETTER_DESCRIPTION": "Igrači mogu da vide tvoj grad i nivo veštine pre nego što te pozovu.",
+
+    "BUILD_TRUST_TITLE": "Izgradi poverenje",
+    "BUILD_TRUST_DESCRIPTION": "Pravi profil povećava šansu da te organizatori prihvate.",
+
+    "EARN_REVIEWS_TITLE": "Osvoji ocene",
+    "EARN_REVIEWS_DESCRIPTION": "Nakon događaja, saigrači mogu da te ocene po imenu."
+  },
+
+  "FORM": {
+    "TITLE": "Dovrši profil",
+    "DESCRIPTION": "Potrebno je manje od jednog minuta. Ovo uvek možeš kasnije da izmeniš.",
+
+    "PROFILE_PHOTO": "Profilna fotografija",
+    "PHOTO_FORMAT": "JPG, PNG ili GIF · Maks. 5MB",
+    "CHANGE": "Promeni",
+    "UPLOAD_PHOTO": "Otpremi fotografiju",
+
+    "FIRST_NAME": "Ime",
+    "LAST_NAME": "Prezime",
+
+    "BIRTH_DATE": "Datum rođenja",
+
+    "PHONE": "Broj telefona",
+    "PHONE_PLACEHOLDER": "60 123 4567",
+    "PHONE_HINT": "Opciono — vidljivo samo učesnicima događaja",
+
+    "CITY": "Grad",
+    "CITY_PLACEHOLDER": "Novi Sad",
+
+    "COMPLETE_PROFILE": "Dovrši profil i uđi u MatchUp",
+    "SKIP": "Preskoči za sada — uradiću ovo kasnije"
+  }
+},
+  "REGISTER": {
+    "LEFT_TITLE_LINE_1": "Tvoj sport,",
+    "LEFT_TITLE_LINE_2": "tvoji ljudi.",
+
+    "LEFT_DESCRIPTION": "Napravi nalog i počni da pronalaziš događaje koji odgovaraju tvojim interesovanjima i nivou veštine.",
+
+    "FEATURE_1_TITLE": "Filtriraj po sportu i lokaciji",
+    "FEATURE_1_DESCRIPTION": "Pronađi događaje u svom kraju",
+
+    "FEATURE_2_TITLE": "Učestvuj jednim klikom",
+    "FEATURE_2_DESCRIPTION": "Pridruži se ili napravi događaj za nekoliko sekundi",
+
+    "FEATURE_3_TITLE": "Ocene zajednice",
+    "FEATURE_3_DESCRIPTION": "Saznaj sa kim ćeš igrati",
+
+    "CREATE_ACCOUNT": "Napravi nalog",
+
+    "ALREADY_HAVE_ACCOUNT": "Već imaš nalog?",
+    "SIGN_IN": "Prijavi se",
+
+    "ERROR": "Došlo je do greške.",
+
+    "EMAIL": "Email adresa",
+    "EMAIL_PLACEHOLDER": "you@example.com",
+    "INVALID_EMAIL": "Unesi ispravnu email adresu.",
+
+    "PASSWORD": "Lozinka",
+    "PASSWORD_UPPERCASE": "Najmanje jedno veliko slovo (A-Z)",
+    "PASSWORD_LOWERCASE": "Najmanje jedno malo slovo (a-z)",
+    "PASSWORD_NUMBER": "Najmanje jedan broj (0-9)",
+    "PASSWORD_SPECIAL": "Najmanje jedan specijalan karakter (!@#$%^&*)",
+
+    "AGREE_TO": "Slažem se sa",
+    "TERMS_OF_SERVICE": "Uslovima korišćenja",
+    "AND": "i",
+    "PRIVACY_POLICY": "Politikom privatnosti",
+
+    "CREATE_FREE_ACCOUNT": "Napravi besplatan nalog"
+  },
+  "MY_EVENTS": {
+    "TITLE": "Moji događaji",
+    "SUBTITLE": "Događaji koje ste kreirali i kojima ste se pridružili",
+    "BACK": "Nazad",
+    "CREATED": "Kreirani",
+    "JOINED": "Pridruženi",
+    "CREATED_EMPTY_TITLE": "Još uvek niste kreirali nijedan događaj",
+    "CREATED_EMPTY_TEXT": "Kreirajte svoj prvi događaj i pronađite ljude za igru.",
+    "JOINED_EMPTY_TITLE": "Još uvek se niste pridružili nijednom događaju",
+    "JOINED_EMPTY_TEXT": "Pronađite događaj i pridružite se drugim igračima."
+  },
+  "PROFILE": {
+    "BACK": "Nazad",
+    "TITLE": "Moj profil",
+    "MEMBER": "Član",
+    "PERSONAL_INFORMATION": "Lične informacije",
+    "EDIT": "Izmeni",
+    "CANCEL": "Otkaži",
+    "FIRST_NAME": "Ime",
+    "LAST_NAME": "Prezime",
+    "EMAIL": "Email",
+    "ROLE": "Uloga",
+    "PHONE": "Telefon",
+    "DATE_OF_BIRTH": "Datum rođenja",
+    "CITY": "Grad",
+    "SAVE_CHANGES": "Sačuvaj izmene"
+  }
 }

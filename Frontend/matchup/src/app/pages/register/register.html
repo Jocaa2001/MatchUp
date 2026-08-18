@@ -27,13 +27,12 @@
       <div class="auth-left-body">
 
         <h1>
-          Your Sport,<br>
-          Your People.
+          {{ 'REGISTER.LEFT_TITLE_LINE_1' | translate }}<br>
+          {{ 'REGISTER.LEFT_TITLE_LINE_2' | translate }}
         </h1>
 
         <p>
-          Create an account and start finding events
-          that match your passion and skill level.
+          {{ 'REGISTER.LEFT_DESCRIPTION' | translate }}
         </p>
 
         <!-- FEATURES -->
@@ -47,11 +46,11 @@
 
             <div>
               <strong>
-                Filter by sport & location
+                {{ 'REGISTER.FEATURE_1_TITLE' | translate }}
               </strong>
 
               <span>
-                Find events right in your neighborhood
+                {{ 'REGISTER.FEATURE_1_DESCRIPTION' | translate }}
               </span>
             </div>
 
@@ -65,11 +64,11 @@
 
             <div>
               <strong>
-                One-tap participation
+                {{ 'REGISTER.FEATURE_2_TITLE' | translate }}
               </strong>
 
               <span>
-                Join or create events in seconds
+                {{ 'REGISTER.FEATURE_2_DESCRIPTION' | translate }}
               </span>
             </div>
 
@@ -83,11 +82,11 @@
 
             <div>
               <strong>
-                Community ratings
+                {{ 'REGISTER.FEATURE_3_TITLE' | translate }}
               </strong>
 
               <span>
-                Know who you're playing with
+                {{ 'REGISTER.FEATURE_3_DESCRIPTION' | translate }}
               </span>
             </div>
 
@@ -110,60 +109,68 @@
       <div class="auth-form-header">
 
         <h2>
-          Create Account
+          {{ 'REGISTER.CREATE_ACCOUNT' | translate }}
         </h2>
 
         <p>
-          Already have an account?
+          {{ 'REGISTER.ALREADY_HAVE_ACCOUNT' | translate }}
 
           <a routerLink="/login" class="auth-link">
-            Sign in
+            {{ 'REGISTER.SIGN_IN' | translate }}
           </a>
         </p>
 
       </div>
 
       <!-- ERROR -->
-       @if (isSomethingWrongErrorMessage()) {
+      @if (isSomethingWrongErrorMessage()) {
+
         <div class="alert alert-error">
-          Something went wrong.
+          {{ 'REGISTER.ERROR' | translate }}
         </div>
-       }
-     
+
+      }
 
       <!-- FORM -->
-      <form class="auth-form" novalidate [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <form
+        class="auth-form"
+        novalidate
+        [formGroup]="registerForm"
+        (ngSubmit)="onSubmit()">
 
         <!-- EMAIL -->
         <div class="form-group">
 
           <label for="email">
-            Email Address
+            {{ 'REGISTER.EMAIL' | translate }}
           </label>
 
           <div class="input-wrapper">
 
             <span class="input-icon material-icons">
-            mail
+              mail
             </span>
-
 
             <input
               id="email"
               type="email"
               class="form-control"
-              placeholder="you@example.com"
-              formControlName = "email"
+              [placeholder]="'REGISTER.EMAIL_PLACEHOLDER' | translate"
+              formControlName="email"
             />
 
           </div>
-          
-          @if (registerForm.get('email')?.touched && registerForm.get('email')?.invalid) {
+
+          @if (
+            registerForm.get('email')?.touched &&
+            registerForm.get('email')?.invalid
+          ) {
+
             <span class="form-error">
-            Please enter a valid email address.
-          </span>
+              {{ 'REGISTER.INVALID_EMAIL' | translate }}
+            </span>
+
           }
-          
 
         </div>
 
@@ -171,12 +178,12 @@
         <div class="form-group password-rules">
 
           <label for="password">
-            Password
+            {{ 'REGISTER.PASSWORD' | translate }}
           </label>
 
           <div class="input-wrapper">
 
-           <span class="input-icon material-icons">
+            <span class="input-icon material-icons">
               lock
             </span>
 
@@ -186,44 +193,67 @@
               class="form-control"
               placeholder="••••••••"
               autocomplete="current-password"
-              formControlName = "password"
+              formControlName="password"
             />
 
             <button
               type="button"
               class="eye-btn material-icons"
-              (click) = "togglePasswordVisible()">
+              (click)="togglePasswordVisible()">
 
               {{ isPasswordVisible() ? 'visibility' : 'visibility_off' }}
-              
+
             </button>
 
           </div>
 
-            @if (registerForm.get('password')?.touched) {
+          @if (registerForm.get('password')?.touched) {
+
             <ul>
+
               <li [class.valid]="hasUppercase()">
-              <span class="icon">{{ hasUppercase() ? '✔' : '•' }}</span>
-              At least one uppercase letter (A-Z)
-            </li>
 
-            <li [class.valid]="hasLowercase()">
-              <span class="icon">{{ hasLowercase() ? '✔' : '•' }}</span>
-              At least one lowercase letter (a-z)
-            </li>
+                <span class="icon">
+                  {{ hasUppercase() ? '✔' : '•' }}
+                </span>
 
-            <li [class.valid]="hasNumber()">
-              <span class="icon">{{ hasNumber() ? '✔' : '•' }}</span>
-              At least one number (0-9)
-            </li>
+                {{ 'REGISTER.PASSWORD_UPPERCASE' | translate }}
 
-            <li [class.valid]="hasSpecialChar()">
-              <span class="icon">{{ hasSpecialChar() ? '✔' : '•' }}</span>
-              At least one special character (!@#$%^&*)
-            </li>
-          </ul>
+              </li>
+
+              <li [class.valid]="hasLowercase()">
+
+                <span class="icon">
+                  {{ hasLowercase() ? '✔' : '•' }}
+                </span>
+
+                {{ 'REGISTER.PASSWORD_LOWERCASE' | translate }}
+
+              </li>
+
+              <li [class.valid]="hasNumber()">
+
+                <span class="icon">
+                  {{ hasNumber() ? '✔' : '•' }}
+                </span>
+
+                {{ 'REGISTER.PASSWORD_NUMBER' | translate }}
+
+              </li>
+
+              <li [class.valid]="hasSpecialChar()">
+
+                <span class="icon">
+                  {{ hasSpecialChar() ? '✔' : '•' }}
+                </span>
+
+                {{ 'REGISTER.PASSWORD_SPECIAL' | translate }}
+
+              </li>
+
+            </ul>
+
           }
-          
 
         </div>
 
@@ -233,10 +263,19 @@
           <input type="checkbox" />
 
           <span>
-            I agree to the
-            <a href="#">Terms of Service</a>
-            and
-            <a href="#">Privacy Policy</a>
+
+            {{ 'REGISTER.AGREE_TO' | translate }}
+
+            <a href="#">
+              {{ 'REGISTER.TERMS_OF_SERVICE' | translate }}
+            </a>
+
+            {{ 'REGISTER.AND' | translate }}
+
+            <a href="#">
+              {{ 'REGISTER.PRIVACY_POLICY' | translate }}
+            </a>
+
           </span>
 
         </label>
@@ -248,7 +287,7 @@
           style="width:100%; justify-content:center;"
           [disabled]="registerForm.invalid">
 
-          Create Free Account
+          {{ 'REGISTER.CREATE_FREE_ACCOUNT' | translate }}
 
         </button>
 

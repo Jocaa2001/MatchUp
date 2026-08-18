@@ -213,5 +213,196 @@
 
   "ORGANIZED_BY": "Organized by",
   "EVENTS_HOSTED": "events hosted"
-}
+},
+"CREATE_EVENT": {
+  "BACK": "Back",
+  "TITLE": "Create Event",
+  "SUBTITLE": "Set up your event and invite players to join.",
+
+  "SPORT_SECTION": {
+    "TITLE": "Sport",
+    "DESCRIPTION": "Select the sport for your event.",
+    "SPORT": "Sport",
+    "SELECT_SPORT": "Select a sport..."
+  },
+
+  "WHEN_SECTION": {
+    "TITLE": "When",
+    "DESCRIPTION": "Schedule your event.",
+    "START_DATE": "Start Date",
+    "START_TIME": "Start Time",
+    "END_DATE": "End Date",
+    "END_TIME": "End Time"
+  },
+
+  "WHERE_SECTION": {
+    "TITLE": "Where",
+    "DESCRIPTION": "Set the location for your event.",
+    "LOCATION_NAME": "Location Name",
+    "LOCATION_NAME_PLACEHOLDER": "e.g. Sports Hall Arena",
+    "CITY": "City",
+    "CITY_PLACEHOLDER": "e.g. Belgrade",
+    "ADDRESS": "Address",
+    "ADDRESS_PLACEHOLDER": "e.g. Main Street 12",
+    "DESCRIPTION_LABEL": "Description",
+    "DESCRIPTION_PLACEHOLDER": "Add additional information about the location...",
+    "INDOOR_LABEL": "Is this event taking place indoors?",
+    "YES": "Yes"
+  },
+
+  "MAX_PLAYERS": "Max Players",
+
+  "REQUIRED_FIELDS_ERROR": "Please fill in all required fields.",
+
+  "CANCEL": "Cancel",
+  "CREATE_EVENT": "Create Event"
+},
+"EVENTS": {
+  "TITLE": "Pregled događaja",
+  "SUBTITLE": "događaja dostupno u vašoj blizini",
+  "CREATE_EVENT": "Napravi događaj"
+},
+"LOGIN": {
+  "WELCOME_TITLE_LINE_1": "Welcome",
+  "WELCOME_TITLE_LINE_2": "back, champ.",
+
+  "WELCOME_DESCRIPTION": "Your next game is waiting. Sign in and get back in action.",
+
+  "TESTIMONIAL": "Finally found a basketball game for Saturday — MatchUp is a game changer.",
+
+  "TESTIMONIAL_AUTHOR": "Marko P.",
+  "TESTIMONIAL_ROLE": "Basketball enthusiast",
+
+  "TITLE": "Sign In",
+
+  "NO_ACCOUNT": "Don't have an account?",
+  "CREATE_ACCOUNT": "Create one free",
+
+  "INVALID_CREDENTIALS": "Invalid email or password.",
+
+  "EMAIL": "Email Address",
+  "EMAIL_PLACEHOLDER": "you@example.com",
+  "INVALID_EMAIL": "Please enter a valid email address.",
+
+  "PASSWORD": "Password",
+  "FORGOT_PASSWORD": "Forgot password?",
+  "PASSWORD_REQUIRED": "Password is required.",
+
+  "SIGN_IN": "Sign In",
+
+  "OR_CONTINUE_AS": "or continue as",
+
+  "GUEST": "Guest — Browse Events"
+},
+"PROFILE_SETUP": {
+  "STEP_BADGE": "One last step",
+
+  "TITLE_LINE_1": "Almost",
+  "TITLE_LINE_2": "ready",
+  "TITLE_LINE_3": "to play.",
+
+  "DESCRIPTION": "Fill in your profile so other players know who's joining their game.",
+
+  "BENEFITS": {
+    "MATCH_BETTER_TITLE": "Get matched better",
+    "MATCH_BETTER_DESCRIPTION": "Players see your city and skill level before inviting you.",
+
+    "BUILD_TRUST_TITLE": "Build trust",
+    "BUILD_TRUST_DESCRIPTION": "A real profile makes organizers more likely to accept you.",
+
+    "EARN_REVIEWS_TITLE": "Earn reviews",
+    "EARN_REVIEWS_DESCRIPTION": "After events, teammates can rate you by name."
+  },
+
+  "FORM": {
+    "TITLE": "Complete Profile",
+    "DESCRIPTION": "Takes less than a minute. You can always edit this later.",
+
+    "PROFILE_PHOTO": "Profile Photo",
+    "PHOTO_FORMAT": "JPG, PNG or GIF · Max 5MB",
+    "CHANGE": "Change",
+    "UPLOAD_PHOTO": "Upload Photo",
+
+    "FIRST_NAME": "First Name",
+    "LAST_NAME": "Last Name",
+
+    "BIRTH_DATE": "Date of Birth",
+
+    "PHONE": "Phone Number",
+    "PHONE_PLACEHOLDER": "60 123 4567",
+    "PHONE_HINT": "Optional — only visible to event participants",
+
+    "CITY": "City",
+    "CITY_PLACEHOLDER": "Novi Sad",
+
+    "COMPLETE_PROFILE": "Complete Profile & Enter MatchUp",
+    "SKIP": "Skip for now — I'll do this later"
+  }
+},
+  "REGISTER": {
+    "LEFT_TITLE_LINE_1": "Your Sport,",
+    "LEFT_TITLE_LINE_2": "Your People.",
+
+    "LEFT_DESCRIPTION": "Create an account and start finding events that match your passion and skill level.",
+
+    "FEATURE_1_TITLE": "Filter by sport & location",
+    "FEATURE_1_DESCRIPTION": "Find events right in your neighborhood",
+
+    "FEATURE_2_TITLE": "One-tap participation",
+    "FEATURE_2_DESCRIPTION": "Join or create events in seconds",
+
+    "FEATURE_3_TITLE": "Community ratings",
+    "FEATURE_3_DESCRIPTION": "Know who you're playing with",
+
+    "CREATE_ACCOUNT": "Create Account",
+
+    "ALREADY_HAVE_ACCOUNT": "Already have an account?",
+    "SIGN_IN": "Sign in",
+
+    "ERROR": "Something went wrong.",
+
+    "EMAIL": "Email Address",
+    "EMAIL_PLACEHOLDER": "you@example.com",
+    "INVALID_EMAIL": "Please enter a valid email address.",
+
+    "PASSWORD": "Password",
+    "PASSWORD_UPPERCASE": "At least one uppercase letter (A-Z)",
+    "PASSWORD_LOWERCASE": "At least one lowercase letter (a-z)",
+    "PASSWORD_NUMBER": "At least one number (0-9)",
+    "PASSWORD_SPECIAL": "At least one special character (!@#$%^&*)",
+
+    "AGREE_TO": "I agree to the",
+    "TERMS_OF_SERVICE": "Terms of Service",
+    "AND": "and",
+    "PRIVACY_POLICY": "Privacy Policy",
+
+    "CREATE_FREE_ACCOUNT": "Create Free Account"
+  },
+   "MY_EVENTS": {
+    "TITLE": "My Events",
+    "SUBTITLE": "Events you created and joined",
+    "BACK": "Back",
+    "CREATED": "Created",
+    "JOINED": "Joined",
+    "CREATED_EMPTY_TITLE": "You haven't created any events yet",
+    "CREATED_EMPTY_TEXT": "Create your first event and find people to play with.",
+    "JOINED_EMPTY_TITLE": "You haven't joined any events yet",
+    "JOINED_EMPTY_TEXT": "Find an event and join other players."
+  },
+   "PROFILE": {
+    "BACK": "Back",
+    "TITLE": "My Profile",
+    "MEMBER": "Member",
+    "PERSONAL_INFORMATION": "Personal Information",
+    "EDIT": "Edit",
+    "CANCEL": "Cancel",
+    "FIRST_NAME": "First Name",
+    "LAST_NAME": "Last Name",
+    "EMAIL": "Email",
+    "ROLE": "Role",
+    "PHONE": "Phone",
+    "DATE_OF_BIRTH": "Date of Birth",
+    "CITY": "City",
+    "SAVE_CHANGES": "Save Changes"
+  }
 }

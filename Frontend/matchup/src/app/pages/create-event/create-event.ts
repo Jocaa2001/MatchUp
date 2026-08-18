@@ -5,10 +5,11 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { EventsService } from '../../services/events.service';
 import { CreateEventRequest } from '../../models/requests/createEventRequest';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-event',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslatePipe],
   templateUrl: './create-event.html',
   styleUrl: './create-event.scss',
 })

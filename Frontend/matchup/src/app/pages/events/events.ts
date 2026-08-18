@@ -4,10 +4,11 @@ import { EventFilter } from "../../components/event-filter/event-filter";
 import { EventsService } from '../../services/events.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Router, RouterLink } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-events',
-  imports: [EventCard, EventFilter, RouterLink],
+  imports: [EventCard, EventFilter, RouterLink, TranslatePipe],
   standalone: true,
   templateUrl: './events.html',
   styleUrl: './events.scss',

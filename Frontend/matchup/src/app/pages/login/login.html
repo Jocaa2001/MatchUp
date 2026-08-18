@@ -25,20 +25,18 @@
       <div class="auth-left-body">
 
         <h1>
-          Welcome<br>
-          back, champ.
+          {{ 'LOGIN.WELCOME_TITLE_LINE_1' | translate }}<br>
+          {{ 'LOGIN.WELCOME_TITLE_LINE_2' | translate }}
         </h1>
 
         <p>
-          Your next game is waiting.
-          Sign in and get back in action.
+          {{ 'LOGIN.WELCOME_DESCRIPTION' | translate }}
         </p>
 
         <div class="auth-testimonial">
 
           <div class="testimonial-text">
-            "Finally found a basketball game for Saturday —
-            MatchUp is a game changer."
+            "{{ 'LOGIN.TESTIMONIAL' | translate }}"
           </div>
 
           <div class="testimonial-author">
@@ -48,10 +46,12 @@
             </div>
 
             <div>
-              <strong>Marko P.</strong>
+              <strong>
+                {{ 'LOGIN.TESTIMONIAL_AUTHOR' | translate }}
+              </strong>
 
               <span>
-                Basketball enthusiast
+                {{ 'LOGIN.TESTIMONIAL_ROLE' | translate }}
               </span>
             </div>
 
@@ -74,60 +74,70 @@
       <div class="auth-form-header">
 
         <h2>
-          Sign In
+          {{ 'LOGIN.TITLE' | translate }}
         </h2>
 
         <p>
-          Don't have an account?
+          {{ 'LOGIN.NO_ACCOUNT' | translate }}
 
-          <a routerLink="/register" class="auth-link">
-            Create one free
+          <a
+            routerLink="/register"
+            class="auth-link"
+          >
+            {{ 'LOGIN.CREATE_ACCOUNT' | translate }}
           </a>
         </p>
 
       </div>
 
       <!-- ERROR ALERT -->
-       @if (!isLoginSuccesful()) {
+      @if (!isLoginSuccesful()) {
+
         <div class="alert alert-error">
-        Invalid email or password.
-      </div>
-       }
-      
+          {{ 'LOGIN.INVALID_CREDENTIALS' | translate }}
+        </div>
+
+      }
 
       <!-- FORM -->
-      <form class="auth-form" novalidate [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <form
+        class="auth-form"
+        novalidate
+        [formGroup]="loginForm"
+        (ngSubmit)="onSubmit()"
+      >
 
         <!-- EMAIL -->
         <div class="form-group">
 
           <label for="email">
-            Email Address
+            {{ 'LOGIN.EMAIL' | translate }}
           </label>
 
           <div class="input-wrapper">
 
             <span class="input-icon material-icons">
-            mail
+              mail
             </span>
 
             <input
               id="email"
               type="email"
               class="form-control"
-              placeholder="you@example.com"
+              [placeholder]="'LOGIN.EMAIL_PLACEHOLDER' | translate"
               autocomplete="email"
-              [formControl] = "loginForm.controls.email"
+              [formControl]="loginForm.controls.email"
             />
 
           </div>
-          
+
           @if (!isEmailAdressValid()) {
-          <span class="form-error">
-            Please enter a valid email address.
-          </span>
-        }
-          
+
+            <span class="form-error">
+              {{ 'LOGIN.INVALID_EMAIL' | translate }}
+            </span>
+
+          }
 
         </div>
 
@@ -136,10 +146,13 @@
 
           <label for="password">
 
-            Password
+            {{ 'LOGIN.PASSWORD' | translate }}
 
-            <a href="#" class="forgot-link">
-              Forgot password?
+            <a
+              href="#"
+              class="forgot-link"
+            >
+              {{ 'LOGIN.FORGOT_PASSWORD' | translate }}
             </a>
 
           </label>
@@ -156,26 +169,26 @@
               class="form-control"
               placeholder="••••••••"
               autocomplete="current-password"
-              formControlName = "password"
+              formControlName="password"
             />
 
             <button
               type="button"
               class="eye-btn material-icons"
-              (click) = "togglePasswordVisible()">
-
+              (click)="togglePasswordVisible()"
+            >
               {{ isPasswordVisible() ? 'visibility' : 'visibility_off' }}
-              
             </button>
 
           </div>
+
           @if (!isPasswordEntered()) {
+
             <span class="form-error">
-            Password is required.
-          </span>
+              {{ 'LOGIN.PASSWORD_REQUIRED' | translate }}
+            </span>
 
           }
-          
 
         </div>
 
@@ -184,27 +197,27 @@
           type="submit"
           class="btn btn-primary"
           style="width:100%; justify-content:center;"
-          [disabled]="loginForm.invalid">
-
-          Sign In
-
+          [disabled]="loginForm.invalid"
+        >
+          {{ 'LOGIN.SIGN_IN' | translate }}
         </button>
 
       </form>
 
       <!-- DIVIDER -->
       <div class="auth-divider">
-        <span>or continue as</span>
+        <span>
+          {{ 'LOGIN.OR_CONTINUE_AS' | translate }}
+        </span>
       </div>
 
       <!-- GUEST BUTTON -->
       <button
-      routerLink=""
+        routerLink=""
         class="btn btn-secondary"
-        style="width:100%; justify-content:center;">
-
-        Guest — Browse Events
-
+        style="width:100%; justify-content:center;"
+      >
+        {{ 'LOGIN.GUEST' | translate }}
       </button>
 
     </div>

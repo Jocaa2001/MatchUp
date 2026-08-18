@@ -3,10 +3,11 @@ import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterLink } from "@angular/router";
 import { RegisterRequest } from '../../models/requests/registerRequest';
 import { Auth } from '../../services/auth';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
-  imports: [RouterLink,ReactiveFormsModule],
+  imports: [RouterLink,ReactiveFormsModule,TranslatePipe],
   templateUrl: './register.html',
   styleUrl: './register.scss',
 })

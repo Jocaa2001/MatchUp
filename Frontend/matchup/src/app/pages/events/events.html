@@ -1,30 +1,58 @@
 <div class="page-wrapper events-page">
   <div class="container">
- 
+
     <!-- Page Header -->
     <div class="events-header">
+
       <div>
-        <h1 class="events-title">Browse Events</h1>
-        <p class="events-subtitle">{{events().length}} events available near you</p>
+        <h1 class="events-title">
+          {{ 'EVENTS.TITLE' | translate }}
+        </h1>
+
+        <p class="events-subtitle">
+          {{ events().length }}
+          {{ 'EVENTS.SUBTITLE' | translate }}
+        </p>
       </div>
-      <a routerLink="/events/create" class="btn btn-primary">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+
+      <a
+        routerLink="/events/create"
+        class="btn btn-primary"
+      >
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 14 14"
+          fill="none"
+        >
+          <path
+            d="M7 1v12M1 7h12"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
         </svg>
-        Create Event
+
+        {{ 'EVENTS.CREATE_EVENT' | translate }}
       </a>
+
     </div>
- 
+
     <!-- Filter Component -->
     <app-event-filter></app-event-filter>
- 
+
     <!-- Events Grid -->
     <div class="events-grid">
-       @for (event of events(); track event.id) {
-    <app-event-card [event]="event"></app-event-card>
-  }
+
+      @for (event of events(); track event.id) {
+
+        <app-event-card
+          [event]="event"
+        ></app-event-card>
+
+      }
+
     </div>
- 
+
   </div>
 </div>
- 

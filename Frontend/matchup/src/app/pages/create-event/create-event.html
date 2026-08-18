@@ -2,214 +2,400 @@
     <div class="container">
 
         <div class="create-header">
+
             <button class="back-btn" routerLink="/events">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
+                    <path
+                        d="M10 3L5 8l5 5"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
                 </svg>
-                Back
+
+                {{ 'CREATE_EVENT.BACK' | translate }}
             </button>
+
             <div>
-                <h1>Create Event</h1>
-                <p>Set up your event and invite players to join.</p>
+                <h1>
+                    {{ 'CREATE_EVENT.TITLE' | translate }}
+                </h1>
+
+                <p>
+                    {{ 'CREATE_EVENT.SUBTITLE' | translate }}
+                </p>
             </div>
+
         </div>
 
         <div class="create-layout">
 
-            <!-- ── Form ── -->
-            <form class="create-form"
-            [formGroup]="createEventForm"
-            (ngSubmit)="createEvent()"
-            novalidate>
+            <!-- Form -->
+            <form
+                class="create-form"
+                [formGroup]="createEventForm"
+                (ngSubmit)="createEvent()"
+                novalidate
+            >
 
+                <!-- Sport -->
                 <div class="form-section">
+
                     <div class="form-section-header">
-                        <span class="form-section-num">01</span>
+
+                        <span class="form-section-num">
+                            01
+                        </span>
+
                         <div>
-                            <h3>Sport</h3>
-                            <p>Select the sport for your event.</p>
+                            <h3>
+                                {{ 'CREATE_EVENT.SPORT_SECTION.TITLE' | translate }}
+                            </h3>
+
+                            <p>
+                                {{ 'CREATE_EVENT.SPORT_SECTION.DESCRIPTION' | translate }}
+                            </p>
                         </div>
+
                     </div>
 
                     <div class="form-section-body">
+
                         <div class="form-group">
+
                             <label for="sport">
-                                Sport <span class="required">*</span>
+                                {{ 'CREATE_EVENT.SPORT_SECTION.SPORT' | translate }}
+                                <span class="required">*</span>
                             </label>
 
-                            <select id="sport" class="form-control" formControlName="sportId">
+                            <select
+                                id="sport"
+                                class="form-control"
+                                formControlName="sportId"
+                            >
                                 <option value="" disabled selected>
-                                    Select a sport...
+                                    {{ 'CREATE_EVENT.SPORT_SECTION.SELECT_SPORT' | translate }}
                                 </option>
 
                                 @for (sport of sports(); track sport.id) {
-                                <option [value]="sport.id">
-                                    {{ sport.name }}
-                                </option>
+                                    <option [value]="sport.id">
+                                        {{ sport.name }}
+                                    </option>
                                 }
                             </select>
 
                             <span class="form-error"></span>
+
                         </div>
+
                     </div>
+
                 </div>
 
-                <!-- Section: When -->
+                <!-- When -->
                 <div class="form-section">
+
                     <div class="form-section-header">
-                        <span class="form-section-num">02</span>
+
+                        <span class="form-section-num">
+                            02
+                        </span>
+
                         <div>
-                            <h3>When</h3>
-                            <p>Schedule your event.</p>
+                            <h3>
+                                {{ 'CREATE_EVENT.WHEN_SECTION.TITLE' | translate }}
+                            </h3>
+
+                            <p>
+                                {{ 'CREATE_EVENT.WHEN_SECTION.DESCRIPTION' | translate }}
+                            </p>
                         </div>
+
                     </div>
 
                     <div class="form-section-body">
+
                         <div class="form-row">
+
                             <div class="form-group">
-                                <label for="startDate">Start Date <span class="required">*</span></label>
-                                <input id="startDate" type="date" class="form-control" formControlName="startDate"/>
+
+                                <label for="startDate">
+                                    {{ 'CREATE_EVENT.WHEN_SECTION.START_DATE' | translate }}
+                                    <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    id="startDate"
+                                    type="date"
+                                    class="form-control"
+                                    formControlName="startDate"
+                                />
+
                                 <span class="form-error"></span>
+
                             </div>
+
                             <div class="form-group">
-                                <label for="startTime">Start Time <span class="required">*</span></label>
-                                <input id="startTime" type="time" class="form-control" formControlName="startTime" />
+
+                                <label for="startTime">
+                                    {{ 'CREATE_EVENT.WHEN_SECTION.START_TIME' | translate }}
+                                    <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    id="startTime"
+                                    type="time"
+                                    class="form-control"
+                                    formControlName="startTime"
+                                />
+
                             </div>
+
                         </div>
 
                         <div class="form-row">
+
                             <div class="form-group">
-                                <label for="endDate">End Date</label>
-                                <input id="endDate" type="date" class="form-control" formControlName="endDate"/>
+
+                                <label for="endDate">
+                                    {{ 'CREATE_EVENT.WHEN_SECTION.END_DATE' | translate }}
+                                </label>
+
+                                <input
+                                    id="endDate"
+                                    type="date"
+                                    class="form-control"
+                                    formControlName="endDate"
+                                />
+
                             </div>
+
                             <div class="form-group">
-                                <label for="endTime">End Time</label>
-                                <input id="endTime" type="time" class="form-control" formControlName="endTime"/>
+
+                                <label for="endTime">
+                                    {{ 'CREATE_EVENT.WHEN_SECTION.END_TIME' | translate }}
+                                </label>
+
+                                <input
+                                    id="endTime"
+                                    type="time"
+                                    class="form-control"
+                                    formControlName="endTime"
+                                />
+
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>
 
-                <!-- Section: Where -->
+                <!-- Where -->
                 <div class="form-section">
+
                     <div class="form-section-header">
-                        <span class="form-section-num">03</span>
+
+                        <span class="form-section-num">
+                            03
+                        </span>
+
                         <div>
-                            <h3>Where</h3>
-                            <p>Set the location for your event.</p>
+                            <h3>
+                                {{ 'CREATE_EVENT.WHERE_SECTION.TITLE' | translate }}
+                            </h3>
+
+                            <p>
+                                {{ 'CREATE_EVENT.WHERE_SECTION.DESCRIPTION' | translate }}
+                            </p>
                         </div>
+
                     </div>
 
                     <div class="form-section-body">
 
                         <div class="form-group">
+
                             <label for="locationName">
-                                Location Name <span class="required">*</span>
+                                {{ 'CREATE_EVENT.WHERE_SECTION.LOCATION_NAME' | translate }}
+                                <span class="required">*</span>
                             </label>
-                            <input id="locationName" type="text" class="form-control"
-                                placeholder="e.g. Sports Hall Arena"  formControlName="locationName"/>
+
+                            <input
+                                id="locationName"
+                                type="text"
+                                class="form-control"
+                                [placeholder]="'CREATE_EVENT.WHERE_SECTION.LOCATION_NAME_PLACEHOLDER' | translate"
+                                formControlName="locationName"
+                            />
+
                         </div>
 
                         <div class="form-row">
 
                             <div class="form-group">
+
                                 <label for="city">
-                                    City <span class="required">*</span>
+                                    {{ 'CREATE_EVENT.WHERE_SECTION.CITY' | translate }}
+                                    <span class="required">*</span>
                                 </label>
-                                <input id="city" type="text" class="form-control" placeholder="e.g. Belgrade" formControlName="city"/>
+
+                                <input
+                                    id="city"
+                                    type="text"
+                                    class="form-control"
+                                    [placeholder]="'CREATE_EVENT.WHERE_SECTION.CITY_PLACEHOLDER' | translate"
+                                    formControlName="city"
+                                />
+
                             </div>
 
                             <div class="form-group">
+
                                 <label for="address">
-                                    Address <span class="required">*</span>
+                                    {{ 'CREATE_EVENT.WHERE_SECTION.ADDRESS' | translate }}
+                                    <span class="required">*</span>
                                 </label>
-                                <input id="address" type="text" class="form-control"
-                                    placeholder="e.g. Main Street 12"   formControlName="address"/>
+
+                                <input
+                                    id="address"
+                                    type="text"
+                                    class="form-control"
+                                    [placeholder]="'CREATE_EVENT.WHERE_SECTION.ADDRESS_PLACEHOLDER' | translate"
+                                    formControlName="address"
+                                />
+
                             </div>
 
                         </div>
 
-
                         <div class="form-group">
+
                             <label for="description">
-                                Description
+                                {{ 'CREATE_EVENT.WHERE_SECTION.DESCRIPTION_LABEL' | translate }}
                             </label>
-                            <textarea id="description" class="form-control" rows="4"
-                                placeholder="Add additional information about the location..."></textarea>
+
+                            <textarea
+                                id="description"
+                                class="form-control"
+                                rows="4"
+                                [placeholder]="'CREATE_EVENT.WHERE_SECTION.DESCRIPTION_PLACEHOLDER' | translate"
+                            ></textarea>
+
                         </div>
 
-
                         <div class="form-group">
+
                             <label>
-                                Is this event taking place indoors?
+                                {{ 'CREATE_EVENT.WHERE_SECTION.INDOOR_LABEL' | translate }}
                             </label>
 
                             <label class="indoor-checkbox">
 
-                                <input type="checkbox" formControlName="indoor"/>
-                                yes
-                                <div class="checkbox-content">
+                                <input
+                                    type="checkbox"
+                                    formControlName="indoor"
+                                />
 
-                                </div>
+                                {{ 'CREATE_EVENT.WHERE_SECTION.YES' | translate }}
+
+                                <div class="checkbox-content"></div>
 
                             </label>
+
                         </div>
+
                     </div>
+
                 </div>
 
-<div class="form-group">
-    <label>
-        Max Players <span class="required">*</span>
-    </label>
+                <!-- Max Players -->
+                <div class="form-group">
 
-    <div class="counter-control">
+                    <label>
+                        {{ 'CREATE_EVENT.MAX_PLAYERS' | translate }}
+                        <span class="required">*</span>
+                    </label>
 
-        <button 
-            type="button"
-            class="counter-btn"
-            (click)="decreasePlayers()">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M2 7h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-        </button>
+                    <div class="counter-control">
 
+                        <button
+                            type="button"
+                            class="counter-btn"
+                            (click)="decreasePlayers()"
+                        >
+                            <svg
+                                width="14"
+                                height="14"
+                                viewBox="0 0 14 14"
+                                fill="none"
+                            >
+                                <path
+                                    d="M2 7h10"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"
+                                />
+                            </svg>
+                        </button>
 
-        <input 
-            type="number"
-            class="counter-input"
-            formControlName="maxPlayers"
-        />
+                        <input
+                            type="number"
+                            class="counter-input"
+                            formControlName="maxPlayers"
+                        />
 
+                        <button
+                            type="button"
+                            class="counter-btn"
+                            (click)="increasePlayers()"
+                        >
+                            <svg
+                                width="14"
+                                height="14"
+                                viewBox="0 0 14 14"
+                                fill="none"
+                            >
+                                <path
+                                    d="M7 2v10M2 7h10"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"
+                                />
+                            </svg>
+                        </button>
 
-        <button 
-            type="button"
-            class="counter-btn"
-            (click)="increasePlayers()">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-        </button>
+                    </div>
 
-    </div>
-</div>
+                </div>
 
                 <!-- Error Alert -->
                 <div class="alert alert-error" style="display:none;">
-                    Please fill in all required fields.
+                    {{ 'CREATE_EVENT.REQUIRED_FIELDS_ERROR' | translate }}
                 </div>
 
                 <!-- Submit -->
                 <div class="form-actions">
-                    <button type="button" class="btn btn-secondary" routerLink="/events">Cancel</button>
-                    <button type="submit" class="btn btn-primary btn-lg">
-                        Create Event
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        routerLink="/events"
+                    >
+                        {{ 'CREATE_EVENT.CANCEL' | translate }}
                     </button>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary btn-lg"
+                    >
+                        {{ 'CREATE_EVENT.CREATE_EVENT' | translate }}
+                    </button>
+
                 </div>
 
             </form>
-
-
 
         </div>
     </div>

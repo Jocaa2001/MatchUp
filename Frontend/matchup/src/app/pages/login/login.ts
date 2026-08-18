@@ -6,12 +6,13 @@ import { LoginResponse } from '../../models/responses/loginResponse';
 import { LoginRequest } from '../../models/requests/loginRequest';
 import { Auth } from '../../services/auth';
 import { tap, switchMap } from 'rxjs';
+import { TranslatePipe } from '@ngx-translate/core';
 
 
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, TranslatePipe],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })

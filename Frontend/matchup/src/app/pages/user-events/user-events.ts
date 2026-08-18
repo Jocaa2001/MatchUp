@@ -4,10 +4,11 @@ import { EventResponse } from '../../models/responses/eventResponse';
 import { ParticipationService } from '../../services/participation.service';
 import { EventCard } from '../../components/event-card/event-card';
 import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-events',
-  imports: [EventCard, RouterLink],
+  imports: [EventCard, RouterLink, TranslatePipe],
   templateUrl: './user-events.html',
   styleUrl: './user-events.scss',
 })
