@@ -62,8 +62,29 @@
         </a>
 
       </div>
-
     }
+
+          <div class="language-switcher">
+
+  <button
+    type="button"
+    [class.active]="languageService.currentLanguage() === 'en'"
+    (click)="languageService.changeLanguage('en')"
+  >
+    EN
+  </button>
+
+  <span>/</span>
+
+  <button
+    type="button"
+    [class.active]="languageService.currentLanguage() === 'sr'"
+    (click)="languageService.changeLanguage('sr')"
+  >
+    SR
+  </button>
+
+</div>
 
   </div>
 </nav>
