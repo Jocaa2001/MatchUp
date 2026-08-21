@@ -25,7 +25,6 @@ public class Participation extends BaseEntity {
     @JoinColumn(name = "mc_event_id", nullable = false)
     private Event event;
 
-
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 50)
     private ParticipationStatus status;

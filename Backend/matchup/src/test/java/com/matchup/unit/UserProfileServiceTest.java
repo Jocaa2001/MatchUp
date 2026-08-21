@@ -1,6 +1,7 @@
 package com.matchup.unit;
 
 import com.matchup.common.service.CrudServiceImpl;
+import com.matchup.filestorage.FileStorageService;
 import com.matchup.userprofile.entity.UserProfile;
 import com.matchup.userprofile.repository.UserProfileRepository;
 import com.matchup.userprofile.service.UserProfileService;
@@ -12,6 +13,9 @@ public class UserProfileServiceTest extends GenericCrudServiceTest<UserProfile, 
     @Mock
     private UserProfileRepository repository;
 
+    @Mock
+    FileStorageService fileStorageService;
+
     @Override
     protected UserProfileRepository getRepository() {
         return repository;
@@ -19,7 +23,7 @@ public class UserProfileServiceTest extends GenericCrudServiceTest<UserProfile, 
 
     @Override
     protected CrudServiceImpl<UserProfile, UserProfileRepository> createService() {
-        return new UserProfileService(repository);
+        return new UserProfileService(repository,fileStorageService);
     }
 
     @Override
