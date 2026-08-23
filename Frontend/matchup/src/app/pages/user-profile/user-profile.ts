@@ -17,6 +17,8 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class UserProfile implements OnInit {
   private profileSetupService = inject(ProfileSetupService);
   private authService = inject(Auth);
+  avatarFile: File | null = null;
+
   profileForm = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
@@ -69,5 +71,27 @@ export class UserProfile implements OnInit {
     });
     
   }
+
+  onAvatarSelected(event: Event) {
+
+  const input = event.target as HTMLInputElement;
+
+  if (!input.files || input.files.length === 0) {
+    return;
+  }
+
+  const file = input.files[0];
+
+  this.avatarFile = file;
+
+  this.profileSetupService.uploadAvatar(file).subscribe({
+    next: (res) => {
+      console.log('Avatar uploaded successfully:', res);
+    },
+    error: (err) => {
+      console.error('Avatar upload failed:', err);
+    }
+  });
+}
 }
 

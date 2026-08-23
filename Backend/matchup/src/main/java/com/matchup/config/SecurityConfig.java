@@ -23,6 +23,7 @@ public class SecurityConfig {
     private final AuthenticationProvider authenticationProvider;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     //todo this will be subject to many changes according to needs and security, but this is fine for now
+    //from now this will be slowly refactored to contain allowed routes on route-to-route basis
     private final String[] routes_permitted_to_user = {
             "/users",
             "/users/**",

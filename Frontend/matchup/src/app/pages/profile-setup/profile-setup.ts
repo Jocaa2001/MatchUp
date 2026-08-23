@@ -15,6 +15,8 @@ export class ProfileSetup {
 
   private profileSetupService = inject(ProfileSetupService);
   private router = inject(Router);
+  avatarFile: File | null = null;
+  avatarPreview: string | null = null;
 
 
   //for now without avatar
@@ -45,13 +47,44 @@ export class ProfileSetup {
     this.profileSetupService.setupProfile(request).subscribe({
       next: (res) => {
         console.log('success', res)
-       this.router.navigate(['/']);
+
+        if (!this.avatarFile) {
+        this.router.navigate(['/']);
+        return;
+      }
+        this.profileSetupService.uploadAvatar(this.avatarFile).subscribe({
+
+          next: (fileName) => {
+            console.log('Avatar uploaded successfully:', fileName);
+
+            this.router.navigate(['/']);
+          },
+
+          error: (err) => {
+            console.error('Avatar upload failed:', err);
+          }
+
+        });
       },
       error: (err) => {
         console.log('ERROR', err);
       }
     })
-
   }
+
+  onAvatarSelected(event: Event) {
+  const input = event.target as HTMLInputElement;
+  console.log('selected avatar')
+  if (!input.files || input.files.length === 0) {
+    return;
+  }
+
+  const file = input.files[0];
+
+  this.avatarFile = file;
+  this.avatarPreview = URL.createObjectURL(file);
+}
+
+
 
 }

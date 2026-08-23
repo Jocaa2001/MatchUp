@@ -17,4 +17,13 @@ export class ProfileSetupService{
         return this.http.put<UserResponse>('http://localhost:8080/api/users/create-profile', data);
     }
 
+    uploadAvatar(file: File) {
+    const formData = new FormData();
+
+    formData.append('file', file);
+
+  return this.http.post<string>('http://localhost:8080/api/user-profiles/upload', formData
+  );
+}
+
 }

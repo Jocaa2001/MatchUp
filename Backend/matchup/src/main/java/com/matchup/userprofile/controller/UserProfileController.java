@@ -3,6 +3,7 @@ package com.matchup.userprofile.controller;
 
 import com.matchup.common.controller.CrudController;
 import com.matchup.user.entity.User;
+import com.matchup.userprofile.dto.AvatarUploadResponse;
 import com.matchup.userprofile.dto.UserProfileDTO;
 import com.matchup.userprofile.entity.UserProfile;
 import com.matchup.userprofile.mapper.UserProfileMapper;
@@ -24,8 +25,8 @@ public class UserProfileController extends CrudController<UserProfile, UserProfi
     }
 
     @PostMapping(path = "/upload",  consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<String> uploadAvatar(@AuthenticationPrincipal User user, @RequestParam MultipartFile multipartFile){
-        return ResponseEntity.ok().body(service.uploadAvatar(user, multipartFile));
+    public ResponseEntity<AvatarUploadResponse> uploadAvatar(@AuthenticationPrincipal User user, @RequestParam("file") MultipartFile file){
+        return ResponseEntity.ok().body(AvatarUploadResponse.builder().avatarUrl(service.uploadAvatar(user, file)).build());
     }
 
     @GetMapping(path ="/avatar")

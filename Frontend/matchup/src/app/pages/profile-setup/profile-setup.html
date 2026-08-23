@@ -166,12 +166,39 @@
 
             <div class="avatar-preview">
 
-              <img
-                class="avatar-img"
-                src=""
-                alt="Avatar preview"
-                style="display: none;"
-              />
+              @if (avatarPreview) {
+  <img
+    class="avatar-img"
+    [src]="avatarPreview"
+    alt="Avatar preview"
+  />
+} @else {
+  <div class="avatar-placeholder">
+
+    <svg
+      width="28"
+      height="28"
+      viewBox="0 0 32 32"
+      fill="none"
+    >
+      <circle
+        cx="16"
+        cy="11"
+        r="6"
+        stroke="currentColor"
+        stroke-width="1.8"
+      />
+
+      <path
+        d="M4 28c0-6.627 5.373-10 12-10s12 3.373 12 10"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+      />
+    </svg>
+
+  </div>
+}
 
               <div class="avatar-placeholder">
 
@@ -224,6 +251,7 @@
               accept="image/*"
               class="avatar-input"
               id="avatarInput"
+              (change)="onAvatarSelected($event)"
             />
 
           </div>
