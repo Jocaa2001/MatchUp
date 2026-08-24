@@ -5,7 +5,6 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { UserProfileRequest } from '../../models/requests/userProfileRequest';
 import { ProfileSetupService } from '../../services/profileSetup.service';
 import { Auth } from '../../services/auth';
-import { UserResponse } from '../../models/responses/userResponse';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
@@ -15,9 +14,13 @@ import { TranslatePipe } from '@ngx-translate/core';
   styleUrl: './user-profile.scss',
 })
 export class UserProfile implements OnInit {
+
   private profileSetupService = inject(ProfileSetupService);
   private authService = inject(Auth);
+
   avatarFile: File | null = null;
+
+avatarUrl = this.authService.avatarUrl;
 
   profileForm = new FormGroup({
     firstName: new FormControl(''),
@@ -31,67 +34,80 @@ export class UserProfile implements OnInit {
   isEditing = signal(false);
 
   ngOnInit(): void {
-      
+    this.loadAvatar();
+  }
+
+  loadAvatar() {
+    this.profileSetupService.getAvatar().subscribe({
+      next: (blob) => {
+        const url = URL.createObjectURL(blob);
+        this.avatarUrl.set(url);
+      },
+      error: (err) => {
+        console.error('Failed to load avatar:', err);
+      }
+    });
   }
 
   toggleEdit() {
     if (!this.isEditing()) {
-    this.profileForm.patchValue({
-      firstName: this.user()?.profile?.firstName,
-      lastName: this.user()?.profile?.lastName,
-      phone: this.user()?.profile?.phone,
-      city: this.user()?.profile?.city,
-      birthDate: this.user()?.profile?.birthDate
-    });
-  }
-    
+      this.profileForm.patchValue({
+        firstName: this.user()?.profile?.firstName,
+        lastName: this.user()?.profile?.lastName,
+        phone: this.user()?.profile?.phone,
+        city: this.user()?.profile?.city,
+        birthDate: this.user()?.profile?.birthDate
+      });
+    }
+
     this.isEditing.update(v => !v);
   }
 
   saveProfile() {
 
     const request: UserProfileRequest = {
-    firstName: this.profileForm.value.firstName!,
-    lastName: this.profileForm.value.lastName!,
-    city: this.profileForm.value.city!,
-    phone: this.profileForm.value.phone!,
-    birthDate: this.profileForm.value.birthDate!,
-    avatarUrl: this.user()?.profile?.avatarUrl
-  };
+      firstName: this.profileForm.value.firstName!,
+      lastName: this.profileForm.value.lastName!,
+      city: this.profileForm.value.city!,
+      phone: this.profileForm.value.phone!,
+      birthDate: this.profileForm.value.birthDate!,
+      avatarUrl: this.user()?.profile?.avatarUrl
+    };
 
-   this.profileSetupService.setupProfile(request)
-    .subscribe({
-      next: (user) => {    
-        this.authService.setCurrentUser(user);
-        this.isEditing.set(false);
-      },
-      error: (err) => {
-        console.error(err);
-      }
-    });
-    
+    this.profileSetupService.setupProfile(request)
+      .subscribe({
+        next: (user) => {
+          this.authService.setCurrentUser(user);
+          this.isEditing.set(false);
+        },
+        error: (err) => {
+          console.error(err);
+        }
+      });
   }
 
   onAvatarSelected(event: Event) {
 
-  const input = event.target as HTMLInputElement;
+    const input = event.target as HTMLInputElement;
 
-  if (!input.files || input.files.length === 0) {
-    return;
-  }
-
-  const file = input.files[0];
-
-  this.avatarFile = file;
-
-  this.profileSetupService.uploadAvatar(file).subscribe({
-    next: (res) => {
-      console.log('Avatar uploaded successfully:', res);
-    },
-    error: (err) => {
-      console.error('Avatar upload failed:', err);
+    if (!input.files || input.files.length === 0) {
+      return;
     }
-  });
-}
-}
 
+    const file = input.files[0];
+
+    this.avatarFile = file;
+
+    this.profileSetupService.uploadAvatar(file).subscribe({
+      next: (res) => {
+        console.log('Avatar uploaded successfully:', res);
+
+        // Ponovo povuci avatar sa backenda
+        this.loadAvatar();
+      },
+      error: (err) => {
+        console.error('Avatar upload failed:', err);
+      }
+    });
+  }
+}

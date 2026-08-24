@@ -2,9 +2,14 @@
 
   <div class="dropdown-header">
 
-    <div class="dropdown-avatar has-image">
-      <img src="https://i.pravatar.cc/40" alt="Profile picture" />
-    </div>
+<div class="dropdown-avatar has-image">
+  @if (avatarUrl()) {
+    <img
+      [src]="avatarUrl()"
+      alt="Profile picture"
+    />
+  }
+</div>
 
     <!-- <div class="dropdown-avatar initials">MP</div> -->
 

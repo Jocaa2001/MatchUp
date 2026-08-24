@@ -5,10 +5,14 @@
 
     <!-- Sa slikom -->
     <div class="user-avatar has-image">
-      <img
-        src="https://i.pravatar.cc/40"
-        [alt]="'USER_MENU.PROFILE_PICTURE' | translate"
-      />
+
+      @if (avatarUrl()) {
+        <img
+          [src]="avatarUrl()"
+          [alt]="'USER_MENU.PROFILE_PICTURE' | translate"
+        />
+      }
+
     </div>
 
     <!-- Bez slike — inicijali -->

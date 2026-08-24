@@ -1,7 +1,11 @@
-import { Component, HostListener, inject, Input, OnInit  } from '@angular/core';
+import { Component, HostListener, inject, Input } from '@angular/core';
+
 import { RouterLink } from '@angular/router';
+
 import { Auth } from '../../../services/auth';
+
 import { UserResponse } from '../../../models/responses/userResponse';
+
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
@@ -11,10 +15,15 @@ import { TranslatePipe } from '@ngx-translate/core';
   styleUrl: './user-menu-dropdown.scss',
 })
 export class UserMenuDropdown {
+
   private authService = inject(Auth);
+
   @Input() user: UserResponse | null = null;
+
+  avatarUrl = this.authService.avatarUrl;
+
   isOpen = false;
-  
+
   toggleDropdown() {
     this.isOpen = !this.isOpen;
   }
@@ -27,5 +36,4 @@ export class UserMenuDropdown {
   logout() {
     this.authService.logout();
   }
-
 }

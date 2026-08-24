@@ -15,12 +15,17 @@ export class Auth {
   private http = inject(HttpClient);
   private router = inject(Router);
   currentUser = signal<UserResponse | null>(null);
+  avatarUrl = signal<string | null>(null);
   readonly user = this.currentUser.asReadonly();
 
   setCurrentUser(user: UserResponse) {
   this.currentUser.set(user);
 }
 
+setAvatar(blob: Blob) {
+  const url = URL.createObjectURL(blob);
+  this.avatarUrl.set(url);
+}
 
   getLoggedUser() {
       return this.http.get<UserResponse>('http://localhost:8080/api/users/me');

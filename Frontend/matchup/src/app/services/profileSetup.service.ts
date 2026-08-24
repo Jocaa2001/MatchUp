@@ -3,27 +3,38 @@ import { inject, Injectable } from "@angular/core";
 import { UserProfileRequest } from "../models/requests/userProfileRequest";
 import { UserResponse } from "../models/responses/userResponse";
 
-
-
 @Injectable({
   providedIn: 'root',
 })
-export class ProfileSetupService{
-    private http = inject(HttpClient)
+export class ProfileSetupService {
 
+  private http = inject(HttpClient);
 
-    //rename this and in backend to be more generic at one point
-    setupProfile(data:UserProfileRequest){
-        return this.http.put<UserResponse>('http://localhost:8080/api/users/create-profile', data);
-    }
+  // rename this and in backend to be more generic at one point
+  setupProfile(data: UserProfileRequest) {
+    return this.http.put<UserResponse>(
+      'http://localhost:8080/api/users/create-profile',
+      data
+    );
+  }
 
-    uploadAvatar(file: File) {
+  uploadAvatar(file: File) {
     const formData = new FormData();
 
     formData.append('file', file);
 
-  return this.http.post<string>('http://localhost:8080/api/user-profiles/upload', formData
-  );
-}
+    return this.http.post<string>(
+      'http://localhost:8080/api/user-profiles/upload',
+      formData
+    );
+  }
 
+  getAvatar() {
+    return this.http.get(
+      'http://localhost:8080/api/user-profiles/avatar',
+      {
+        responseType: 'blob'
+      }
+    );
+  }
 }

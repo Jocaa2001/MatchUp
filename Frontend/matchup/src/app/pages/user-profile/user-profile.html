@@ -34,12 +34,14 @@
           <div class="avatar-wrap">
 
             <!-- Avatar -->
-            <div class="profile-avatar has-image">
+          <div class="profile-avatar has-image">
+            @if (avatarUrl()) {
               <img
-                src="https://i.pravatar.cc/160"
+                [src]="avatarUrl()"
                 alt="Profile avatar"
               />
-            </div>
+            }
+          </div>
 
             <!-- Edit avatar button -->
             <button
