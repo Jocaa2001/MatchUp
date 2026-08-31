@@ -296,10 +296,25 @@
 
                 <div class="participant-avatar">
 
+                @if (getParticipantAvatar(participation.user.id); as avatar) {
+
+                  <img
+                    [src]="avatar"
+                    [alt]="
+                      participation.user.profile.firstName +
+                      ' ' +
+                      participation.user.profile.lastName
+                    "
+                  />
+
+                } @else {
+
                   {{ participation.user.profile.firstName.charAt(0) }}
                   {{ participation.user.profile.lastName.charAt(0) }}
 
-                </div>
+                }
+
+              </div>
 
                 <div class="participant-info">
 

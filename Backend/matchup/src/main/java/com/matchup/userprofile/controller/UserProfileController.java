@@ -32,8 +32,19 @@ public class UserProfileController extends CrudController<UserProfile, UserProfi
     @GetMapping(path ="/avatar")
     public ResponseEntity<InputStreamResource> getAvatar(
             @AuthenticationPrincipal User user) {
-
+        //for currently logged user
         InputStream inputStream = service.getAvatar(user);
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.IMAGE_JPEG)
+                .body(new InputStreamResource(inputStream));
+    }
+
+    @GetMapping(path ="/avatar/{url}")
+    public ResponseEntity<InputStreamResource> getAvatarByAvatarUrl(
+            @PathVariable("url") String url) {
+        //for currently logged user
+        InputStream inputStream = service.getAvatarByAvatarUrl(url);
 
         return ResponseEntity.ok()
                 .contentType(MediaType.IMAGE_JPEG)

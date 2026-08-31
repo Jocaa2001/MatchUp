@@ -1,10 +1,16 @@
-import { HttpClient } from "@angular/common/http";
-import { inject, Injectable, OnInit, signal } from "@angular/core";
-import { UserResponse } from "../models/responses/userResponse";
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root',
+providedIn: 'root',
 })
-export class ProfileDetailsService{
-    
+export class ProfileDetailsService {
+
+private http = inject(HttpClient);
+
+getAvatarByAvatarUrl(url: string) {
+    return this.http.get(`http://localhost:8080/api/user-profiles/avatar/${url}`,{responseType: 'blob'}
+  );
+}
+
 }
