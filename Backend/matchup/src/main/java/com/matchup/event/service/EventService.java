@@ -2,8 +2,11 @@ package com.matchup.event.service;
 
 import com.matchup.common.service.CrudServiceImpl;
 import com.matchup.event.dto.CreateEventDTO;
+import com.matchup.event.dto.EventCursorResponse;
+import com.matchup.event.dto.EventDTO;
 import com.matchup.event.entity.Event;
 import com.matchup.event.enums.EventStatus;
+import com.matchup.event.mapper.EventMapper;
 import com.matchup.event.repository.EventRepository;
 import com.matchup.exception.EntityNotFoundException;
 import com.matchup.location.entity.Location;
@@ -18,6 +21,8 @@ import com.matchup.participation.service.ParticipationService;
 import com.matchup.sport.entity.Sport;
 import com.matchup.sport.repository.SportRepository;
 import com.matchup.user.entity.User;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -30,15 +35,17 @@ public class EventService extends CrudServiceImpl<Event, EventRepository> {
     private final SportRepository sportRepository;
     private final LocationRepository locationRepository;
     private final LocationMapper locationMapper;
+    private final EventMapper eventMapper;
     private final ParticipationRepository participationRepository;
     private final NotificationService notificationService;
 
 
-    public EventService(EventRepository repository, SportRepository sportRepository, LocationRepository locationRepository, LocationMapper locationMapper, ParticipationRepository participationRepository, NotificationService notificationService) {
+    public EventService(EventRepository repository, SportRepository sportRepository, LocationRepository locationRepository, LocationMapper locationMapper, EventMapper eventMapper, ParticipationRepository participationRepository, NotificationService notificationService) {
         super(repository);
         this.sportRepository = sportRepository;
         this.locationRepository = locationRepository;
         this.locationMapper = locationMapper;
+        this.eventMapper = eventMapper;
         this.participationRepository = participationRepository;
         this.notificationService = notificationService;
     }
@@ -88,5 +95,34 @@ public class EventService extends CrudServiceImpl<Event, EventRepository> {
 
     public void notifyCancelled(Event event, User user) {
         notificationService.notifyEventCancelled(event, user);
+    }
+
+    public EventCursorResponse getEvents(Long cursor, int limit) {
+        Pageable pageable = PageRequest.of(0, limit + 1);
+
+        List<Event> events = repository
+                .findEventsCursorBased(cursor, pageable);
+
+        boolean hasNext = events.size() > limit;
+
+        if(hasNext){
+            events = events.subList(0, limit);
+        }
+
+        Long nextCursor = null;
+
+        if (hasNext && !events.isEmpty()) {
+            nextCursor = events.getLast().getId();
+        }
+
+        List<EventDTO> eventResponses = events.stream()
+                .map(eventMapper::toDto)
+                .toList();
+
+        return new EventCursorResponse(
+                eventResponses,
+                nextCursor,
+                hasNext
+        );
     }
 }

@@ -53,6 +53,16 @@
       }
 
     </div>
-
+@if (hasNext()) {
+  <div class="load-more-container">
+    <button
+      type="button"
+      class="load-more-button"
+      (click)="loadMoreEvents()"
+    >
+      Load more
+    </button>
+  </div>
+}
   </div>
 </div>

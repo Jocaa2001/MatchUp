@@ -6,6 +6,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { Router, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { timeout } from 'rxjs';
+import { EventResponse } from '../../models/responses/eventResponse';
 
 @Component({
   selector: 'app-events',
@@ -16,13 +17,58 @@ import { timeout } from 'rxjs';
 })
 export class Events {
   eventsService = inject(EventsService);
-  events = toSignal(this.eventsService.getEvents(), {
-  initialValue: []
-});
 
-  constructor() {
+   events = signal<EventResponse[]>([]);
+
+  nextCursor = signal<number | null>(null);
+
+  hasNext = signal(true);
+
+ constructor() {
+    this.loadEvents();
+
     effect(() => {
       console.log('EVENTS:', this.events());
+      console.log('CURSOR:', this.nextCursor());
+      console.log('HAS NEXT:', this.hasNext());
+    });
+  }
+
+  loadEvents() {
+    this.eventsService.getEventsCursor().subscribe({
+      next: (response) => {
+        this.events.set(response.events);
+        this.nextCursor.set(response.nextCursor);
+        this.hasNext.set(response.hasNext);
+      },
+      error: (error) => {
+        console.error('Failed to load events:', error);
+      }
+    });
+  }
+
+  loadMoreEvents() {
+
+    const cursor = this.nextCursor();
+
+    if (cursor === null || !this.hasNext()) {
+      return;
+    }
+
+    this.eventsService.getEventsCursor(cursor).subscribe({
+      next: (response) => {
+
+        this.events.update(events => [
+          ...events,
+          ...response.events
+        ]);
+
+        this.nextCursor.set(response.nextCursor);
+        this.hasNext.set(response.hasNext);
+      },
+      error: (error) => {
+        console.error('Failed to load more events:', error);
+      }
     });
   }
 }

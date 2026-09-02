@@ -2,6 +2,7 @@ package com.matchup.event.controller;
 
 import com.matchup.common.controller.CrudController;
 import com.matchup.event.dto.CreateEventDTO;
+import com.matchup.event.dto.EventCursorResponse;
 import com.matchup.event.dto.EventDTO;
 import com.matchup.event.entity.Event;
 import com.matchup.event.enums.EventStatus;
@@ -63,5 +64,10 @@ public class EventController extends CrudController<Event, EventDTO, EventServic
         event = service.update(id, event);
         if(event.getStatus() == EventStatus.CANCELLED) service.notifyCancelled(event,user);
         return mapper.toDto(event);
+    }
+
+    @GetMapping("/get")
+    public EventCursorResponse getCursorBasedEvents(@RequestParam(required = false) Long cursor, @RequestParam(defaultValue = "6") int limit){
+        return service.getEvents(cursor, limit);
     }
 }

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { EventResponse } from '../models/responses/eventResponse';
 import { CreateEventRequest } from '../models/requests/createEventRequest';
 import { ParticipationResponse } from '../models/responses/participationResponse';
+import { EventCursorResponse } from '../models/responses/eventCursorResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -46,5 +47,15 @@ updateEvent(id: number, data: Partial<EventResponse>): Observable<EventResponse>
   );
 }
 
+getEventsCursor(cursor?: number, limit = 6): Observable<EventCursorResponse> {
+
+  let url = `http://localhost:8080/api/events/get?limit=${limit}`;
+
+  if (cursor !== undefined && cursor !== null) {
+    url += `&cursor=${cursor}`;
+  }
+
+  return this.http.get<EventCursorResponse>(url);
+}
 
 }
