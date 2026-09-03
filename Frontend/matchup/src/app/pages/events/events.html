@@ -39,7 +39,9 @@
     </div>
 
     <!-- Filter Component -->
-    <app-event-filter></app-event-filter>
+    <app-event-filter
+      (sportChange)="onSportChange($event)"
+    ></app-event-filter>
 
     <!-- Events Grid -->
     <div class="events-grid">

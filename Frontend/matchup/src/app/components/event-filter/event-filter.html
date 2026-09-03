@@ -45,39 +45,15 @@
         {{ 'EVENT_FILTER.SPORT' | translate }}
       </label>
 
-      <select class="form-control">
+      <select class="form-control"
+    [value]="selectedSportId() ?? ''"
+    (change)="onSportChange($event)">
 
-        <option value="">
-          {{ 'EVENT_FILTER.ALL_SPORTS' | translate }}
+      @for (sport of sports(); track sport.id) {
+        <option [value]="sport.id">
+          {{ 'EVENT_FILTER.' + sport.name.toUpperCase() | translate }}
         </option>
-
-        <option value="football">
-          ⚽ {{ 'EVENT_FILTER.FOOTBALL' | translate }}
-        </option>
-
-        <option value="basketball">
-          🏀 {{ 'EVENT_FILTER.BASKETBALL' | translate }}
-        </option>
-
-        <option value="tennis">
-          🎾 {{ 'EVENT_FILTER.TENNIS' | translate }}
-        </option>
-
-        <option value="volleyball">
-          🏐 {{ 'EVENT_FILTER.VOLLEYBALL' | translate }}
-        </option>
-
-        <option value="badminton">
-          🏸 {{ 'EVENT_FILTER.BADMINTON' | translate }}
-        </option>
-
-        <option value="running">
-          🏃 {{ 'EVENT_FILTER.RUNNING' | translate }}
-        </option>
-
-        <option value="cycling">
-          🚴 {{ 'EVENT_FILTER.CYCLING' | translate }}
-        </option>
+      }
 
       </select>
 

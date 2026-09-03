@@ -67,7 +67,8 @@ public class EventController extends CrudController<Event, EventDTO, EventServic
     }
 
     @GetMapping("/get")
-    public EventCursorResponse getCursorBasedEvents(@RequestParam(required = false) Long cursor, @RequestParam(defaultValue = "6") int limit){
-        return service.getEvents(cursor, limit);
+    public EventCursorResponse getCursorBasedEvents(@RequestParam(required = false) Long cursor, @RequestParam(defaultValue = "6") int limit, @RequestParam(required = false) Long sportId
+    ){
+        return service.getEvents(cursor, limit, sportId);
     }
 }

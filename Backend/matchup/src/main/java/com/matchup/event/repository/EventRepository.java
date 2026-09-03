@@ -18,8 +18,12 @@ public interface EventRepository extends JpaRepository<Event,Long> {
     SELECT e
     FROM Event e
     WHERE (:cursor IS NULL OR e.id < :cursor)
+      AND (:sportId IS NULL OR e.sport.id = :sportId)
     ORDER BY e.id DESC
 """)
-    List<Event> findEventsCursorBased(@Param("cursor") Long cursor,
-                                      Pageable pageable);
+    List<Event> findEventsCursorBased(
+            @Param("cursor") Long cursor,
+            @Param("sportId") Long sportId,
+            Pageable pageable
+    );
 }

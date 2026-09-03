@@ -17,8 +17,9 @@ import { EventResponse } from '../../models/responses/eventResponse';
 })
 export class Events {
   eventsService = inject(EventsService);
+  selectedSportId = signal<number | null>(null);
 
-   events = signal<EventResponse[]>([]);
+  events = signal<EventResponse[]>([]);
 
   nextCursor = signal<number | null>(null);
 
@@ -28,14 +29,13 @@ export class Events {
     this.loadEvents();
 
     effect(() => {
-      console.log('EVENTS:', this.events());
-      console.log('CURSOR:', this.nextCursor());
-      console.log('HAS NEXT:', this.hasNext());
+
     });
   }
 
   loadEvents() {
-    this.eventsService.getEventsCursor().subscribe({
+    this.eventsService.getEventsCursor(undefined,6,this.selectedSportId() ?? undefined)
+    .subscribe({
       next: (response) => {
         this.events.set(response.events);
         this.nextCursor.set(response.nextCursor);
@@ -71,4 +71,12 @@ export class Events {
       }
     });
   }
+  onSportChange(sportId: number | null) {
+  this.selectedSportId.set(sportId);
+  
+  this.nextCursor.set(null);
+  this.hasNext.set(true);
+
+  this.loadEvents();
+}
 }
