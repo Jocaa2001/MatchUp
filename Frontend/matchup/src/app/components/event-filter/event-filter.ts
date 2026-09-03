@@ -12,6 +12,7 @@ import { SportService } from '../../services/sport.service';
 })
 export class EventFilter implements OnInit {
 @Output() sportChange = new EventEmitter<number | null>();
+@Output() searchChange = new EventEmitter<string>();
 private sportService = inject(SportService);
 selectedSportId = signal<number | null>(null);
 
@@ -35,6 +36,12 @@ onSportChange(event: Event) {
   const sportId = value ? Number(value) : null;
   this.selectedSportId.set(sportId);
   this.sportChange.emit(sportId);
+}
+
+onSearchChange(event: Event) {
+  const value = (event.target as HTMLInputElement).value;
+
+  this.searchChange.emit(value);
 }
 
 }

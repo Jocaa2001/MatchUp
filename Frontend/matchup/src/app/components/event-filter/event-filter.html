@@ -26,11 +26,12 @@
       />
     </svg>
 
-    <input
-      type="text"
-      class="form-control"
-      [placeholder]="'EVENT_FILTER.SEARCH_EVENTS' | translate"
-    />
+      <input
+        type="text"
+        class="form-control"
+        [placeholder]="'EVENT_FILTER.SEARCH_EVENTS' | translate"
+        (input)="onSearchChange($event)"
+      />
 
   </div>
 

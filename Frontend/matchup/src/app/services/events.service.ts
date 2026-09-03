@@ -47,7 +47,7 @@ updateEvent(id: number, data: Partial<EventResponse>): Observable<EventResponse>
   );
 }
 
-getEventsCursor(cursor?: number, limit = 6, sport?: number): Observable<EventCursorResponse> {
+getEventsCursor(cursor?: number, limit = 6, sport?: number, search?: string): Observable<EventCursorResponse> {
 
   let url = `http://localhost:8080/api/events/get?limit=${limit}`;
 
@@ -57,6 +57,10 @@ getEventsCursor(cursor?: number, limit = 6, sport?: number): Observable<EventCur
 
     if (sport !== undefined && sport !== null) {
     url += `&sportId=${sport}`;
+  }
+
+    if (search !== undefined && search.trim() !== '') {
+    url += `&search=${encodeURIComponent(search)}`;
   }
 
   return this.http.get<EventCursorResponse>(url);

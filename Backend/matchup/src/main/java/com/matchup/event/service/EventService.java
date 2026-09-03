@@ -97,11 +97,11 @@ public class EventService extends CrudServiceImpl<Event, EventRepository> {
         notificationService.notifyEventCancelled(event, user);
     }
 
-    public EventCursorResponse getEvents(Long cursor, int limit, Long sportId) {
+    public EventCursorResponse getEvents(Long cursor, int limit, Long sportId, String search) {
         Pageable pageable = PageRequest.of(0, limit + 1);
 
         List<Event> events = repository
-                .findEventsCursorBased(cursor, sportId, pageable);
+                .findEventsCursorBased(cursor, sportId, search, pageable);
 
         boolean hasNext = events.size() > limit;
 

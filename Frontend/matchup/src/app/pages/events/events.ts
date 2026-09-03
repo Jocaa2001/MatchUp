@@ -5,7 +5,7 @@ import { EventsService } from '../../services/events.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Router, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { timeout } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Subject, timeout } from 'rxjs';
 import { EventResponse } from '../../models/responses/eventResponse';
 
 @Component({
@@ -18,7 +18,8 @@ import { EventResponse } from '../../models/responses/eventResponse';
 export class Events {
   eventsService = inject(EventsService);
   selectedSportId = signal<number | null>(null);
-
+  searchQuery = signal('');
+  private searchSubject = new Subject<string>();
   events = signal<EventResponse[]>([]);
 
   nextCursor = signal<number | null>(null);
@@ -28,13 +29,17 @@ export class Events {
  constructor() {
     this.loadEvents();
 
-    effect(() => {
-
+    this.searchSubject
+    .pipe(debounceTime(400),distinctUntilChanged())
+    .subscribe(search => {
+        this.nextCursor.set(null);
+        this.hasNext.set(true);
+        this.loadEvents();
     });
   }
 
   loadEvents() {
-    this.eventsService.getEventsCursor(undefined,6,this.selectedSportId() ?? undefined)
+    this.eventsService.getEventsCursor(undefined,6,this.selectedSportId() ?? undefined, this.searchQuery())
     .subscribe({
       next: (response) => {
         this.events.set(response.events);
@@ -73,10 +78,16 @@ export class Events {
   }
   onSportChange(sportId: number | null) {
   this.selectedSportId.set(sportId);
-  
+
   this.nextCursor.set(null);
   this.hasNext.set(true);
 
   this.loadEvents();
 }
+
+onSearchChange(search: string) {
+  this.searchQuery.set(search);
+  this.searchSubject.next(search);
+}
+
 }
