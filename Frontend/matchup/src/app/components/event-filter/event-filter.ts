@@ -18,6 +18,7 @@ export class EventFilter implements OnInit {
 @Output() searchChange = new EventEmitter<string>();
 @Output() statusChange = new EventEmitter<EventStatus | null>();
 @Output() cityChange = new EventEmitter<string | null>();
+@Output() dateChange = new EventEmitter<string | null>();
 
 private locationService = inject(LocationService);
 
@@ -29,11 +30,14 @@ public eventStatuses: EventStatus[] = [
 ];
 
 private sportService = inject(SportService);
+
 selectedSportId = signal<number | null>(null);
 selectedCity = signal<string | null>(null);
-public sports = signal<SportResponse[]>([]);
+sports = signal<SportResponse[]>([]);
 selectedStatus = signal<EventStatus | null>(null);
-public cities = signal<DistinctCityResponse[]>([]);
+cities = signal<DistinctCityResponse[]>([]);
+selectedDate = signal<string | null>(null);
+
 
 
 ngOnInit(): void {
@@ -88,6 +92,15 @@ onCityChange(event: Event) {
 
   this.selectedCity.set(city);
   this.cityChange.emit(city);
+}
+
+onDateChange(event: Event) {
+  const value = (event.target as HTMLInputElement).value;
+
+  const date = value ? value : null;
+
+  this.selectedDate.set(date);
+  this.dateChange.emit(date);
 }
 
 }

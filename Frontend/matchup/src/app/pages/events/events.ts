@@ -24,6 +24,7 @@ export class Events {
   selectedCity = signal<string | null>(null);
   private searchSubject = new Subject<string>();
   events = signal<EventResponse[]>([]);
+  selectedDate = signal<string | null>(null);
 
   nextCursor = signal<number | null>(null);
 
@@ -42,8 +43,8 @@ export class Events {
   }
 
   loadEvents() {
-    this.eventsService.getEventsCursor(undefined,6 ,this.selectedSportId() ?? undefined, this.searchQuery(), this.selectedStatus() ?? undefined, this.selectedCity() ?? undefined
-)
+    this.eventsService.getEventsCursor(undefined,6 ,this.selectedSportId() ?? undefined, this.searchQuery(), this.selectedStatus() ?? undefined, this.selectedCity() ?? undefined,
+                                      this.selectedDate() ?? undefined)
     .subscribe({
       next: (response) => {
         this.events.set(response.events);
@@ -103,6 +104,14 @@ onCityChange(city: string | null) {
   this.selectedCity.set(city);
   this.nextCursor.set(null);
   this.hasNext.set(true);
+  this.loadEvents();
+}
+
+onDateChange(date: string | null) {
+  this.selectedDate.set(date);
+  this.nextCursor.set(null);
+  this.hasNext.set(true);
+  console.log(this.selectedDate())
   this.loadEvents();
 }
 

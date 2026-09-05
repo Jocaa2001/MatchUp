@@ -129,7 +129,9 @@
         <input
           type="date"
           class="form-control date-input"
-        />
+          [value]="selectedDate() ?? ''"
+          (change)="onDateChange($event)"
+        >
 
       </div>
 

@@ -43,7 +43,6 @@ export class EventDetail implements OnInit {
 
         console.log(event);
 
-        // Učitaj avatar organizatora
         const avatarUrl = event.user?.profile?.avatarUrl;
 
         if (avatarUrl) {

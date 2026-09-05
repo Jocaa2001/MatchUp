@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -26,6 +27,13 @@ public interface EventRepository extends JpaRepository<Event,Long> {
       )
       AND (:status IS NULL OR e.status = :status)
       AND (:city IS NULL OR e.location.city = :city)
+        AND (
+           CAST(:dateFrom AS timestamp) IS NULL
+           OR (
+               e.startTime >= :dateFrom
+               AND e.startTime < :dateTo
+           )
+       )
     ORDER BY e.id DESC
 """)
     List<Event> findEventsCursorBased(
@@ -34,6 +42,8 @@ public interface EventRepository extends JpaRepository<Event,Long> {
             @Param("search") String search,
             @Param("status") EventStatus status,
             @Param("city") String city,
+            @Param("dateFrom") LocalDateTime dateFrom,
+            @Param("dateTo") LocalDateTime dateTo,
             Pageable pageable
     );
 }

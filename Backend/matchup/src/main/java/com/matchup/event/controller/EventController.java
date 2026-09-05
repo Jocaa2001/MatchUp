@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -69,7 +70,8 @@ public class EventController extends CrudController<Event, EventDTO, EventServic
     @GetMapping("/get")
     public EventCursorResponse getCursorBasedEvents(@RequestParam(required = false) Long cursor, @RequestParam(defaultValue = "6") int limit,
                                                     @RequestParam(required = false) Long sportId, @RequestParam(required = false) String search,
-                                                    @RequestParam(required = false) EventStatus status, @RequestParam(required = false) String city){
-        return service.getEvents(cursor, limit, sportId, search, status, city);
+                                                    @RequestParam(required = false) EventStatus status, @RequestParam(required = false) String city,
+                                                    @RequestParam(required = false) LocalDate date){
+        return service.getEvents(cursor, limit, sportId, search, status, city, date);
     }
 }

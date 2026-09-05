@@ -26,6 +26,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -97,11 +99,19 @@ public class EventService extends CrudServiceImpl<Event, EventRepository> {
         notificationService.notifyEventCancelled(event, user);
     }
 
-    public EventCursorResponse getEvents(Long cursor, int limit, Long sportId, String search, EventStatus status, String city) {
+    public EventCursorResponse getEvents(Long cursor, int limit, Long sportId, String search, EventStatus status, String city, LocalDate date) {
         Pageable pageable = PageRequest.of(0, limit + 1);
 
+        LocalDateTime dateFrom = date != null
+                ? date.atStartOfDay()
+                : null;
+
+        LocalDateTime dateTo = date != null
+                ? date.plusDays(1).atStartOfDay()
+                : null;
+
         List<Event> events = repository
-                .findEventsCursorBased(cursor, sportId, search, status, city, pageable);
+                .findEventsCursorBased(cursor, sportId, search, status, city, dateFrom, dateTo, pageable);
 
         boolean hasNext = events.size() > limit;
 

@@ -39,12 +39,13 @@
     </div>
 
     <!-- Filter Component -->
-    <app-event-filter
-      (sportChange)="onSportChange($event)"
-      (searchChange)="onSearchChange($event)"
-      (statusChange)="onStatusChange($event)"
-      (cityChange)="onCityChange($event)"
-    ></app-event-filter>
+      <app-event-filter
+        (sportChange)="onSportChange($event)"
+        (searchChange)="onSearchChange($event)"
+        (statusChange)="onStatusChange($event)"
+        (cityChange)="onCityChange($event)"
+        (dateChange)="onDateChange($event)"
+      ></app-event-filter>
 
     <!-- Events Grid -->
     <div class="events-grid">

@@ -47,7 +47,7 @@ updateEvent(id: number, data: Partial<EventResponse>): Observable<EventResponse>
   );
 }
 
-getEventsCursor(cursor?: number, limit = 6, sport?: number, search?: string, status?: EventStatus, city?: string): Observable<EventCursorResponse> {
+getEventsCursor(cursor?: number, limit = 6, sport?: number, search?: string, status?: EventStatus, city?: string, date?: string): Observable<EventCursorResponse> {
 
   let url = `http://localhost:8080/api/events/get?limit=${limit}`;
 
@@ -69,9 +69,14 @@ getEventsCursor(cursor?: number, limit = 6, sport?: number, search?: string, sta
 
   if (city !== undefined && city !== null && city.trim() !== '') {
   url += `&city=${encodeURIComponent(city)}`;
-}
+  }
+
+  if (date !== undefined && date !== null && date !== '') {
+    url += `&date=${encodeURIComponent(date)}`;
+  }
 
   return this.http.get<EventCursorResponse>(url);
 }
+
 
 }
