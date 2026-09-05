@@ -6,7 +6,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { Router, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { debounceTime, distinctUntilChanged, Subject, timeout } from 'rxjs';
-import { EventResponse } from '../../models/responses/eventResponse';
+import { EventResponse, EventStatus } from '../../models/responses/eventResponse';
 
 @Component({
   selector: 'app-events',
@@ -16,8 +16,10 @@ import { EventResponse } from '../../models/responses/eventResponse';
   styleUrl: './events.scss',
 })
 export class Events {
+
   eventsService = inject(EventsService);
   selectedSportId = signal<number | null>(null);
+  selectedStatus = signal<EventStatus | null>(null);
   searchQuery = signal('');
   private searchSubject = new Subject<string>();
   events = signal<EventResponse[]>([]);
@@ -39,7 +41,7 @@ export class Events {
   }
 
   loadEvents() {
-    this.eventsService.getEventsCursor(undefined,6,this.selectedSportId() ?? undefined, this.searchQuery())
+    this.eventsService.getEventsCursor(undefined,6 ,this.selectedSportId() ?? undefined, this.searchQuery(), this.selectedStatus() ?? undefined)
     .subscribe({
       next: (response) => {
         this.events.set(response.events);
@@ -88,6 +90,14 @@ export class Events {
 onSearchChange(search: string) {
   this.searchQuery.set(search);
   this.searchSubject.next(search);
+}
+
+onStatusChange(status: EventStatus | null) {
+  this.selectedStatus.set(status);
+  this.nextCursor.set(null);
+  this.hasNext.set(true);
+  console.log(this.selectedStatus())
+  this.loadEvents();
 }
 
 }

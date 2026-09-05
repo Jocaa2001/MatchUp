@@ -1,6 +1,7 @@
 package com.matchup.event.repository;
 
 import com.matchup.event.entity.Event;
+import com.matchup.event.enums.EventStatus;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -23,12 +24,14 @@ public interface EventRepository extends JpaRepository<Event,Long> {
           :search IS NULL
           OR e.location.name ILIKE CONCAT('%', CAST(:search AS string), '%')
       )
+      AND (:status IS NULL OR e.status = :status)
     ORDER BY e.id DESC
 """)
     List<Event> findEventsCursorBased(
             @Param("cursor") Long cursor,
             @Param("sportId") Long sportId,
             @Param("search") String search,
+            @Param("status") EventStatus status,
             Pageable pageable
     );
 }

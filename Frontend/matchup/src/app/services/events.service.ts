@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, OnInit, signal } from '@angular/core';
 import { Observable } from 'rxjs';
-import { EventResponse } from '../models/responses/eventResponse';
+import { EventResponse, EventStatus } from '../models/responses/eventResponse';
 import { CreateEventRequest } from '../models/requests/createEventRequest';
 import { ParticipationResponse } from '../models/responses/participationResponse';
 import { EventCursorResponse } from '../models/responses/eventCursorResponse';
@@ -47,7 +47,7 @@ updateEvent(id: number, data: Partial<EventResponse>): Observable<EventResponse>
   );
 }
 
-getEventsCursor(cursor?: number, limit = 6, sport?: number, search?: string): Observable<EventCursorResponse> {
+getEventsCursor(cursor?: number, limit = 6, sport?: number, search?: string, status?: EventStatus): Observable<EventCursorResponse> {
 
   let url = `http://localhost:8080/api/events/get?limit=${limit}`;
 
@@ -61,6 +61,10 @@ getEventsCursor(cursor?: number, limit = 6, sport?: number, search?: string): Ob
 
     if (search !== undefined && search.trim() !== '') {
     url += `&search=${encodeURIComponent(search)}`;
+  }
+
+  if (status !== undefined && status !== null) {
+    url += `&status=${status}`;
   }
 
   return this.http.get<EventCursorResponse>(url);

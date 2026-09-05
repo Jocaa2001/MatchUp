@@ -2,6 +2,7 @@ package com.matchup.unit;
 
 import com.matchup.common.service.CrudServiceImpl;
 import com.matchup.event.entity.Event;
+import com.matchup.event.mapper.EventMapper;
 import com.matchup.event.repository.EventRepository;
 import com.matchup.event.service.EventService;
 import com.matchup.location.mapper.LocationMapper;
@@ -36,6 +37,10 @@ public class EventServiceTest extends GenericCrudServiceTest<Event, EventReposit
     @Mock
     private LocationMapper locationMapper;
 
+    @Mock
+    private EventMapper eventMapper;
+
+
 
     @Override
     protected EventRepository getRepository() {
@@ -49,6 +54,7 @@ public class EventServiceTest extends GenericCrudServiceTest<Event, EventReposit
                 sportRepository,
                 locationRepository,
                 locationMapper,
+                eventMapper,
                 participationRepository,
                 notificationService
         );

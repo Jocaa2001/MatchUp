@@ -150,23 +150,24 @@
         {{ 'EVENT_FILTER.STATUS' | translate }}
       </label>
 
-      <select class="form-control">
+      <select
+        class="form-control"
+        [value]="selectedStatus() ?? ''"
+        (change)="onStatusChange($event)"
+      >
 
         <option value="">
           {{ 'EVENT_FILTER.ALL' | translate }}
         </option>
 
-        <option value="open">
-          {{ 'EVENT_FILTER.OPEN' | translate }}
+      @for (status of eventStatuses; track status) {
+        <option [value]="status">
+          {{ status }}
         </option>
+      }
+          </select>
 
-        <option value="full">
-          {{ 'EVENT_FILTER.FULL' | translate }}
-        </option>
-
-      </select>
-
-    </div>
+        </div>
 
 
     <!-- Clear -->
