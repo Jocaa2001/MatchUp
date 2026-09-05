@@ -68,8 +68,11 @@
         {{ 'EVENT_FILTER.LOCATION' | translate }}
       </label>
 
-      <select class="form-control">
-
+    <select
+      class="form-control"
+      [value]="selectedCity() ?? ''"
+      (change)="onCityChange($event)"
+    >
       @for (city of cities(); track city.city) {
         <option [value]="city.city">
           {{ city.city }}

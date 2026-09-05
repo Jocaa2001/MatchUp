@@ -25,6 +25,7 @@ public interface EventRepository extends JpaRepository<Event,Long> {
           OR e.location.name ILIKE CONCAT('%', CAST(:search AS string), '%')
       )
       AND (:status IS NULL OR e.status = :status)
+      AND (:city IS NULL OR e.location.city = :city)
     ORDER BY e.id DESC
 """)
     List<Event> findEventsCursorBased(
@@ -32,6 +33,7 @@ public interface EventRepository extends JpaRepository<Event,Long> {
             @Param("sportId") Long sportId,
             @Param("search") String search,
             @Param("status") EventStatus status,
+            @Param("city") String city,
             Pageable pageable
     );
 }

@@ -17,6 +17,7 @@ export class EventFilter implements OnInit {
 @Output() sportChange = new EventEmitter<number | null>();
 @Output() searchChange = new EventEmitter<string>();
 @Output() statusChange = new EventEmitter<EventStatus | null>();
+@Output() cityChange = new EventEmitter<string | null>();
 
 private locationService = inject(LocationService);
 
@@ -29,7 +30,7 @@ public eventStatuses: EventStatus[] = [
 
 private sportService = inject(SportService);
 selectedSportId = signal<number | null>(null);
-
+selectedCity = signal<string | null>(null);
 public sports = signal<SportResponse[]>([]);
 selectedStatus = signal<EventStatus | null>(null);
 public cities = signal<DistinctCityResponse[]>([]);
@@ -78,6 +79,15 @@ onStatusChange(event: Event) {
 
   this.selectedStatus.set(status);
   this.statusChange.emit(status);
+}
+
+onCityChange(event: Event) {
+  const value = (event.target as HTMLSelectElement).value;
+
+  const city = value ? value : null;
+
+  this.selectedCity.set(city);
+  this.cityChange.emit(city);
 }
 
 }
