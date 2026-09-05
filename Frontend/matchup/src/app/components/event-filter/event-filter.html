@@ -31,6 +31,7 @@
         class="form-control"
         [placeholder]="'EVENT_FILTER.SEARCH_EVENTS' | translate"
         (input)="onSearchChange($event)"
+        [value]="searchValue()"
       />
 
   </div>
@@ -49,6 +50,10 @@
       <select class="form-control"
     [value]="selectedSportId() ?? ''"
     (change)="onSportChange($event)">
+
+      <option value="">
+    {{ 'EVENT_FILTER.ALL_SPORTS' | translate }}
+  </option>
 
       @for (sport of sports(); track sport.id) {
         <option [value]="sport.id">
@@ -73,6 +78,11 @@
       [value]="selectedCity() ?? ''"
       (change)="onCityChange($event)"
     >
+
+      <option value="">
+    {{ 'EVENT_FILTER.ALL_LOCATIONS' | translate }}
+  </option>
+
       @for (city of cities(); track city.city) {
         <option [value]="city.city">
           {{ city.city }}
@@ -166,7 +176,7 @@
 
 
     <!-- Clear -->
-    <button class="btn btn-secondary btn-sm clear-btn">
+    <button class="btn btn-secondary btn-sm clear-btn" (click)="clearFilters()">
 
       <svg
         width="12"
@@ -194,29 +204,36 @@
   <!-- Active Filter Chips -->
   <div class="active-filters">
 
-    <span class="filter-chip">
+@if (selectedSportId() !== null) {
+  <span class="filter-chip">
 
-      ⚽ {{ 'EVENT_FILTER.FOOTBALL' | translate }}
+    {{ 'EVENT_FILTER.' + sports().find(sport => sport.id === selectedSportId())?.name?.toUpperCase() | translate }}
 
-      <button>×</button>
+    <button (click)="clearSport()">
+      ×
+    </button>
 
-    </span>
+  </span>
+}
 
-    <span class="filter-chip">
+@if (selectedCity() !== null) {
+  <span class="filter-chip">
 
-      📍 Novi Sad — Spens
+    📍 {{ selectedCity() }}
 
-      <button>×</button>
+    <button (click)="clearCity()">×</button>
 
-    </span>
+  </span>
+}
+@if (selectedDate() !== null) {
+  <span class="filter-chip">
 
-    <span class="filter-chip">
+    📅 {{ selectedDate() }}
 
-      📅 2025-06-15
+    <button (click)="clearDate()">×</button>
 
-      <button>×</button>
-
-    </span>
+  </span>
+}
 
   </div>
 

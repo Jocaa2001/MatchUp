@@ -37,6 +37,7 @@ sports = signal<SportResponse[]>([]);
 selectedStatus = signal<EventStatus | null>(null);
 cities = signal<DistinctCityResponse[]>([]);
 selectedDate = signal<string | null>(null);
+searchValue = signal('');
 
 
 
@@ -72,7 +73,7 @@ onSportChange(event: Event) {
 
 onSearchChange(event: Event) {
   const value = (event.target as HTMLInputElement).value;
-
+  this.searchValue.set(value);
   this.searchChange.emit(value);
 }
 
@@ -101,6 +102,34 @@ onDateChange(event: Event) {
 
   this.selectedDate.set(date);
   this.dateChange.emit(date);
+}
+
+clearFilters() {
+  this.selectedSportId.set(null);
+  this.selectedStatus.set(null);
+  this.selectedCity.set(null);
+  this.selectedDate.set(null);
+
+  this.sportChange.emit(null);
+  this.statusChange.emit(null);
+  this.cityChange.emit(null);
+  this.dateChange.emit(null);
+  this.searchChange.emit('');
+}
+
+clearSport() {
+  this.selectedSportId.set(null);
+  this.sportChange.emit(null);
+}
+
+clearCity() {
+  this.selectedCity.set(null);
+  this.cityChange.emit(null);
+}
+
+clearDate() {
+  this.selectedDate.set(null);
+  this.dateChange.emit(null);
 }
 
 }
