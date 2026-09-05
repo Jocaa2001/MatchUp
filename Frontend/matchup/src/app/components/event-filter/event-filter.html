@@ -235,6 +235,16 @@
   </span>
 }
 
+@if (selectedStatus() !== null) {
+  <span class="filter-chip">
+
+    🔵 {{ selectedStatus() }}
+
+    <button (click)="clearStatus()">×</button>
+
+  </span>
+}
+
   </div>
 
 </div>

@@ -132,4 +132,9 @@ clearDate() {
   this.dateChange.emit(null);
 }
 
+clearStatus() {
+  this.selectedStatus.set(null);
+  this.statusChange.emit(null);
+}
+
 }
