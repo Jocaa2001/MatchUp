@@ -10,10 +10,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ProfileDetailsService } from '../../services/profileDetals.service';
 import { forkJoin } from 'rxjs';
+import { EventReview } from '../event-review/event-review';
+
 
 @Component({
   selector: 'app-event-detail',
-  imports: [RouterLink, DatePipe, TranslatePipe],
+  imports: [RouterLink, DatePipe, TranslatePipe,EventReview],
   templateUrl: './event-detail.html',
   styleUrl: './event-detail.scss',
 })
