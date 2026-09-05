@@ -70,21 +70,11 @@
 
       <select class="form-control">
 
-        <option value="">
-          {{ 'EVENT_FILTER.ALL_LOCATIONS' | translate }}
+      @for (city of cities(); track city.city) {
+        <option [value]="city.city">
+          {{ city.city }}
         </option>
-
-        <option value="1">
-          Novi Sad — Spens
-        </option>
-
-        <option value="2">
-          Novi Sad — Štrand
-        </option>
-
-        <option value="3">
-          Beograd — Ušće
-        </option>
+      }
 
       </select>
 

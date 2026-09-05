@@ -3,6 +3,8 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { SportResponse } from '../../models/responses/sportResponse';
 import { SportService } from '../../services/sport.service';
 import { EventStatus } from '../../models/responses/eventResponse';
+import { LocationService } from '../../services/location.service';
+import { DistinctCityResponse } from '../../models/responses/DistinctCityResponse';
 
 @Component({
   selector: 'app-event-filter',
@@ -16,6 +18,9 @@ export class EventFilter implements OnInit {
 @Output() searchChange = new EventEmitter<string>();
 @Output() statusChange = new EventEmitter<EventStatus | null>();
 
+private locationService = inject(LocationService);
+
+
 public eventStatuses: EventStatus[] = [
   "OPEN",
   "CANCELLED",
@@ -27,12 +32,24 @@ selectedSportId = signal<number | null>(null);
 
 public sports = signal<SportResponse[]>([]);
 selectedStatus = signal<EventStatus | null>(null);
+public cities = signal<DistinctCityResponse[]>([]);
+
 
 ngOnInit(): void {
   this.sportService.getSports().subscribe({
     next: (sports) => {
       this.sports.set(sports);
       console.log(this.sports())
+    },
+    error: (err) => {
+      console.error(err);
+    }
+  });
+
+  
+     this.locationService.getDistinctCities().subscribe({
+    next: (cities) => {
+      this.cities.set(cities);
     },
     error: (err) => {
       console.error(err);
