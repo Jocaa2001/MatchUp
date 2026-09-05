@@ -3,8 +3,7 @@ import { LocationResponse } from "./locationRespons";
 import { UserResponse } from "./userResponse";
 
 export type EventStatus =
-  | "CREATED"
-  | "ACTIVE"
+  | "OPEN"
   | "CANCELLED"
   | "FINISHED";
 
