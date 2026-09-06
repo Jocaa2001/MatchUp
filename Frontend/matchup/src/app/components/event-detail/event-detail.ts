@@ -11,6 +11,8 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { ProfileDetailsService } from '../../services/profileDetals.service';
 import { forkJoin } from 'rxjs';
 import { EventReview } from '../event-review/event-review';
+import { ReviewService } from '../../services/review.service';
+import { ReviewResponse } from '../../models/responses/reviewResponse';
 
 
 @Component({
@@ -24,6 +26,12 @@ export class EventDetail implements OnInit {
   private route = inject(ActivatedRoute);
   private eventService = inject(EventsService);
   private profileDetails = inject(ProfileDetailsService);
+  private reviewService = inject(ReviewService);
+
+  reviews = signal<ReviewResponse[]>([]);
+  averageRating = signal(0);
+  reviewCount = signal(0);
+  userJoined = signal(false);
 
   authService = inject(Auth);
   participationService = inject(ParticipationService);
@@ -79,6 +87,19 @@ export class EventDetail implements OnInit {
         console.error('Failed to load participants:', err);
       }
     });
+
+    this.reviewService.getReviewsByEventId(id).subscribe({
+    next: (response) => {
+      console.log('Reviews:', response);
+      this.reviews.set(response.reviews);
+      this.averageRating.set(response.averageRating);
+      this.reviewCount.set(response.reviewCount);
+      this.userJoined.set(response.userJoined);
+    },
+    error: (err) => {
+      console.error('Failed to load reviews:', err);
+    }
+});
   }
 
 

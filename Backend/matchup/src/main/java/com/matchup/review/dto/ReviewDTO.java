@@ -1,6 +1,8 @@
 package com.matchup.review.dto;
 
 import com.matchup.common.dto.BaseDto;
+import com.matchup.event.dto.EventDTO;
+import com.matchup.user.dto.UserDTO;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -18,11 +20,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class ReviewDTO extends BaseDto {
 
-    @NotNull(message = "User ID is required")
-    private Long userId;
+    @NotNull(message = "User is required")
+    private UserDTO user;
 
-    @NotNull(message = "Event ID is required")
-    private Long eventId;
+    @NotNull(message = "Event is required")
+    private EventDTO event;
 
     @NotNull(message = "Rating is required")
     @Min(value = 1, message = "Rating must be at least 1")

@@ -1,7 +1,9 @@
 package com.matchup.unit;
 
 import com.matchup.common.service.CrudServiceImpl;
+import com.matchup.participation.repository.ParticipationRepository;
 import com.matchup.review.entity.Review;
+import com.matchup.review.mapper.ReviewMapper;
 import com.matchup.review.repository.ReviewRepository;
 import com.matchup.review.service.ReviewService;
 import org.mockito.Mock;
@@ -12,6 +14,12 @@ public class ReviewServiceTest extends GenericCrudServiceTest<Review, ReviewRepo
     @Mock
     private ReviewRepository repository;
 
+    @Mock
+    private ReviewMapper reviewMapper;
+
+    @Mock
+    private ParticipationRepository participationRepository;
+
     @Override
     protected ReviewRepository getRepository() {
         return repository;
@@ -19,7 +27,7 @@ public class ReviewServiceTest extends GenericCrudServiceTest<Review, ReviewRepo
 
     @Override
     protected CrudServiceImpl<Review,ReviewRepository> createService() {
-        return new ReviewService(repository);
+        return new ReviewService(repository, reviewMapper,participationRepository);
     }
 
     @Override

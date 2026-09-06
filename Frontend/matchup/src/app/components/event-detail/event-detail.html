@@ -654,7 +654,12 @@
         </div>
 
       </aside>
-      <app-event-review></app-event-review>
+      <app-event-review
+  [reviews]="reviews()"
+  [averageRating]="averageRating()"
+  [reviewCount]="reviewCount()"
+  [userJoined]="userJoined()"
+></app-event-review>
     </div>
   </div>
 </div>

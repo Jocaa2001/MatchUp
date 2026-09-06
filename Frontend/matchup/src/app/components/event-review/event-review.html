@@ -5,7 +5,9 @@
 
     <h2 class="reviews-title">
       Reviews
-      <span class="reviews-count">3</span>
+      <span class="reviews-count">
+        {{ reviewCount }}
+      </span>
     </h2>
 
     <div class="reviews-stats">
@@ -18,15 +20,19 @@
 
         <span class="stats-value">
 
-          <span class="rating-stars">
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star">★</span>
-          </span>
+  <span class="rating-stars">
+  @for (i of [1, 2, 3, 4, 5]; track i) {
+    <span
+      class="star"
+      [class.filled]="i <= Math.round(averageRating)"
+    >
+      ★
+    </span>
+  }
+</span>
 
-          4.3/5
+
+          {{ averageRating.toFixed(1) }}/5
 
         </span>
 
@@ -138,161 +144,62 @@
   <!-- Reviews List -->
   <div class="reviews-list">
 
+    @for (review of reviews; track review.id) {
 
-    <!-- Review 1 -->
     <div class="review-item">
 
       <div class="review-header">
 
-        <!-- Avatar -->
         <div class="review-avatar">
-          MJ
+          {{ review.user.profile.firstName.charAt(0) }}
+          {{ review.user.profile.lastName.charAt(0) }}
         </div>
 
-
-        <!-- Info -->
         <div class="review-info">
 
           <div class="review-author">
-
             <strong>
-              Marko Jovanović
+              {{ review.user.profile.firstName }}
+              {{ review.user.profile.lastName }}
             </strong>
-
           </div>
 
-
-          <!-- Rating -->
           <div class="review-rating">
 
-            <span class="star-icon filled">★</span>
-            <span class="star-icon filled">★</span>
-            <span class="star-icon filled">★</span>
-            <span class="star-icon filled">★</span>
-            <span class="star-icon">★</span>
+            @for (i of [1, 2, 3, 4, 5]; track i) {
+              <span
+                class="star-icon"
+                [class.filled]="i <= review.rating"
+              >
+                ★
+              </span>
+            }
 
             <span class="rating-value">
-              4/5
+              {{ review.rating }}/5
             </span>
 
           </div>
 
-
-          <!-- Date -->
           <span class="review-date">
-            Aug 28, 2026
+            {{ review.createdAt | date:'mediumDate' }}
           </span>
 
         </div>
 
       </div>
 
-
-      <!-- Comment -->
       <div class="review-comment">
-        Great event, everyone was friendly and the organization was really good.
+        {{ review.comment }}
       </div>
 
     </div>
 
-
-    <!-- Review 2 -->
-    <div class="review-item">
-
-      <div class="review-header">
-
-        <div class="review-avatar">
-          AN
-        </div>
-
-        <div class="review-info">
-
-          <div class="review-author">
-
-            <strong>
-              Ana Nikolić
-            </strong>
-
-          </div>
-
-          <div class="review-rating">
-
-            <span class="star-icon filled">★</span>
-            <span class="star-icon filled">★</span>
-            <span class="star-icon filled">★</span>
-            <span class="star-icon filled">★</span>
-            <span class="star-icon filled">★</span>
-
-            <span class="rating-value">
-              5/5
-            </span>
-
-          </div>
-
-          <span class="review-date">
-            Aug 27, 2026
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <div class="review-comment">
-        Really enjoyed playing. Would definitely join another event.
-      </div>
-
-    </div>
-
-
-    <!-- Review 3 -->
-    <div class="review-item">
-
-      <div class="review-header">
-
-        <div class="review-avatar">
-          NP
-        </div>
-
-        <div class="review-info">
-
-          <div class="review-author">
-
-            <strong>
-              Nikola Petrović
-            </strong>
-
-          </div>
-
-          <div class="review-rating">
-
-            <span class="star-icon filled">★</span>
-            <span class="star-icon filled">★</span>
-            <span class="star-icon filled">★</span>
-            <span class="star-icon">★</span>
-            <span class="star-icon">★</span>
-
-            <span class="rating-value">
-              3/5
-            </span>
-
-          </div>
-
-          <span class="review-date">
-            Aug 25, 2026
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <div class="review-comment">
-        The event was good overall, although it started a little late.
-      </div>
-
-    </div>
-
-  </div>
+  }
 
 </div>
+    
+
+    
+
+  </div>
