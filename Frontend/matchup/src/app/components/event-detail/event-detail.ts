@@ -28,6 +28,7 @@ export class EventDetail implements OnInit {
   private profileDetails = inject(ProfileDetailsService);
   private reviewService = inject(ReviewService);
 
+  eventId = 0;
   reviews = signal<ReviewResponse[]>([]);
   averageRating = signal(0);
   reviewCount = signal(0);
@@ -46,7 +47,8 @@ export class EventDetail implements OnInit {
   ngOnInit(): void {
 
     const id = Number(this.route.snapshot.paramMap.get('id'));
-
+    this.eventId = id;
+    
     this.eventService.getEventById(id).subscribe({
       next: (event) => {
         this.event.set(event);
@@ -77,9 +79,6 @@ export class EventDetail implements OnInit {
       next: (participants) => {
 
         this.participants.set(participants);
-
-        console.log(this.participants());
-
         this.loadParticipantAvatars(participants);
       },
 

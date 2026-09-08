@@ -44,6 +44,7 @@
 
 
   <!-- Add Review -->
+   @if (userJoined && eventStatus === 'FINISHED') {
   <div class="add-review-section">
 
     <div class="add-review-header">
@@ -67,25 +68,18 @@
 
         <div class="rating-input">
 
-          <button type="button" class="star-btn active">
-            ★
-          </button>
-
-          <button type="button" class="star-btn active">
-            ★
-          </button>
-
-          <button type="button" class="star-btn active">
-            ★
-          </button>
-
-          <button type="button" class="star-btn">
-            ★
-          </button>
-
-          <button type="button" class="star-btn">
-            ★
-          </button>
+        <div class="rating-input">
+          @for (i of [1, 2, 3, 4, 5]; track i) {
+            <button
+              type="button"
+              class="star-btn"
+              [class.active]="i <= selectedRating()"
+              (click)="selectRating(i)"
+            >
+              ★
+            </button>
+          }
+        </div>
 
         </div>
 
@@ -109,6 +103,8 @@
           placeholder="Share your thoughts about the event..."
           rows="4"
           maxlength="500"
+          [value]="comment()"
+          (input)="onCommentChange($any($event.target).value)"
         ></textarea>
 
         <div class="form-footer">
@@ -116,7 +112,7 @@
           <span></span>
 
           <span class="char-count">
-            0/500
+            {{ comment().length }}/500
           </span>
 
         </div>
@@ -127,18 +123,20 @@
       <!-- Submit -->
       <div class="form-actions">
 
-        <button
-          type="button"
-          class="btn btn-primary"
-        >
-          Post Review
-        </button>
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="submitReview()"
+      >
+        Post Review
+      </button>
 
       </div>
 
     </form>
 
   </div>
+}
 
 
   <!-- Reviews List -->

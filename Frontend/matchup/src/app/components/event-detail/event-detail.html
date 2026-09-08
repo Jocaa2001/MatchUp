@@ -654,7 +654,9 @@
         </div>
 
       </aside>
-      <app-event-review
+<app-event-review
+  [eventId]="eventId"
+  [eventStatus]="event()?.status ?? 'OPEN'"
   [reviews]="reviews()"
   [averageRating]="averageRating()"
   [reviewCount]="reviewCount()"
