@@ -21,6 +21,7 @@ import com.matchup.participation.service.ParticipationService;
 import com.matchup.sport.entity.Sport;
 import com.matchup.sport.repository.SportRepository;
 import com.matchup.user.entity.User;
+import jakarta.transaction.Transactional;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -134,5 +135,13 @@ public class EventService extends CrudServiceImpl<Event, EventRepository> {
                 nextCursor,
                 hasNext
         );
+    }
+    public List<Event> findExpiredOpenEvents() {
+        return repository.findExpiredOpenEvents();
+    }
+
+    @Transactional
+    public void finishEvent(Event event) {
+        event.setStatus(EventStatus.FINISHED);
     }
 }

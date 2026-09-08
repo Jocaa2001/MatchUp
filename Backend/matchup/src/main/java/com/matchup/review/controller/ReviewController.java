@@ -2,19 +2,18 @@ package com.matchup.review.controller;
 
 
 import com.matchup.common.controller.CrudController;
+import com.matchup.review.dto.CreateReviewRequest;
 import com.matchup.review.dto.ReviewDTO;
 import com.matchup.review.dto.ReviewEventResponse;
 import com.matchup.review.entity.Review;
 import com.matchup.review.mapper.ReviewMapper;
 import com.matchup.review.service.ReviewService;
 import com.matchup.user.entity.User;
+import jakarta.validation.Valid;
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,6 +30,11 @@ public class ReviewController extends CrudController<Review, ReviewDTO, ReviewSe
             @PathVariable Long eventId
     ) {
         return ResponseEntity.ok(service.getAllReviewsByEventId(user,eventId));
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<ReviewDTO> createReview(@AuthenticationPrincipal User user, @RequestBody @Valid CreateReviewRequest request) {
+        return ResponseEntity.ok(service.createReview(user, request));
     }
 
 }

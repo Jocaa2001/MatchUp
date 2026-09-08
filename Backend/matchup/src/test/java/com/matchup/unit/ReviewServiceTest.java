@@ -1,6 +1,7 @@
 package com.matchup.unit;
 
 import com.matchup.common.service.CrudServiceImpl;
+import com.matchup.event.repository.EventRepository;
 import com.matchup.participation.repository.ParticipationRepository;
 import com.matchup.review.entity.Review;
 import com.matchup.review.mapper.ReviewMapper;
@@ -20,6 +21,9 @@ public class ReviewServiceTest extends GenericCrudServiceTest<Review, ReviewRepo
     @Mock
     private ParticipationRepository participationRepository;
 
+    @Mock
+    private EventRepository eventRepository;
+
     @Override
     protected ReviewRepository getRepository() {
         return repository;
@@ -27,7 +31,7 @@ public class ReviewServiceTest extends GenericCrudServiceTest<Review, ReviewRepo
 
     @Override
     protected CrudServiceImpl<Review,ReviewRepository> createService() {
-        return new ReviewService(repository, reviewMapper,participationRepository);
+        return new ReviewService(repository, reviewMapper,participationRepository, eventRepository);
     }
 
     @Override

@@ -46,4 +46,12 @@ public interface EventRepository extends JpaRepository<Event,Long> {
             @Param("dateTo") LocalDateTime dateTo,
             Pageable pageable
     );
+
+    @Query("""
+    SELECT e
+    FROM Event e
+    WHERE e.status = com.matchup.event.enums.EventStatus.OPEN
+      AND e.endTime <= CURRENT_TIMESTAMP
+""")
+    List<Event> findExpiredOpenEvents();
 }
