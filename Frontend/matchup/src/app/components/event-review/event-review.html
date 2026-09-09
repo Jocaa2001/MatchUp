@@ -185,6 +185,15 @@
 
         </div>
 
+              @if (authService.user()?.id === review.user.id) {
+        <button
+          type="button"
+          class="delete-btn"
+          (click)="deleteReview(review.id)"
+        >
+          Delete
+        </button>
+      }
       </div>
 
       <div class="review-comment">

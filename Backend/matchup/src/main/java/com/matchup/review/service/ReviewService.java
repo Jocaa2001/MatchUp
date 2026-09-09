@@ -88,4 +88,22 @@ public class ReviewService extends CrudServiceImpl<Review, ReviewRepository> {
         Review savedReview = repository.save(review);
         return mapper.toDto(savedReview);
     }
+
+    public void deleteReview(User user, Long reviewId) {
+
+        Review review = repository.findById(reviewId)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Review not found"
+                ));
+
+        if (!review.getUser().getId().equals(user.getId())) {
+            throw new ResponseStatusException(
+                    HttpStatus.FORBIDDEN,
+                    "You can only delete your own reviews"
+            );
+        }
+
+        repository.delete(review);
+    }
 }

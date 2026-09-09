@@ -25,4 +25,10 @@ export class ReviewService {
     );
   }
 
+  deleteReview(reviewId: number): Observable<void> {
+  return this.http.delete<void>(
+    `http://localhost:8080/api/reviews/review/${reviewId}`
+  );
+}
+
 }

@@ -37,4 +37,14 @@ public class ReviewController extends CrudController<Review, ReviewDTO, ReviewSe
         return ResponseEntity.ok(service.createReview(user, request));
     }
 
+    @DeleteMapping("/review/{reviewId}")
+    public ResponseEntity<Void> deleteReview(
+            @AuthenticationPrincipal User user,
+            @PathVariable Long reviewId
+    ) {
+        service.deleteReview(user, reviewId);
+
+        return ResponseEntity.noContent().build();
+    }
+
 }

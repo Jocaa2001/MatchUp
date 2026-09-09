@@ -3,6 +3,7 @@ import { ReviewResponse } from '../../models/responses/reviewResponse';
 import { DatePipe } from '@angular/common';
 import { ReviewService } from '../../services/review.service';
 import { EventStatus } from '../../models/responses/eventResponse';
+import { Auth } from '../../services/auth';
 
 @Component({
   selector: 'app-event-review',
@@ -11,7 +12,7 @@ import { EventStatus } from '../../models/responses/eventResponse';
   styleUrl: './event-review.scss',
 })
 export class EventReview implements OnInit {
-
+  authService = inject(Auth);
   private reviewService = inject(ReviewService);
   comment = signal('');
   selectedRating = signal(0);
@@ -53,6 +54,18 @@ submitReview() {
     },
     error: (err) => {
       console.error('Failed to create review:', err);
+    }
+  });
+}
+
+deleteReview(reviewId: number) {
+  this.reviewService.deleteReview(reviewId).subscribe({
+    next: () => {
+      console.log('Review deleted');
+      window.location.reload();
+    },
+    error: (err) => {
+      console.error('Failed to delete review:', err);
     }
   });
 }
