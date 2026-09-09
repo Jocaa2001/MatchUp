@@ -32,7 +32,7 @@
             <div class="detail-badges">
 
               <span class="badge badge-sport">
-                ⚽ Football
+                {{ ('EVENT_FILTER.' + event()?.sport?.name?.toUpperCase()) | translate }}
               </span>
 
               @if (isEventCancelled()) {

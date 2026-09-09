@@ -1,212 +1,210 @@
-<div class="reviews-section">
 
-  <!-- Header -->
-  <div class="reviews-header">
-
-    <h2 class="reviews-title">
-      Reviews
-      <span class="reviews-count">
-        {{ reviewCount }}
-      </span>
-    </h2>
-
-    <div class="reviews-stats">
-
-      <div class="stats-item">
-
-        <span class="stats-label">
-          Average Rating
-        </span>
-
-        <span class="stats-value">
-
-  <span class="rating-stars">
-  @for (i of [1, 2, 3, 4, 5]; track i) {
-    <span
-      class="star"
-      [class.filled]="i <= Math.round(averageRating)"
-    >
-      ★
-    </span>
-  }
-</span>
-
-
-          {{ averageRating.toFixed(1) }}/5
-
-        </span>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- Add Review -->
-   @if (userJoined && eventStatus === 'FINISHED') {
-  <div class="add-review-section">
-
-    <div class="add-review-header">
-
-      <h3>Share Your Experience</h3>
-
-      <p>Help others decide to join this event</p>
-
-    </div>
-
-
-    <form class="review-form">
-
-      <!-- Rating -->
-      <div class="form-group">
-
-        <label class="rating-label">
-          Rating
-          <span class="required">*</span>
-        </label>
-
-        <div class="rating-input">
-
-        <div class="rating-input">
-          @for (i of [1, 2, 3, 4, 5]; track i) {
-            <button
-              type="button"
-              class="star-btn"
-              [class.active]="i <= selectedRating()"
-              (click)="selectRating(i)"
-            >
-              ★
-            </button>
-          }
-        </div>
-
-        </div>
-
-        <span class="rating-text">
-          Good
-        </span>
-
-      </div>
-
-
-      <!-- Comment -->
-      <div class="form-group">
-
-        <label for="comment">
-          Comment
-        </label>
-
-        <textarea
-          id="comment"
-          class="form-control review-textarea"
-          placeholder="Share your thoughts about the event..."
-          rows="4"
-          maxlength="500"
-          [value]="comment()"
-          (input)="onCommentChange($any($event.target).value)"
-        ></textarea>
-
-        <div class="form-footer">
-
-          <span></span>
-
-          <span class="char-count">
-            {{ comment().length }}/500
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <!-- Submit -->
-      <div class="form-actions">
-
-      <button
-        type="button"
-        class="btn btn-primary"
-        (click)="submitReview()"
-      >
-        Post Review
-      </button>
-
-      </div>
-
-    </form>
-
-  </div>
-}
-
-
-  <!-- Reviews List -->
-  <div class="reviews-list">
-
-    @for (review of reviews; track review.id) {
-
-    <div class="review-item">
-
-      <div class="review-header">
-
-        <div class="review-avatar">
-          {{ review.user.profile.firstName.charAt(0) }}
-          {{ review.user.profile.lastName.charAt(0) }}
-        </div>
-
-        <div class="review-info">
-
-          <div class="review-author">
-            <strong>
-              {{ review.user.profile.firstName }}
-              {{ review.user.profile.lastName }}
-            </strong>
-          </div>
-
-          <div class="review-rating">
-
-            @for (i of [1, 2, 3, 4, 5]; track i) {
-              <span
-                class="star-icon"
-                [class.filled]="i <= review.rating"
-              >
-                ★
-              </span>
-            }
-
-            <span class="rating-value">
-              {{ review.rating }}/5
-            </span>
-
-          </div>
-
-          <span class="review-date">
-            {{ review.createdAt | date:'mediumDate' }}
-          </span>
-
-        </div>
-
-              @if (authService.user()?.id === review.user.id) {
-        <button
-          type="button"
-          class="delete-btn"
-          (click)="deleteReview(review.id)"
-        >
-          Delete
-        </button>
-      }
-      </div>
-
-      <div class="review-comment">
-        {{ review.comment }}
-      </div>
-
-    </div>
-
-  }
-
+<div class="reviews-section"> 
+ 
+  <!-- Header --> 
+  <div class="reviews-header"> 
+ 
+    <h2 class="reviews-title"> 
+      {{ 'REVIEWS.TITLE' | translate }}
+      <span class="reviews-count"> 
+        {{ reviewCount }} 
+      </span> 
+    </h2> 
+ 
+    <div class="reviews-stats"> 
+ 
+      <div class="stats-item"> 
+ 
+        <span class="stats-label"> 
+          {{ 'REVIEWS.AVERAGE_RATING' | translate }}
+        </span> 
+ 
+        <span class="stats-value"> 
+ 
+          <span class="rating-stars"> 
+            @for (i of [1, 2, 3, 4, 5]; track i) { 
+              <span 
+                class="star" 
+                [class.filled]="i <= Math.round(averageRating)" 
+              > 
+                ★ 
+              </span> 
+            } 
+          </span> 
+ 
+          {{ averageRating.toFixed(1) }}/5 
+ 
+        </span> 
+ 
+      </div> 
+ 
+    </div> 
+ 
+  </div> 
+ 
+ 
+  <!-- Add Review --> 
+  @if (userJoined && eventStatus === 'FINISHED') { 
+    <div class="add-review-section"> 
+ 
+      <div class="add-review-header"> 
+ 
+        <h3>{{ 'REVIEWS.SHARE_EXPERIENCE' | translate }}</h3>
+ 
+        <p>{{ 'REVIEWS.HELP_OTHERS' | translate }}</p>
+ 
+      </div> 
+ 
+ 
+      <form class="review-form"> 
+ 
+        <!-- Rating --> 
+        <div class="form-group"> 
+ 
+          <label class="rating-label"> 
+            {{ 'REVIEWS.RATING' | translate }}
+            <span class="required">*</span> 
+          </label> 
+ 
+          <div class="rating-input"> 
+ 
+            <div class="rating-input"> 
+              @for (i of [1, 2, 3, 4, 5]; track i) { 
+                <button 
+                  type="button" 
+                  class="star-btn" 
+                  [class.active]="i <= selectedRating()" 
+                  (click)="selectRating(i)" 
+                > 
+                  ★ 
+                </button> 
+              } 
+            </div> 
+ 
+          </div> 
+ 
+          <span class="rating-text"> 
+            {{ 'REVIEWS.GOOD' | translate }}
+          </span> 
+ 
+        </div> 
+ 
+ 
+        <!-- Comment --> 
+        <div class="form-group"> 
+ 
+          <label for="comment"> 
+            {{ 'REVIEWS.COMMENT' | translate }}
+          </label> 
+ 
+          <textarea 
+            id="comment" 
+            class="form-control review-textarea" 
+            [placeholder]="'REVIEWS.COMMENT_PLACEHOLDER' | translate"
+            rows="4" 
+            maxlength="500" 
+            [value]="comment()" 
+            (input)="onCommentChange($any($event.target).value)" 
+          ></textarea> 
+ 
+          <div class="form-footer"> 
+ 
+            <span></span> 
+ 
+            <span class="char-count"> 
+              {{ comment().length }}/500 
+            </span> 
+ 
+          </div> 
+ 
+        </div> 
+ 
+ 
+        <!-- Submit --> 
+        <div class="form-actions"> 
+ 
+          <button 
+            type="button" 
+            class="btn btn-primary" 
+            (click)="submitReview()" 
+          > 
+            {{ 'REVIEWS.POST_REVIEW' | translate }}
+          </button> 
+ 
+        </div> 
+ 
+      </form> 
+ 
+    </div> 
+  } 
+ 
+ 
+  <!-- Reviews List --> 
+  <div class="reviews-list"> 
+ 
+    @for (review of reviews; track review.id) { 
+ 
+      <div class="review-item"> 
+ 
+        <div class="review-header"> 
+ 
+          <div class="review-avatar"> 
+            {{ review.user.profile.firstName.charAt(0) }} 
+            {{ review.user.profile.lastName.charAt(0) }} 
+          </div> 
+ 
+          <div class="review-info"> 
+ 
+            <div class="review-author"> 
+              <strong> 
+                {{ review.user.profile.firstName }} 
+                {{ review.user.profile.lastName }} 
+              </strong> 
+            </div> 
+ 
+            <div class="review-rating"> 
+ 
+              @for (i of [1, 2, 3, 4, 5]; track i) { 
+                <span 
+                  class="star-icon" 
+                  [class.filled]="i <= review.rating" 
+                > 
+                  ★ 
+                </span> 
+              } 
+ 
+              <span class="rating-value"> 
+                {{ review.rating }}/5 
+              </span> 
+ 
+            </div> 
+ 
+            <span class="review-date"> 
+              {{ review.createdAt | date:'mediumDate' }} 
+            </span> 
+ 
+          </div> 
+ 
+          @if (authService.user()?.id === review.user.id) { 
+            <button 
+              type="button" 
+              class="delete-btn" 
+              (click)="deleteReview(review.id)" 
+            > 
+              {{ 'REVIEWS.DELETE' | translate }}
+            </button> 
+          } 
+ 
+        </div> 
+ 
+        <div class="review-comment"> 
+          {{ review.comment }} 
+        </div> 
+ 
+      </div> 
+ 
+    } 
+ 
+  </div> 
+ 
 </div>
-    
-
-    
-
-  </div>

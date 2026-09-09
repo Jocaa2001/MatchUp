@@ -167,7 +167,7 @@
 
       @for (status of eventStatuses; track status) {
         <option [value]="status">
-          {{ status }}
+        {{ ('EVENT_FILTER.' + status) | translate }}
         </option>
       }
           </select>
@@ -238,8 +238,7 @@
 @if (selectedStatus() !== null) {
   <span class="filter-chip">
 
-    🔵 {{ selectedStatus() }}
-
+🔵 {{ ('EVENT_FILTER.' + selectedStatus()) | translate }}
     <button (click)="clearStatus()">×</button>
 
   </span>

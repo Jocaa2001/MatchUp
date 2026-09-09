@@ -58,7 +58,9 @@
 
   "EVENT_FILTER": {
     "SEARCH_EVENTS": "Search events...",
-
+    "OPEN": "Open",
+    "CANCELLED": "Cancelled",
+    "FINISHED": "Finished",
     "SPORT": "Sport",
     "ALL_SPORTS": "All Sports",
 
@@ -86,7 +88,8 @@
   "USER_MENU": {
     "USER_PROFILE": "User Profile",
     "MY_EVENTS": "My Events",
-    "SIGN_OUT": "Sign Out"
+    "SIGN_OUT": "Sign Out",
+    "PROFILE_PICTURE": "Profile picture"
   },
 
   "LANDING": {
@@ -113,7 +116,11 @@
       "SPOT_LEFT": "spot left",
 
       "JOINED_TENNIS": "Joined Tennis match",
-      "NEW_EVENTS_NEARBY": "3 new events nearby"
+      "NEW_EVENTS_NEARBY": "3 new events nearby",
+      "FEATURED_MATCH": "Singles Friendly Match",
+"FOOTBALL_GAME": "5v5 Recreational Game",
+"BASKETBALL_GAME": "3x3 Street Game",
+"SATURDAY": "Sat"
     },
 
     "SPORTS": {
@@ -260,7 +267,8 @@
 "EVENTS": {
   "TITLE": "Pregled događaja",
   "SUBTITLE": "događaja dostupno u vašoj blizini",
-  "CREATE_EVENT": "Napravi događaj"
+  "CREATE_EVENT": "Napravi događaj",
+  "LOAD_MORE": "Učitaj još"
 },
 "LOGIN": {
   "WELCOME_TITLE_LINE_1": "Welcome",
@@ -317,6 +325,8 @@
   "FORM": {
     "TITLE": "Complete Profile",
     "DESCRIPTION": "Takes less than a minute. You can always edit this later.",
+
+    "AVATAR_PREVIEW": "Avatar preview",
 
     "PROFILE_PHOTO": "Profile Photo",
     "PHOTO_FORMAT": "JPG, PNG or GIF · Max 5MB",
@@ -403,6 +413,19 @@
     "PHONE": "Phone",
     "DATE_OF_BIRTH": "Date of Birth",
     "CITY": "City",
-    "SAVE_CHANGES": "Save Changes"
-  }
+    "SAVE_CHANGES": "Save Changes",
+    "PROFILE_AVATAR": "Profile avatar"
+  },
+  "REVIEWS": {
+  "TITLE": "Reviews",
+  "AVERAGE_RATING": "Average Rating",
+  "SHARE_EXPERIENCE": "Share Your Experience",
+  "HELP_OTHERS": "Help others decide to join this event",
+  "RATING": "Rating",
+  "GOOD": "Good",
+  "COMMENT": "Comment",
+  "COMMENT_PLACEHOLDER": "Share your thoughts about the event...",
+  "POST_REVIEW": "Post Review",
+  "DELETE": "Delete"
+}
 }

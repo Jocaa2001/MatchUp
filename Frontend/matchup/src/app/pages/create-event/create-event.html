@@ -80,7 +80,7 @@
 
                                 @for (sport of sports(); track sport.id) {
                                     <option [value]="sport.id">
-                                        {{ sport.name }}
+                                    {{ ('EVENT_FILTER.' + sport.name.toUpperCase()) | translate }}       
                                     </option>
                                 }
                             </select>

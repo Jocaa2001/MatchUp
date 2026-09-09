@@ -58,6 +58,9 @@
 
   "EVENT_FILTER": {
     "SEARCH_EVENTS": "Pretraži događaje...",
+    "OPEN": "Otvoreno",
+    "CANCELLED": "Otkazan",
+    "FINISHED": "Zavrsen",
 
     "SPORT": "Sport",
     "ALL_SPORTS": "Svi sportovi",
@@ -86,7 +89,8 @@
   "USER_MENU": {
     "USER_PROFILE": "Korisnički profil",
     "MY_EVENTS": "Moji događaji",
-    "SIGN_OUT": "Odjavi se"
+    "SIGN_OUT": "Odjavi se",
+    "PROFILE_PICTURE": "Profilna slika"
   },
 
   "LANDING": {
@@ -113,7 +117,11 @@
       "SPOT_LEFT": "slobodno mesto",
 
       "JOINED_TENNIS": "Pridružio se teniskom meču",
-      "NEW_EVENTS_NEARBY": "3 nova događaja u blizini"
+      "NEW_EVENTS_NEARBY": "3 nova događaja u blizini",
+      "FEATURED_MATCH": "Prijateljski singl meč",
+"FOOTBALL_GAME": "Rekreativna igra 5 na 5",
+"BASKETBALL_GAME": "3x3 ulična igra",
+"SATURDAY": "Sub"
     },
 
     "SPORTS": {
@@ -260,7 +268,8 @@
 "EVENTS": {
   "TITLE": "Pregled događaja",
   "SUBTITLE": "događaja dostupno u vašoj blizini",
-  "CREATE_EVENT": "Napravi događaj"
+  "CREATE_EVENT": "Napravi događaj",
+  "LOAD_MORE": "Učitaj još"
 },
 "LOGIN": {
   "WELCOME_TITLE_LINE_1": "Dobrodošao",
@@ -317,6 +326,8 @@
   "FORM": {
     "TITLE": "Dovrši profil",
     "DESCRIPTION": "Potrebno je manje od jednog minuta. Ovo uvek možeš kasnije da izmeniš.",
+
+    "AVATAR_PREVIEW": "Pregled avatara",
 
     "PROFILE_PHOTO": "Profilna fotografija",
     "PHOTO_FORMAT": "JPG, PNG ili GIF · Maks. 5MB",
@@ -403,6 +414,21 @@
     "PHONE": "Telefon",
     "DATE_OF_BIRTH": "Datum rođenja",
     "CITY": "Grad",
-    "SAVE_CHANGES": "Sačuvaj izmene"
-  }
+    "SAVE_CHANGES": "Sačuvaj izmene",
+    "PROFILE_AVATAR": "Profilna slika"
+  },
+
+"REVIEWS": {
+  "TITLE": "Recenzije",
+  "AVERAGE_RATING": "Prosečna ocena",
+  "SHARE_EXPERIENCE": "Podeli svoje iskustvo",
+  "HELP_OTHERS": "Pomozi drugima da odluče da se pridruže ovom događaju",
+  "RATING": "Ocena",
+  "GOOD": "Dobro",
+  "COMMENT": "Komentar",
+  "COMMENT_PLACEHOLDER": "Podeli svoje utiske o događaju...",
+  "POST_REVIEW": "Objavi recenziju",
+  "DELETE": "Obriši"
+}
+
 }

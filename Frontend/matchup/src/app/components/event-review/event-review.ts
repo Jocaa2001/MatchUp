@@ -4,10 +4,11 @@ import { DatePipe } from '@angular/common';
 import { ReviewService } from '../../services/review.service';
 import { EventStatus } from '../../models/responses/eventResponse';
 import { Auth } from '../../services/auth';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-event-review',
-  imports: [DatePipe],
+  imports: [DatePipe,TranslatePipe],
   templateUrl: './event-review.html',
   styleUrl: './event-review.scss',
 })
