@@ -4,6 +4,7 @@ import { ProfileSetupService } from '../../services/profileSetup.service';
 import { UserProfileRequest } from '../../models/requests/userProfileRequest';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
+import { Auth } from '../../services/auth';
 
 @Component({
   selector: 'app-profile-setup',
@@ -12,7 +13,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   styleUrl: './profile-setup.scss',
 })
 export class ProfileSetup {
-
+private authService = inject(Auth)
   private profileSetupService = inject(ProfileSetupService);
   private router = inject(Router);
   avatarFile: File | null = null;
@@ -47,7 +48,7 @@ export class ProfileSetup {
     this.profileSetupService.setupProfile(request).subscribe({
       next: (res) => {
         console.log('success', res)
-
+        this.authService.setCurrentUser(res)
         if (!this.avatarFile) {
         this.router.navigate(['/']);
         return;

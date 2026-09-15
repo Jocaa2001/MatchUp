@@ -12,6 +12,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   styleUrl: './register.scss',
 })
 export class Register {
+  
   isSomethingWrongErrorMessage = signal(false)
   isEmailAdressValid = signal(true);
   isPasswordValid = signal(false);
@@ -70,7 +71,14 @@ registerForm = new FormGroup({
       next: (res) => {
         console.log('SUCCESS', res)
         localStorage.setItem('token', res.token)
-        this.router.navigate(['/profile-setup']);
+
+        this.authService.getLoggedUser().subscribe({
+            next: (user) => {
+              this.authService.setCurrentUser(user);
+              this.router.navigate(['/profile-setup']);
+            }
+          });
+    
       },
        error: (err) => {
         console.log('ERROR', err);

@@ -66,10 +66,11 @@ login(request: LoginRequest) {
     return !!this.getToken();
   }
   
-  logout() {
+logout() {
   localStorage.removeItem('token');
-  //this.user.set(null);
+  this.currentUser.set(null);
+  this.avatarUrl.set(null);
   this.router.navigate(['/login']);
 }
-
 }
+
