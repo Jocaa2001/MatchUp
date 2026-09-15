@@ -2,13 +2,13 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, ɵInternalFormsSharedModule } from '@angular/forms';
 import { ProfileSetupService } from '../../services/profileSetup.service';
 import { UserProfileRequest } from '../../models/requests/userProfileRequest';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Auth } from '../../services/auth';
 
 @Component({
   selector: 'app-profile-setup',
-  imports: [ɵInternalFormsSharedModule,ReactiveFormsModule, TranslatePipe],
+  imports: [ɵInternalFormsSharedModule,ReactiveFormsModule, TranslatePipe, RouterLink],
   templateUrl: './profile-setup.html',
   styleUrl: './profile-setup.scss',
 })
@@ -57,7 +57,7 @@ private authService = inject(Auth)
 
           next: (fileName) => {
             console.log('Avatar uploaded successfully:', fileName);
-
+            this.authService.setAvatar(this.avatarFile!); 
             this.router.navigate(['/']);
           },
 
