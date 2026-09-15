@@ -15,26 +15,28 @@
         </p>
       </div>
 
-      <a
-        routerLink="/events/create"
-        class="btn btn-primary"
-      >
-        <svg
-          width="14"
-          height="14"
-          viewBox="0 0 14 14"
-          fill="none"
-        >
-          <path
-            d="M7 1v12M1 7h12"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-          />
-        </svg>
+      @if (user()) {
+  <a 
+    routerLink="/events/create" 
+    class="btn btn-primary"
+  > 
+    <svg 
+      width="14" 
+      height="14" 
+      viewBox="0 0 14 14" 
+      fill="none" 
+    > 
+      <path 
+        d="M7 1v12M1 7h12" 
+        stroke="currentColor" 
+        stroke-width="2" 
+        stroke-linecap="round" 
+      /> 
+    </svg> 
 
-        {{ 'EVENTS.CREATE_EVENT' | translate }}
-      </a>
+    {{ 'EVENTS.CREATE_EVENT' | translate }}
+  </a>
+}
 
     </div>
 

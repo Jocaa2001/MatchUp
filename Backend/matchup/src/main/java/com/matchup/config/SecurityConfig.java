@@ -35,7 +35,7 @@ public class SecurityConfig {
             "/events/*",
             "/events/*/participants",
             "/events/for-user",
-            "/events/get",
+
 
             "/participations/events/*",
             "/participations/for-user",
@@ -69,7 +69,10 @@ public class SecurityConfig {
                                 "/v3/api-docs.yaml/**",
                                 "/swagger-ui/**",
                                 "/swagger-ui.html",
-                                "/events/all").permitAll()
+                                "/events/all",
+                                "/sports/all",
+                                "/locations/cities",
+                                "/events/get").permitAll()
                         .requestMatchers(routes_permitted_to_user).hasAnyAuthority("USER", "ADMIN")
                         .requestMatchers("/**").hasAuthority("ADMIN")
                         .anyRequest().authenticated()

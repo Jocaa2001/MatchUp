@@ -7,6 +7,7 @@ import { Router, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { debounceTime, distinctUntilChanged, Subject, timeout } from 'rxjs';
 import { EventResponse, EventStatus } from '../../models/responses/eventResponse';
+import { Auth } from '../../services/auth';
 
 @Component({
   selector: 'app-events',
@@ -29,6 +30,9 @@ export class Events {
   nextCursor = signal<number | null>(null);
 
   hasNext = signal(true);
+
+    private authService = inject(Auth);
+    user = this.authService.user;
 
  constructor() {
     this.loadEvents();
