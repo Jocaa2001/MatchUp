@@ -267,7 +267,7 @@
 "EVENTS": {
   "TITLE": "Pregled događaja",
   "SUBTITLE": "događaja dostupno u vašoj blizini",
-  "CREATE_EVENT": "Napravi događaj",
+  "CREATE_EVENT": "Create Event",
   "LOAD_MORE": "Učitaj još"
 },
 "LOGIN": {

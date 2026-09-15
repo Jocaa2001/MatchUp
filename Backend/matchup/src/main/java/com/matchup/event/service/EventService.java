@@ -143,5 +143,6 @@ public class EventService extends CrudServiceImpl<Event, EventRepository> {
     @Transactional
     public void finishEvent(Event event) {
         event.setStatus(EventStatus.FINISHED);
+        repository.save(event);
     }
 }

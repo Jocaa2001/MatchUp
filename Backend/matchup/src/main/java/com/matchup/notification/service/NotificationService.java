@@ -92,7 +92,7 @@ public class NotificationService extends CrudServiceImpl<Notification, Notificat
 
     public void notifyEventCancelled(Event event, User admin) {
 
-        // Adminu
+        // Organiser
         sendNotification(
                 admin,
                 event,
@@ -100,7 +100,7 @@ public class NotificationService extends CrudServiceImpl<Notification, Notificat
                 NotificationRecipient.ADMIN
         );
 
-        // Organizeru i svim učesnicima
+        // To user who joined
         participationRepository.findByEventId(event.getId())
                 .forEach(participation -> {
 

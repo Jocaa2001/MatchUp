@@ -559,14 +559,6 @@
 
               </div>
 
-              <!-- Edit Event -->
-              <button
-                class="btn btn-secondary btn-block"
-                [routerLink]="['/edit-event', event()?.id]"
-                style="margin-top: 10px;"
-              >
-                {{ 'EVENT_DETAIL.EDIT_EVENT' | translate }}
-              </button>
 
               <!-- Cancel / Reactivate -->
               @if (isEventCancelled()) {
